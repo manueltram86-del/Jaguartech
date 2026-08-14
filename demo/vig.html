@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechServ Pro — Sistema de Servicio y Venta de Equipos</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+:root{--bg:#0A0E1A;--bg2:#111827;--bg3:#1C2333;--border:rgba(255,255,255,.07);--b2:rgba(255,255,255,.12);--text:#F0F4FF;--t2:#8B95A8;--t3:#555F72;--cyan:#00D4FF;--cd:rgba(0,212,255,.12);--cb:rgba(0,212,255,.28);--green:#00E676;--gd:rgba(0,230,118,.10);--orange:#FF9100;--od:rgba(255,145,0,.10);--red:#FF4757;--rd:rgba(255,71,87,.10);--purple:#7C4DFF;--pd:rgba(124,77,255,.10);--yellow:#FFD600;--yd:rgba(255,214,0,.08);--sw:248px;--r:10px;--r2:7px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:99px}
+/* LOGIN */
+#login{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--bg);position:relative;overflow:hidden}
+#login::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.07) 0%,transparent 70%);top:-100px;left:-100px;pointer-events:none}
+#login::after{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(124,77,255,.05) 0%,transparent 70%);bottom:0;right:0;pointer-events:none}
+.lbox{background:var(--bg2);border:1px solid var(--b2);border-radius:16px;padding:44px 38px;width:400px;position:relative;z-index:1}
+.llogo{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.licon{width:46px;height:46px;background:var(--cd);border:1px solid var(--cb);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.lname{font-size:17px;font-weight:700;letter-spacing:-1px}.lname span{color:var(--cyan)}
+.lsub{font-size:11px;color:var(--t3);margin-bottom:30px;letter-spacing:.5px;font-family:'JetBrains Mono',monospace}
+.lbox input{width:100%;padding:11px 15px;background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r2);font-size:13px;color:var(--text);font-family:'Space Grotesk',sans-serif;outline:none;transition:border .2s;margin-bottom:11px}
+.lbox input:focus{border-color:var(--cyan)}.lbox input::placeholder{color:var(--t3)}
+.lbtn{width:100%;padding:12px;background:var(--cyan);color:var(--bg);border:none;border-radius:var(--r2);font-size:14px;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:opacity .2s}.lbtn:hover{opacity:.85}
+.lhint{margin-top:14px;font-size:10px;color:var(--t3);text-align:center;font-family:'JetBrains Mono',monospace}
+/* APP */
+#app{display:none}#app.visible{display:flex}
+/* SIDEBAR */
+#sidebar{width:var(--sw);min-height:100vh;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;left:0;top:0;z-index:100;transition:transform .3s}
+.sblogo{padding:18px 17px 14px;border-bottom:1px solid var(--border)}
+.sblogow{display:flex;align-items:center;gap:10px}
+.sblogoi{width:35px;height:35px;background:var(--cd);border:1px solid var(--cb);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.sbn{font-size:16px;font-weight:700;letter-spacing:-.5px}.sbn span{color:var(--cyan)}
+.sbsub{font-size:9px;color:var(--t3);font-family:'JetBrains Mono',monospace;letter-spacing:1px;margin-top:1px}
+.sbnav{flex:1;padding:12px 0;overflow-y:auto}
+.sbsec{padding:9px 17px 4px;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;font-family:'JetBrains Mono',monospace}
+.sbi{display:flex;align-items:center;gap:9px;padding:9px 17px;color:var(--t2);font-size:13px;cursor:pointer;transition:all .18s;border-left:2px solid transparent;margin:1px 0}
+.sbi:hover{color:var(--text);background:rgba(255,255,255,.03)}.sbi.active{color:var(--cyan);background:var(--cd);border-left-color:var(--cyan)}
+.sbi i{font-size:16px;width:20px;flex-shrink:0}
+.sbbadge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px;font-family:'JetBrains Mono',monospace;display:none}
+.sbfoot{padding:13px 17px;border-top:1px solid var(--border)}
+.sbuser{display:flex;align-items:center;gap:9px}
+.sbav{width:31px;height:31px;border-radius:8px;background:var(--cd);border:1px solid var(--cb);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--cyan);flex-shrink:0}
+.sbuname{font-size:12px;font-weight:600}.sbrole{font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace}
+.btnlo{margin-left:auto;background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;transition:color .2s}.btnlo:hover{color:var(--red)}
+/* MAIN */
+#main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;min-height:100vh}
+#topbar{height:56px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 22px;gap:14px;position:sticky;top:0;z-index:50}
+#tbt{font-size:16px;font-weight:600;flex:1;letter-spacing:-.3px}
+.tbsr{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r2);padding:7px 13px}
+.tbsr input{border:none;background:none;outline:none;font-size:13px;color:var(--text);font-family:'Space Grotesk',sans-serif;width:200px}.tbsr input::placeholder{color:var(--t3)}
+.tbsr i{color:var(--t3);font-size:15px}
+.btnmob{display:none;background:none;border:none;cursor:pointer;font-size:21px;color:var(--t2)}
+#content{padding:22px;flex:1}
+/* PAGES */
+.page{display:none}.page.active{display:block}
+.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.ph h2{font-size:21px;font-weight:700;letter-spacing:-.5px}
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px 21px}
+.ctitle{font-size:13px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.ctitle i{font-size:16px;color:var(--cyan)}
+/* STATS */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:13px;margin-bottom:20px}
+.sc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;display:flex;align-items:flex-start;gap:12px}
+.si{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.ic{background:var(--cd);color:var(--cyan)}.ig{background:var(--gd);color:var(--green)}
+.io{background:var(--od);color:var(--orange)}.ir{background:var(--rd);color:var(--red)}
+.ip{background:var(--pd);color:var(--purple)}.iy{background:var(--yd);color:var(--yellow)}
+.sv{font-size:22px;font-weight:700;line-height:1;font-family:'JetBrains Mono',monospace}
+.sl{font-size:11px;color:var(--t3);margin-top:4px}
+/* BTNS */
+.btn{padding:8px 15px;border-radius:var(--r2);font-size:13px;font-weight:600;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:6px;font-family:'Space Grotesk',sans-serif;transition:all .18s}
+.bc{background:var(--cyan);color:var(--bg)}.bc:hover{opacity:.85}
+.bg_{background:transparent;color:var(--t2);border:1px solid var(--b2)}.bg_:hover{background:var(--bg3);color:var(--text)}
+.bgr{background:var(--green);color:var(--bg)}.bor{background:var(--orange);color:var(--bg)}.bred{background:var(--red);color:#fff}
+.bsm{padding:5px 11px;font-size:11px}.bic{padding:7px;border-radius:var(--r2)}
+/* TABLE */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--bg3);padding:9px 13px;text-align:left;font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace}
+td{padding:11px 13px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--t2)}
+td strong{color:var(--text)}tr:hover td{background:rgba(255,255,255,.015)}tr:last-child td{border-bottom:none}
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.3px;font-family:'JetBrains Mono',monospace}
+.bc2{background:var(--cd);color:var(--cyan);border:1px solid var(--cb)}
+.bg2{background:var(--gd);color:var(--green)}.bo2{background:var(--od);color:var(--orange)}
+.br2{background:var(--rd);color:var(--red)}.bp2{background:var(--pd);color:var(--purple)}
+.by2{background:var(--yd);color:var(--yellow)}.bw2{background:rgba(255,255,255,.07);color:var(--t3)}
+/* MODAL */
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:200;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
+.mo.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--b2);border-radius:14px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto}
+.mh{display:flex;align-items:center;justify-content:space-between;padding:15px 21px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
+.mt_{font-size:15px;font-weight:700;letter-spacing:-.3px}
+.mc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);width:29px;height:29px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;color:var(--t3);transition:all .18s}.mc:hover{color:var(--red);border-color:var(--red)}
+.mb{padding:21px}
+/* FORMS */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.fgr{display:flex;flex-direction:column;gap:5px}.fgr.full{grid-column:1/-1}
+.fl{font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace}
+.fi,.fs,.fta{padding:9px 12px;background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r2);font-size:13px;font-family:'Space Grotesk',sans-serif;color:var(--text);outline:none;transition:border .2s}
+.fi:focus,.fs:focus,.fta:focus{border-color:var(--cyan)}.fi::placeholder,.fta::placeholder{color:var(--t3)}
+.fs option{background:var(--bg2)}.fta{resize:vertical;min-height:76px}
+.fa{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+/* MISC */
+.es{text-align:center;padding:56px 20px;color:var(--t3)}.es i{font-size:42px;display:block;margin-bottom:10px;opacity:.35}
+.pb{height:6px;background:var(--bg3);border-radius:99px;overflow:hidden}
+.pf{height:100%;border-radius:99px;background:var(--cyan);transition:width .8s ease}.pf.low{background:var(--red)}.pf.mid{background:var(--orange)}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:15px}
+.ctag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);font-weight:600;background:var(--cd);padding:2px 7px;border-radius:4px;display:inline-block}
+.pdot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:5px}
+#toast{position:fixed;bottom:22px;right:22px;z-index:999;background:var(--bg2);border:1px solid var(--b2);color:var(--text);padding:10px 16px;border-radius:9px;font-size:13px;font-weight:500;transform:translateY(80px);opacity:0;transition:all .3s;max-width:300px;display:flex;align-items:center;gap:8px}
+#toast.show{transform:translateY(0);opacity:1}#toast.success{border-color:var(--green);color:var(--green)}#toast.error{border-color:var(--red);color:var(--red)}
+#sbov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+.oscard{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:15px;margin-bottom:10px;cursor:pointer;transition:border-color .2s}.oscard:hover{border-color:var(--b2)}
+.osbar{height:3px;border-radius:99px;margin-bottom:11px}
+.alert{padding:10px 14px;border-radius:var(--r2);font-size:12px;display:flex;align-items:center;gap:9px;margin-bottom:13px}
+.as_{background:var(--gd);color:var(--green);border-left:3px solid var(--green)}
+.aw{background:var(--od);color:var(--orange);border-left:3px solid var(--orange)}
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}
+  #sbov.open{display:block}#main{margin-left:0}.btnmob{display:block}
+  .tbsr{display:none}.fg{grid-template-columns:1fr}.dgrid{grid-template-columns:1fr}.sg{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<!-- LOGIN -->
+<div id="login">
+  <div class="lbox">
+    <div class="llogo"><div class="licon"><i class="ti ti-cpu" style="color:var(--cyan)"></i></div><div><div class="lname">JAGUAR CCTV<span> ALARMAS Y CAMARAS</span></div></div></div>
+    <div class="lsub">//servicio·ventas·cómputo·CCTV y electrónica</div>
+    <input type="text" id="lu" placeholder="Usuario" value="admin">
+    <input type="password" id="lp" placeholder="Contraseña" value="admin123">
+    <button class="lbtn" onclick="doLogin()">Iniciar sesión →</button>
+    <p class="lhint">admin / admin123 &nbsp;·&nbsp; tecnico / tech2024</p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div id="sbov" onclick="closeSB()"></div>
+  <nav id="sidebar">
+    <div class="sblogo">
+      <div class="sblogow">
+        <div class="sblogoi"><i class="ti ti-cpu" style="color:var(--cyan)"></i></div>
+        <div><div class="sbn">JAGUAR<span> CCTV</span></div><div class="sbsub">Soluciones Web &amp; TI</div></div>
+      </div>
+    </div>
+    <div class="sbnav">
+      <div class="sbsec">Principal</div>
+      <div class="sbi active" onclick="nav('dashboard')"><i class="ti ti-dashboard"></i> Dashboard</div>
+      <div class="sbi" onclick="nav('clientes')"><i class="ti ti-users"></i> Clientes</div>
+      <div class="sbsec">Operaciones</div>
+      <div class="sbi" onclick="nav('ordenes')"><i class="ti ti-tool"></i> Órdenes de Servicio <span class="sbbadge" id="badge-os">0</span></div>
+      <div class="sbi" onclick="nav('cotizaciones')"><i class="ti ti-file-invoice"></i> Cotizaciones</div>
+      <div class="sbsec">Inventario</div>
+      <div class="sbi" onclick="nav('catalogo')"><i class="ti ti-devices"></i> Catálogo de Equipos</div>
+      <div class="sbi" onclick="nav('refacciones')"><i class="ti ti-components"></i> Refacciones &amp; Partes</div>
+      <div class="sbsec">Finanzas</div>
+      <div class="sbi" onclick="nav('ventas')"><i class="ti ti-shopping-cart"></i> Ventas</div>
+      <div class="sbi" onclick="nav('respaldos')"><i class="ti ti-database-export"></i> Respaldos</div>
+    </div>
+    <div class="sbfoot">
+      <div class="sbuser">
+        <div class="sbav" id="sb-av">AD</div>
+        <div><div class="sbuname" id="sb-un">Administrador</div><div class="sbrole" id="sb-ro">admin</div></div>
+        <button class="btnlo" onclick="doLogout()"><i class="ti ti-logout"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <div id="topbar">
+      <button class="btnmob" onclick="openSB()"><i class="ti ti-menu-2"></i></button>
+      <div id="tbt">Dashboard</div>
+      <div class="tbsr"><i class="ti ti-search"></i><input type="text" placeholder="Buscar cliente, folio, equipo..." oninput="gSearch(this.value)"></div>
+    </div>
+    <div id="content">
+
+      <!-- DASHBOARD -->
+      <div id="page-dashboard" class="page active">
+        <div class="ph"><h2>Dashboard</h2><span id="fecha-hoy" style="font-size:11px;color:var(--t3);font-family:'JetBrains Mono',monospace"></span></div>
+        <div class="sg" id="sg"></div>
+        <div class="dgrid">
+          <div class="card"><div class="ctitle"><i class="ti ti-tool"></i> Órdenes activas</div><div id="d-os"></div></div>
+          <div class="card"><div class="ctitle"><i class="ti ti-file-invoice"></i> Cotizaciones recientes</div><div id="d-cot"></div></div>
+          <div class="card"><div class="ctitle"><i class="ti ti-alert-triangle"></i> Stock crítico</div><div id="d-stk"></div></div>
+          <div class="card"><div class="ctitle"><i class="ti ti-chart-bar"></i> Ingresos del mes</div><div id="d-cha"></div></div>
+        </div>
+      </div>
+
+      <!-- CLIENTES -->
+      <div id="page-clientes" class="page">
+        <div class="ph"><h2>Clientes</h2><button class="btn bc" onclick="resetCli();openModal('modal-cli')"><i class="ti ti-plus"></i> Nuevo Cliente</button></div>
+        <div class="card" style="margin-bottom:13px">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <input class="fi" id="f-cli" placeholder="Nombre, empresa, teléfono, código..." style="max-width:300px" oninput="renderCli()">
+            <select class="fs" id="f-cli-t" style="max-width:160px" onchange="renderCli()"><option value="">Todos</option><option>Empresa</option><option>Persona física</option></select>
+            <button class="btn bg_ bsm" onclick="exportarCSV(DB('clientes'),'clientes_techserv')"><i class="ti ti-download"></i> Exportar</button>
+          </div>
+        </div>
+        <div class="card"><div class="tw"><table>
+          <thead><tr><th>Cliente</th><th>Tipo</th><th>Teléfono</th><th>Email</th><th>RFC</th><th>O.S.</th><th></th></tr></thead>
+          <tbody id="t-cli"></tbody>
+        </table></div></div>
+      </div>
+
+      <!-- ÓRDENES -->
+      <div id="page-ordenes" class="page">
+        <div class="ph"><h2>Órdenes de Servicio</h2><button class="btn bc" onclick="openModalOS()"><i class="ti ti-plus"></i> Nueva Orden</button></div>
+        <div class="card" style="margin-bottom:13px">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <input class="fi" id="f-os" placeholder="Folio, cliente, equipo..." style="max-width:250px" oninput="renderOS()">
+            <select class="fs" id="f-os-e" style="max-width:165px" onchange="renderOS()">
+              <option value="">Todos los estados</option>
+              <option>Recibido</option><option>Diagnóstico</option><option>En reparación</option>
+              <option>Esperando refacción</option><option>Listo</option><option>Entregado</option><option>Cancelado</option>
+            </select>
+            <select class="fs" id="f-os-p" style="max-width:135px" onchange="renderOS()">
+              <option value="">Prioridad</option><option>Alta</option><option>Media</option><option>Baja</option>
+            </select>
+          </div>
+        </div>
+        <div id="os-lista"></div>
+      </div>
+
+      <!-- COTIZACIONES -->
+      <div id="page-cotizaciones" class="page">
+        <div class="ph"><h2>Cotizaciones</h2><button class="btn bc" onclick="openModalCot()"><i class="ti ti-plus"></i> Nueva Cotización</button></div>
+        <div class="card" style="margin-bottom:13px">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <input class="fi" id="f-cot" placeholder="Folio, cliente..." style="max-width:250px" oninput="renderCots()">
+            <select class="fs" id="f-cot-e" style="max-width:150px" onchange="renderCots()">
+              <option value="">Todos</option><option>Borrador</option><option>Enviada</option><option>Aceptada</option><option>Rechazada</option><option>Vencida</option>
+            </select>
+          </div>
+        </div>
+        <div class="card"><div class="tw"><table>
+          <thead><tr><th>Folio</th><th>Cliente</th><th>Fecha</th><th>Válida hasta</th><th>Total</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="t-cot"></tbody>
+        </table></div></div>
+      </div>
+
+      <!-- CATÁLOGO -->
+      <div id="page-catalogo" class="page">
+        <div class="ph"><h2>Catálogo de Equipos</h2><button class="btn bc" onclick="openModalEq()"><i class="ti ti-plus"></i> Nuevo Equipo</button></div>
+        <div class="sg" id="cat-sg"></div>
+        <div class="card" style="margin-bottom:13px">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <input class="fi" id="f-eq" placeholder="Nombre, marca, SKU..." style="max-width:250px" oninput="renderCat()">
+            <select class="fs" id="f-eq-c" style="max-width:185px" onchange="renderCat()">
+              <option value="">Todas las categorías</option>
+              <option>Equipo de computo</option><option>Alarma e Intrusion</option><option>Incendio</option>
+              <option>Almacenamiento</option><option>Red / Networking</option><option>Periférico</option><option>Audio y Video</option><option>Acceso y Asistencia</option><option>Vigilancia</option><option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <div id="eq-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:13px"></div>
+      </div>
+
+      <!-- REFACCIONES -->
+      <div id="page-refacciones" class="page">
+        <div class="ph"><h2>Refacciones &amp; Partes</h2><button class="btn bc" onclick="openModalRef()"><i class="ti ti-plus"></i> Nueva Refacción</button></div>
+        <div class="sg" id="ref-sg"></div>
+        <div class="card" style="margin-bottom:13px">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <input class="fi" id="f-ref" placeholder="Nombre, SKU, compatible con..." style="max-width:280px" oninput="renderRefs()">
+            <select class="fs" id="f-ref-c" style="max-width:185px" onchange="renderRefs()">
+              <option value="">Todas las categorías</option>
+              <option>Procesador</option><option>Memoria RAM</option><option>Almacenamiento</option><option>Pantalla</option>
+              <option>Batería</option><option>Teclado</option><option>Tarjeta madre</option><option>Fuente de poder</option><option>Cooling</option><option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="card"><div class="tw"><table>
+          <thead><tr><th>Refacción</th><th>Categoría</th><th>SKU</th><th>Compatible</th><th>Stock</th><th>P.Compra</th><th>P.Venta</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="t-ref"></tbody>
+        </table></div></div>
+      </div>
+
+      <!-- VENTAS -->
+      <div id="page-ventas" class="page">
+        <div class="ph"><h2>Ventas</h2><button class="btn bc" onclick="openModalVen()"><i class="ti ti-shopping-cart"></i> Nueva Venta</button></div>
+        <div class="sg" id="ven-sg"></div>
+        <div class="card"><div class="tw"><table>
+          <thead><tr><th>Folio</th><th>Fecha</th><th>Cliente</th><th>Conceptos</th><th>Total</th><th>Método</th><th></th></tr></thead>
+          <tbody id="t-ven"></tbody>
+        </table></div></div>
+      </div>
+
+      <!-- RESPALDOS -->
+      <div id="page-respaldos" class="page">
+        <div class="ph"><h2>Respaldos</h2></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:15px">
+          <div class="card">
+            <div class="ctitle"><i class="ti ti-database-export"></i> Exportar Respaldo</div>
+            <p style="font-size:12px;color:var(--t3);margin-bottom:14px;line-height:1.7">Descarga todos los datos en un archivo <strong style="color:var(--text)">.json</strong>.</p>
+            <div style="background:var(--bg3);border-radius:8px;padding:13px;margin-bottom:14px;font-size:12px;font-family:'JetBrains Mono',monospace">
+              <div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="color:var(--t3)">👥 Clientes</span><strong id="rb-c">—</strong></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="color:var(--t3)">🔧 Órdenes</span><strong id="rb-o">—</strong></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="color:var(--t3)">📄 Cotizaciones</span><strong id="rb-ct">—</strong></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="color:var(--t3)">🖥 Equipos</span><strong id="rb-e">—</strong></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="color:var(--t3)">⚙️ Refacciones</span><strong id="rb-r">—</strong></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">🛒 Ventas</span><strong id="rb-v">—</strong></div>
+            </div>
+            <button class="btn bc" style="width:100%" onclick="exportarRespaldo()"><i class="ti ti-download"></i> Descargar (.json)</button>
+          </div>
+          <div class="card">
+            <div class="ctitle"><i class="ti ti-database-import"></i> Cargar Respaldo</div>
+            <p style="font-size:12px;color:var(--t3);margin-bottom:13px;line-height:1.7">Restaura un respaldo anterior. <strong style="color:var(--orange)">Reemplaza todos los datos.</strong></p>
+            <label style="display:block;border:2px dashed rgba(255,255,255,.1);border-radius:10px;padding:26px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='var(--cb)'" onmouseleave="this.style.borderColor='rgba(255,255,255,.1)'" onclick="document.getElementById('rb-file').click()">
+              <i class="ti ti-file-upload" style="font-size:30px;color:var(--t3);display:block;margin-bottom:8px"></i>
+              <span style="font-size:13px;color:var(--t3)">Arrastra o haz clic</span>
+              <input type="file" id="rb-file" accept=".json" style="display:none" onchange="leerRespaldo(this)">
+            </label>
+            <div id="rb-prev" style="display:none;margin-top:13px">
+              <div class="alert as_" id="rb-info"></div>
+              <button class="btn bgr" style="width:100%" onclick="confirmarImport()"><i class="ti ti-check"></i> Confirmar e Importar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+<!-- ═══════════════════════════════════════════════════════════
+     PARTE 2 — TODOS LOS MODALES
+     Pegar después del cierre de </div><!- /app -> en part1
+═══════════════════════════════════════════════════════════ -->
+
+<!-- MODAL CLIENTE -->
+<div class="mo" id="modal-cli">
+  <div class="modal">
+    <div class="mh"><div class="mt_" id="mcli-t">Nuevo Cliente</div><button class="mc" onclick="closeModal('modal-cli')"><i class="ti ti-x"></i></button></div>
+    <div class="mb">
+      <form onsubmit="guardarCli(event)"><input type="hidden" id="cli-id">
+        <div class="fg">
+          <div class="fgr full"><label class="fl">Nombre / Razón social *</label><input class="fi" id="cli-n" required placeholder="Empresa S.A. de C.V. o Juan Pérez"></div>
+          <div class="fgr"><label class="fl">Tipo</label><select class="fs" id="cli-t"><option>Empresa</option><option>Persona física</option></select></div>
+          <div class="fgr"><label class="fl">Código de cliente</label>
+            <div style="display:flex;gap:6px">
+              <input class="fi" id="cli-cod" placeholder="CLI-0001" style="flex:1;font-family:'JetBrains Mono',monospace;font-weight:600">
+              <button type="button" class="btn bg_ bsm" onclick="genCodCli()"><i class="ti ti-refresh"></i></button>
+            </div>
+          </div>
+          <div class="fgr"><label class="fl">Teléfono</label><input class="fi" id="cli-tel" placeholder="81 XXXX XXXX"></div>
+          <div class="fgr"><label class="fl">Email</label><input class="fi" id="cli-email" placeholder="correo@empresa.com"></div>
+          <div class="fgr"><label class="fl">RFC</label><input class="fi" id="cli-rfc" placeholder="RFC con homoclave" style="font-family:'JetBrains Mono',monospace"></div>
+          <div class="fgr"><label class="fl">Contacto principal</label><input class="fi" id="cli-con" placeholder="Nombre del contacto"></div>
+          <div class="fgr full"><label class="fl">Dirección</label><input class="fi" id="cli-dir" placeholder="Calle, Colonia, Municipio, Ciudad"></div>
+          <div class="fgr full"><label class="fl">Notas</label><textarea class="fta" id="cli-not" placeholder="Condiciones especiales, descuentos, observaciones..."></textarea></div>
+        </div>
+        <div class="fa">
+          <button type="button" class="btn bg_" onclick="closeModal('modal-cli')">Cancelar</button>
+          <button type="submit" class="btn bc"><i class="ti ti-device-floppy"></i> Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ORDEN DE SERVICIO -->
+<div class="mo" id="modal-os">
+  <div class="modal" style="max-width:660px">
+    <div class="mh"><div class="mt_" id="mos-t">Nueva Orden de Servicio</div><button class="mc" onclick="closeModal('modal-os')"><i class="ti ti-x"></i></button></div>
+    <div class="mb">
+      <form onsubmit="guardarOS(event)"><input type="hidden" id="os-id">
+        <div class="fg">
+          <div class="fgr"><label class="fl">Folio</label><input class="fi" id="os-folio" readonly style="font-family:'JetBrains Mono',monospace;color:var(--cyan)"></div>
+          <div class="fgr"><label class="fl">Fecha recepción</label><input type="date" class="fi" id="os-fecha"></div>
+          <div class="fgr full"><label class="fl">Cliente *</label><input class="fi" id="os-cli" list="os-cli-dl" required placeholder="Escribir nombre del cliente..."><datalist id="os-cli-dl"></datalist></div>
+          <div class="fgr"><label class="fl">Tipo de equipo</label>
+            <select class="fs" id="os-teq">
+              <option>Laptop</option><option>Desktop</option><option>All-in-One</option><option>Servidor</option>
+              <option>Impresora</option><option>Tablet</option><option>Celular</option><option>Router/Switch</option><option>Otro</option>
+            </select>
+          </div>
+          <div class="fgr"><label class="fl">Marca</label><input class="fi" id="os-marca" placeholder="HP, Dell, Lenovo, Apple..."></div>
+          <div class="fgr"><label class="fl">Modelo</label><input class="fi" id="os-modelo" placeholder="EliteBook 840 G8"></div>
+          <div class="fgr"><label class="fl">Número de serie</label><input class="fi" id="os-serie" placeholder="S/N del equipo" style="font-family:'JetBrains Mono',monospace"></div>
+          <div class="fgr"><label class="fl">Prioridad</label>
+            <select class="fs" id="os-pri"><option>Alta</option><option selected>Media</option><option>Baja</option></select>
+          </div>
+          <div class="fgr"><label class="fl">Técnico asignado</label><input class="fi" id="os-tec" placeholder="Nombre del técnico"></div>
+          <div class="fgr"><label class="fl">Estado</label>
+            <select class="fs" id="os-est">
+              <option>Recibido</option><option>Diagnóstico</option><option>En reparación</option>
+              <option>Esperando refacción</option><option>Listo</option><option>Entregado</option><option>Cancelado</option>
+            </select>
+          </div>
+          <div class="fgr full"><label class="fl">Falla reportada por el cliente *</label><textarea class="fta" id="os-falla" required placeholder="Describe el problema que reporta el cliente..."></textarea></div>
+          <div class="fgr full"><label class="fl">Diagnóstico técnico</label><textarea class="fta" id="os-diag" placeholder="Resultado del diagnóstico técnico..."></textarea></div>
+          <div class="fgr full"><label class="fl">Trabajo realizado / Solución</label><textarea class="fta" id="os-trab" placeholder="Descripción del trabajo realizado..."></textarea></div>
+          <div class="fgr"><label class="fl">Costo mano de obra (MXN)</label><input type="number" class="fi" id="os-mo" min="0" placeholder="0" value="0"></div>
+          <div class="fgr"><label class="fl">Costo refacciones (MXN)</label><input type="number" class="fi" id="os-ref" min="0" placeholder="0" value="0"></div>
+          <div class="fgr full"><label class="fl">Notas internas</label><textarea class="fta" id="os-not" placeholder="Notas para el equipo técnico (no visibles al cliente)..." style="min-height:60px"></textarea></div>
+          <div class="fgr"><label class="fl">Fecha estimada de entrega</label><input type="date" class="fi" id="os-fest"></div>
+          <div class="fgr"><label class="fl">Fecha de entrega real</label><input type="date" class="fi" id="os-fent"></div>
+        </div>
+        <div class="fa">
+          <button type="button" class="btn bg_" onclick="closeModal('modal-os')">Cancelar</button>
+          <button type="submit" class="btn bc"><i class="ti ti-device-floppy"></i> Guardar Orden</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL COTIZACIÓN -->
+<div class="mo" id="modal-cot">
+  <div class="modal" style="max-width:700px">
+    <div class="mh"><div class="mt_">Cotización</div><button class="mc" onclick="closeModal('modal-cot')"><i class="ti ti-x"></i></button></div>
+    <div class="mb">
+      <!-- Datos generales -->
+      <div class="fg" style="margin-bottom:14px">
+        <div class="fgr"><label class="fl">Folio</label><input class="fi" id="cot-folio" readonly style="font-family:'JetBrains Mono',monospace;color:var(--cyan)"></div>
+        <div class="fgr"><label class="fl">Estado</label>
+          <select class="fs" id="cot-est"><option>Borrador</option><option>Enviada</option><option>Aceptada</option><option>Rechazada</option></select>
+        </div>
+        <div class="fgr full"><label class="fl">Cliente *</label><input class="fi" id="cot-cli" list="cot-cli-dl" required placeholder="Nombre o razón social del cliente..."><datalist id="cot-cli-dl"></datalist></div>
+        <div class="fgr"><label class="fl">Fecha</label><input type="date" class="fi" id="cot-fecha"></div>
+        <div class="fgr"><label class="fl">Válida hasta</label><input type="date" class="fi" id="cot-val"></div>
+        <div class="fgr full"><label class="fl">Notas / condiciones para el cliente</label><textarea class="fta" id="cot-not" placeholder="Garantía, tiempo de entrega, condiciones de pago..." style="min-height:56px"></textarea></div>
+      </div>
+
+      <!-- Buscador de items -->
+      <div style="background:var(--bg3);border-radius:9px;padding:14px;margin-bottom:13px">
+        <div style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:11px;font-family:'JetBrains Mono',monospace">➕ Agregar concepto</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">
+          <div style="flex:3;min-width:200px">
+            <div class="fl" style="margin-bottom:4px">Descripción / nombre / SKU</div>
+            <div style="position:relative">
+              <input class="fi" id="cot-idesc" placeholder="Escribe producto, servicio o SKU..." oninput="buscarIC(this.value)" autocomplete="off" onkeydown="navIC(event)">
+              <div id="cot-sug" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--b2);border-radius:0 0 8px 8px;z-index:300;max-height:220px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.3)"></div>
+            </div>
+          </div>
+          <div style="flex:0 0 70px"><div class="fl" style="margin-bottom:4px">Cant.</div><input type="number" class="fi" id="cot-iqty" min="1" value="1"></div>
+          <div style="flex:0 0 110px"><div class="fl" style="margin-bottom:4px">Precio unit.</div><input type="number" class="fi" id="cot-ipre" placeholder="0"></div>
+          <button type="button" class="btn bc" onclick="addIC()"><i class="ti ti-plus"></i> Agregar</button>
+        </div>
+      </div>
+
+      <!-- Lista de items -->
+      <div id="cot-items" style="margin-bottom:13px"></div>
+
+      <!-- Totales -->
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:14px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:var(--t3)"><span>Subtotal</span><span id="cot-sub">$0.00</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:13px;color:var(--t3)">IVA</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <select class="fs" id="cot-iva" style="width:90px;padding:4px 8px;font-size:12px" onchange="recalcCot()">
+              <option value="0">Sin IVA</option><option value="16" selected>16%</option>
+            </select>
+            <span id="cot-iva-v" style="font-size:13px;color:var(--t3);font-family:'JetBrains Mono',monospace">$0.00</span>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:18px;font-weight:700;border-top:1px solid var(--border);padding-top:10px">
+          <span>TOTAL</span>
+          <span style="color:var(--cyan);font-family:'JetBrains Mono',monospace" id="cot-tot">$0.00</span>
+        </div>
+      </div>
+      <div class="fa">
+        <button type="button" class="btn bg_" onclick="closeModal('modal-cot')">Cancelar</button>
+        <button type="button" class="btn bc" onclick="guardarCot()"><i class="ti ti-device-floppy"></i> Guardar Cotización</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EQUIPO -->
+<div class="mo" id="modal-eq">
+  <div class="modal">
+    <div class="mh"><div class="mt_" id="meq-t">Nuevo Equipo</div><button class="mc" onclick="closeModal('modal-eq')"><i class="ti ti-x"></i></button></div>
+    <div class="mb">
+      <form onsubmit="guardarEq(event)"><input type="hidden" id="eq-id">
+        <div class="fg">
+          <div class="fgr full"><label class="fl">Nombre del equipo *</label><input class="fi" id="eq-n" required placeholder="Ej. Laptop HP EliteBook 840 G8"></div>
+          <div class="fgr"><label class="fl">SKU</label>
+            <div style="display:flex;gap:6px">
+              <input class="fi" id="eq-sku" placeholder="EQ-001" style="flex:1;font-family:'JetBrains Mono',monospace;font-weight:600">
+              <button type="button" class="btn bg_ bsm" onclick="genSKUeq()"><i class="ti ti-refresh"></i></button>
+            </div>
+          </div>
+          <div class="fgr"><label class="fl">Categoría</label>
+            <select class="fs" id="eq-cat">
+              <option>Laptop</option><option>Desktop / All-in-One</option><option>Servidor</option>
+              <option>Impresora</option><option>Red / Networking</option><option>Periférico</option><option>Componente</option><option>Otro</option>
+            </select>
+          </div>
+          <div class="fgr"><label class="fl">Marca</label><input class="fi" id="eq-marca" placeholder="HP, Dell, Lenovo, Apple, Cisco..."></div>
+          <div class="fgr"><label class="fl">Modelo</label><input class="fi" id="eq-modelo" placeholder="Número o nombre de modelo"></div>
+          <div class="fgr"><label class="fl">Stock actual</label><input type="number" class="fi" id="eq-stk" min="0" placeholder="0" value="0"></div>
+          <div class="fgr"><label class="fl">Stock mínimo (alerta)</label><input type="number" class="fi" id="eq-stkm" min="0" value="2"></div>
+          <div class="fgr"><label class="fl">Precio de compra (MXN)</label><input type="number" class="fi" id="eq-comp" min="0" placeholder="0"></div>
+          <div class="fgr"><label class="fl">Precio de venta (MXN)</label><input type="number" class="fi" id="eq-ven" min="0" placeholder="0"></div>
+          <div class="fgr full"><label class="fl">Especificaciones técnicas</label><textarea class="fta" id="eq-specs" placeholder="Procesador, RAM, almacenamiento, pantalla, SO..."></textarea></div>
+          <div class="fgr full"><label class="fl">Descripción / Garantía / Notas</label><textarea class="fta" id="eq-desc" placeholder="Incluye accesorios, garantía, observaciones..."></textarea></div>
+        </div>
+        <div class="fa">
+          <button type="button" class="btn bg_" onclick="closeModal('modal-eq')">Cancelar</button>
+          <button type="submit" class="btn bc"><i class="ti ti-device-floppy"></i> Guardar Equipo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL REFACCIÓN -->
+<div class="mo" id="modal-ref">
+  <div class="modal">
+    <div class="mh"><div class="mt_" id="mref-t">Nueva Refacción</div><button class="mc" onclick="closeModal('modal-ref')"><i class="ti ti-x"></i></button></div>
+    <div class="mb">
+      <form onsubmit="guardarRef(event)"><input type="hidden" id="ref-id">
+        <div class="fg">
+          <div class="fgr full"><label class="fl">Nombre de la refacción *</label><input class="fi" id="ref-n" required placeholder="Ej. Memoria RAM DDR4 8GB SO-DIMM 3200MHz"></div>
+          <div class="fgr"><label class="fl">SKU</label>
+            <div style="display:flex;gap:6px">
+              <input class="fi" id="ref-sku" placeholder="REF-001" style="flex:1;font-family:'JetBrains Mono',monospace;font-weight:600">
+              <button type="button" class="btn bg_ bsm" onclick="genSKUref()"><i class="ti ti-refresh"></i></button>
+            </div>
+          </div>
+          <div class="fgr"><label class="fl">Categoría</label>
+            <select class="fs" id="ref-cat">
+              <option>Procesador</option><option>Memoria RAM</option><option>Almacenamiento</option><option>Pantalla</option>
+              <option>Batería</option><option>Teclado</option><option>Tarjeta madre</option><option>Fuente de poder</option><option>Cooling</option><option>Otro</option>
+            </select>
+          </div>
+          <div class="fgr"><label class="fl">Marca / Fabricante</label><input class="fi" id="ref-marca" placeholder="Kingston, Samsung, OEM..."></div>
+          <div class="fgr full"><label class="fl">Compatible con (modelos)</label><input class="fi" id="ref-compat" placeholder="HP EliteBook 840 G8, Dell Latitude 5510, universal..."></div>
+          <div class="fgr"><label class="fl">Stock actual</label><input type="number" class="fi" id="ref-stk" min="0" placeholder="0" value="0"></div>
+          <div class="fgr"><label class="fl">Stock mínimo (alerta)</label><input type="number" class="fi" id="ref-stkm" min="0" value="3"></div>
+          <div class="fgr"><label class="fl">Precio de compra (MXN)</label><input type="number" class="fi" id="ref-comp" min="0" placeholder="0"></div>
+          <div class="fgr"><label class="fl">Precio de venta (MXN)</label><input type="number" class="fi" id="ref-ven" min="0" placeholder="0"></div>
+          <div class="fgr full"><label class="fl">Notas / Proveedor / Garantía</label><textarea class="fta" id="ref-not" placeholder="Proveedor, garantía, detalles técnicos adicionales..."></textarea></div>
+        </div>
+        <div class="fa">
+          <button type="button" class="btn bg_" onclick="closeModal('modal-ref')">Cancelar</button>
+          <button type="submit" class="btn bc"><i class="ti ti-device-floppy"></i> Guardar Refacción</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL VENTA -->
+<div class="mo" id="modal-ven">
+  <div class="modal" style="max-width:640px">
+    <div class="mh"><div class="mt_">Nueva Venta</div><button class="mc" onclick="closeModal('modal-ven')"><i class="ti ti-x"></i></button></div>
+    <div class="mb">
+      <!-- Datos de la venta -->
+      <div class="fg" style="margin-bottom:14px">
+        <div class="fgr full"><label class="fl">Cliente</label><input class="fi" id="v-cli" list="v-cli-dl" placeholder="Nombre o empresa del cliente"><datalist id="v-cli-dl"></datalist></div>
+        <div class="fgr"><label class="fl">Fecha</label><input type="date" class="fi" id="v-fecha"></div>
+        <div class="fgr"><label class="fl">Método de pago</label>
+          <select class="fs" id="v-met">
+            <option>Efectivo</option><option>Transferencia</option><option>Tarjeta crédito</option><option>Tarjeta débito</option><option>Cheque</option>
+          </select>
+        </div>
+        <div class="fgr full"><label class="fl">Referencia Orden de Servicio (opcional)</label>
+          <input class="fi" id="v-os" list="v-os-dl" placeholder="Folio de la orden relacionada...">
+          <datalist id="v-os-dl"></datalist>
+        </div>
+      </div>
+
+      <!-- Buscador de productos/servicios -->
+      <div style="background:var(--bg3);border-radius:9px;padding:14px;margin-bottom:13px">
+        <div style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:11px;font-family:'JetBrains Mono',monospace">➕ Agregar productos / servicios</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">
+          <div style="flex:3;min-width:200px">
+            <div class="fl" style="margin-bottom:4px">Buscar por nombre o SKU</div>
+            <div style="position:relative">
+              <input class="fi" id="v-ibuscar" placeholder="Escribe nombre, SKU o servicio..." oninput="buscarIV(this.value)" autocomplete="off">
+              <input type="hidden" id="v-iid">
+              <!-- Preview del producto seleccionado -->
+              <div id="v-sel-prev" style="display:none;margin-top:6px;padding:8px 12px;background:var(--bg2);border-radius:8px;border:1.5px solid var(--cyan);display:flex;align-items:center;gap:10px">
+                <div style="flex:1">
+                  <div id="v-sel-n" style="font-size:13px;font-weight:600;color:var(--text)"></div>
+                  <div id="v-sel-i" style="font-size:11px;color:var(--t3)"></div>
+                </div>
+                <button type="button" onclick="limpiarSelV()" style="background:none;border:none;cursor:pointer;color:var(--t3);font-size:15px">✕</button>
+              </div>
+              <div id="v-sug" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--b2);border-radius:0 0 8px 8px;z-index:300;max-height:220px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.3)"></div>
+            </div>
+          </div>
+          <div style="flex:0 0 70px"><div class="fl" style="margin-bottom:4px">Cant.</div><input type="number" class="fi" id="v-qty" min="1" value="1"></div>
+          <div style="flex:0 0 110px"><div class="fl" style="margin-bottom:4px">Precio unit.</div><input type="number" class="fi" id="v-pre" placeholder="0"></div>
+          <button type="button" class="btn bc" onclick="addIV()"><i class="ti ti-plus"></i> Agregar</button>
+        </div>
+      </div>
+
+      <!-- Lista items venta -->
+      <div id="v-items" style="margin-bottom:13px"></div>
+
+      <!-- Total -->
+      <div style="background:var(--bg3);border-radius:9px;padding:14px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:14px;color:var(--t2);font-weight:600">TOTAL DE LA VENTA</span>
+        <span style="font-size:22px;font-weight:700;color:var(--cyan);font-family:'JetBrains Mono',monospace" id="v-tot">$0.00</span>
+      </div>
+      <div class="fa">
+        <button type="button" class="btn bg_" onclick="closeModal('modal-ven')">Cancelar</button>
+        <button type="button" class="btn bc" onclick="guardarVenta()"><i class="ti ti-shopping-cart"></i> Registrar Venta</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DETALLE ORDEN DE SERVICIO (Ver / Imprimir) -->
+<div class="mo" id="modal-os-det">
+  <div class="modal" style="max-width:660px">
+    <div class="mh">
+      <div class="mt_">Orden de Servicio</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn bc bsm" onclick="abrirImprimir(_hp,'OS — TechServ Pro')"><i class="ti ti-printer"></i> Imprimir</button>
+        <button class="mc" onclick="closeModal('modal-os-det')"><i class="ti ti-x"></i></button>
+      </div>
+    </div>
+    <div class="mb" id="os-det-body"></div>
+  </div>
+</div>
+
+<!-- MODAL PREVIEW COTIZACIÓN (Ver / Imprimir) -->
+<div class="mo" id="modal-cot-prev">
+  <div class="modal" style="max-width:720px">
+    <div class="mh">
+      <div class="mt_">Cotización — Vista Previa</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn bc bsm" onclick="abrirImprimir(_hp,'Cotización — TechServ Pro')"><i class="ti ti-printer"></i> Imprimir / PDF</button>
+        <button class="mc" onclick="closeModal('modal-cot-prev')"><i class="ti ti-x"></i></button>
+      </div>
+    </div>
+    <div class="mb" id="cot-prev-body"></div>
+  </div>
+</div>
+
+<!-- MODAL RECIBO DE VENTA -->
+<div class="mo" id="modal-recibo">
+  <div class="modal" style="max-width:480px">
+    <div class="mh">
+      <div class="mt_">Recibo de Venta</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn bc bsm" onclick="abrirImprimir(_hp,'Recibo — TechServ Pro')"><i class="ti ti-printer"></i> Imprimir</button>
+        <button class="mc" onclick="closeModal('modal-recibo')"><i class="ti ti-x"></i></button>
+      </div>
+    </div>
+    <div class="mb" id="rec-body"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<!-- FIN PARTE 2 — Continúa con <script> en parte 3 -->
+<script>
+// ══ CORE ══════════════════════════════════════════════════════════════════════
+const USERS={admin:{pass:'admin123',name:'Administrador',role:'admin',ini:'AD'},tecnico:{pass:'tech2024',name:'Técnico',role:'técnico',ini:'TC'}};
+let _hp='', cotItems=[], ventaItems=[], pendingImport=null;
+const DB=k=>{try{return JSON.parse(localStorage.getItem('ts_'+k))||[];}catch{return[];}};
+const DBSET=(k,v)=>localStorage.setItem('ts_'+k,JSON.stringify(v));
+const genId=()=>Date.now().toString(36)+Math.random().toString(36).substr(2,4);
+const fmtM=n=>'$'+Number(n||0).toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtD=d=>{if(!d)return'—';try{return new Date(d+'T12:00').toLocaleDateString('es-MX');}catch{return d;}};
+const today=()=>new Date().toISOString().split('T')[0];
+const toast=(m,t='success')=>{const el=document.getElementById('toast');el.textContent=m;el.className='show '+t;setTimeout(()=>el.className='',3200);};
+
+// ══ DEMO DATA ═════════════════════════════════════════════════════════════════
+function initDemo(){
+  if(DB('clientes').length)return;
+  DBSET('clientes',[
+    {id:'c1',codigo:'CLI-0001',nombre:'Empresa Soluciones MX S.A.',tipo:'Empresa',tel:'81 2345 6789',email:'it@solucionesmx.com',rfc:'ESM210301ABC',contacto:'Ing. Roberto Garza',dir:'Av. Constitución 456, Monterrey',notas:'Contrato de mantenimiento anual'},
+    {id:'c2',codigo:'CLI-0002',nombre:'Distribuidora Norte S. de R.L.',tipo:'Empresa',tel:'81 9876 5432',email:'sistemas@disnorte.mx',rfc:'DNS190815XYZ',contacto:'Lic. Carmen Torres',dir:'Blvd. Regio 123, San Nicolás',notas:''},
+    {id:'c3',codigo:'CLI-0003',nombre:'Carlos Hernández Vega',tipo:'Persona física',tel:'81 3333 4444',email:'carlos.h@gmail.com',rfc:'HEVC850320AA1',contacto:'',dir:'Calle Juárez 77, Guadalupe',notas:'Descuento habitual 5%'},
+    {id:'c4',codigo:'CLI-0004',nombre:'Colegio Bilingüe del Norte A.C.',tipo:'Empresa',tel:'81 5555 6666',email:'sistemas@cbn.edu.mx',rfc:'CBN010901ZZZ',contacto:'Mtro. Luis Ramírez',dir:'Av. Morones Prieto 890, Monterrey',notas:'30 equipos en contrato'}
+  ]);
+  const h=today();
+  DBSET('ordenes',[
+    {id:'os1',folio:'OS-2025-001',clienteNombre:'Carlos Hernández Vega',fecha:h,tipoEquipo:'Laptop',marca:'HP',modelo:'EliteBook 840 G8',serie:'5CG1234XYZ',prioridad:'Alta',estado:'En reparación',tecnico:'Técnico A',falla:'No enciende, ventilador gira pero sin imagen en pantalla',diagnostico:'Tarjeta gráfica dañada, requiere reemplazo',trabajo:'',costoMO:500,costoRef:1200,notas:'Cliente solicita urgente',fechaEst:h,fechaEnt:''},
+    {id:'os2',folio:'OS-2025-002',clienteNombre:'Empresa Soluciones MX S.A.',fecha:h,tipoEquipo:'Desktop',marca:'Dell',modelo:'OptiPlex 7090',serie:'DELLOP789',prioridad:'Media',estado:'Diagnóstico',tecnico:'Técnico B',falla:'Se reinicia solo cada 30 minutos',diagnostico:'',trabajo:'',costoMO:400,costoRef:0,notas:'',fechaEst:'',fechaEnt:''},
+    {id:'os3',folio:'OS-2025-003',clienteNombre:'Colegio Bilingüe del Norte A.C.',fecha:h,tipoEquipo:'Impresora',marca:'Epson',modelo:'EcoTank L3210',serie:'EPSL3210ABC',prioridad:'Baja',estado:'Listo',tecnico:'Técnico A',falla:'No imprime, error de cabezal obstruido',diagnostico:'Cabezal obstruido, limpieza profunda necesaria',trabajo:'Limpieza profunda de cabezales realizada. Prueba de impresión exitosa.',costoMO:350,costoRef:0,notas:'',fechaEst:h,fechaEnt:''},
+    {id:'os4',folio:'OS-2025-004',clienteNombre:'Distribuidora Norte S. de R.L.',fecha:h,tipoEquipo:'Servidor',marca:'HP',modelo:'ProLiant DL380 Gen10',serie:'HPP380GEN10',prioridad:'Alta',estado:'Esperando refacción',tecnico:'Técnico A',falla:'Falla en disco duro del arreglo RAID',diagnostico:'HDD en falla crítica, requiere reemplazo urgente',trabajo:'',costoMO:800,costoRef:3500,notas:'Pedir disco a proveedor urgente',fechaEst:'',fechaEnt:''}
+  ]);
+  DBSET('cotizaciones',[
+    {id:'cot1',folio:'COT-2025-001',cliente:'Colegio Bilingüe del Norte A.C.',fecha:h,valida:new Date(Date.now()+15*864e5).toISOString().split('T')[0],estado:'Enviada',notas:'Precio incluye instalación y configuración. Garantía 1 año en equipos.',iva:16,
+     items:[{desc:'Laptop HP EliteBook 840 G8 i5/8GB/256SSD',qty:10,precio:18500,subtotal:185000},{desc:'Microsoft Office 365 Business Basic (1 año)',qty:10,precio:2800,subtotal:28000},{desc:'Instalación y configuración por equipo',qty:10,precio:500,subtotal:5000}]},
+    {id:'cot2',folio:'COT-2025-002',cliente:'Empresa Soluciones MX S.A.',fecha:h,valida:new Date(Date.now()+30*864e5).toISOString().split('T')[0],estado:'Borrador',notas:'Sujeto a disponibilidad de equipos.',iva:16,
+     items:[{desc:'Switch Cisco Catalyst 2960-X 24 puertos GigE',qty:2,precio:8900,subtotal:17800},{desc:'Instalación y configuración de red',qty:1,precio:4500,subtotal:4500}]},
+    {id:'cot3',folio:'COT-2025-003',cliente:'Carlos Hernández Vega',fecha:h,valida:new Date(Date.now()-5*864e5).toISOString().split('T')[0],estado:'Aceptada',notas:'',iva:0,
+     items:[{desc:'Servicio de mantenimiento preventivo Laptop',qty:1,precio:850,subtotal:850},{desc:'Memoria RAM DDR4 8GB adicional',qty:1,precio:750,subtotal:750}]}
+  ]);
+  DBSET('equipos',[
+    {id:'eq1',sku:'EQ-001',nombre:'Laptop HP EliteBook 840 G8',categoria:'Laptop',marca:'HP',modelo:'840 G8',stock:5,stockMin:2,compra:15000,venta:18500,specs:'Intel i5-1135G7 / 8GB RAM / 256GB SSD / 14" FHD / Win11 Pro',desc:'Garantía HP on-site 1 año'},
+    {id:'eq2',sku:'EQ-002',nombre:'Desktop Dell OptiPlex 7090',categoria:'Desktop / All-in-One',marca:'Dell',modelo:'7090',stock:3,stockMin:1,compra:12000,venta:15500,specs:'Intel i7-11700 / 16GB RAM / 512GB SSD / Win11 Pro',desc:''},
+    {id:'eq3',sku:'EQ-003',nombre:'Switch Cisco Catalyst 2960-X 24p',categoria:'Red / Networking',marca:'Cisco',modelo:'WS-C2960X-24TS-L',stock:4,stockMin:2,compra:7200,venta:8900,specs:'24 puertos GigE + 4 SFP, LAN Base',desc:''},
+    {id:'eq4',sku:'EQ-004',nombre:'Impresora Epson EcoTank L3210',categoria:'Impresora',marca:'Epson',modelo:'L3210',stock:8,stockMin:3,compra:2800,venta:3800,specs:'Multifuncional, sistema de tinta continua, USB',desc:''},
+    {id:'eq5',sku:'EQ-005',nombre:'UPS APC Smart-UPS 1500VA',categoria:'Otro',marca:'APC',modelo:'SMT1500',stock:2,stockMin:2,compra:5500,venta:7200,specs:'1500VA/1000W, 8 tomas, LCD, USB',desc:''}
+  ]);
+  DBSET('refacciones',[
+    {id:'r1',sku:'RAM-001',nombre:'Memoria RAM DDR4 8GB SO-DIMM 3200MHz',categoria:'Memoria RAM',marca:'Kingston',compat:'Laptops DDR4 universales',stock:12,stockMin:5,compra:450,venta:750,notas:''},
+    {id:'r2',sku:'SSD-001',nombre:'SSD NVMe 256GB M.2 2280',categoria:'Almacenamiento',marca:'Samsung 970 EVO',compat:'HP, Dell, Lenovo con slot M.2',stock:8,stockMin:3,compra:700,venta:1100,notas:''},
+    {id:'r3',sku:'BAT-001',nombre:'Batería HP EliteBook 840 G8',categoria:'Batería',marca:'HP OEM',compat:'HP EliteBook 840 G7/G8',stock:3,stockMin:2,compra:850,venta:1400,notas:''},
+    {id:'r4',sku:'PAN-001',nombre:'Pantalla 14" FHD IPS 30 pines',categoria:'Pantalla',marca:'BOE',compat:'HP, Dell, Lenovo 14"',stock:2,stockMin:2,compra:1200,venta:2200,notas:''},
+    {id:'r5',sku:'PSU-001',nombre:'Fuente de poder ATX 600W 80+Bronze',categoria:'Fuente de poder',marca:'Corsair CV600',compat:'Desktops ATX estándar',stock:6,stockMin:2,compra:900,venta:1450,notas:''},
+    {id:'r6',sku:'FAN-001',nombre:'Pasta térmica Noctua NT-H1 3.5g',categoria:'Cooling',marca:'Noctua',compat:'Universal CPU/GPU',stock:1,stockMin:3,compra:95,venta:180,notas:''}
+  ]);
+  DBSET('ventas',[]);
+}
+
+// ══ LOGIN / NAV ════════════════════════════════════════════════════════════════
+function doLogin(){
+  const u=document.getElementById('lu').value.trim();
+  const p=document.getElementById('lp').value;
+  const usr=USERS[u];
+  if(usr&&usr.pass===p){
+    document.getElementById('login').style.display='none';
+    document.getElementById('app').classList.add('visible');
+    document.getElementById('sb-av').textContent=usr.ini;
+    document.getElementById('sb-un').textContent=usr.name;
+    document.getElementById('sb-ro').textContent=usr.role;
+    document.getElementById('fecha-hoy').textContent=new Date().toLocaleDateString('es-MX',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    renderDash(); updateBadgeOS();
+  } else toast('Usuario o contraseña incorrectos','error');
+}
+function doLogout(){document.getElementById('login').style.display='flex';document.getElementById('app').classList.remove('visible');}
+document.getElementById('lp').addEventListener('keyup',e=>{if(e.key==='Enter')doLogin();});
+
+const PTITLES={dashboard:'Dashboard',clientes:'Clientes',ordenes:'Órdenes de Servicio',cotizaciones:'Cotizaciones',catalogo:'Catálogo de Equipos',refacciones:'Refacciones & Partes',ventas:'Ventas',respaldos:'Respaldos'};
+const PFNS={dashboard:renderDash,clientes:renderCli,ordenes:renderOS,cotizaciones:renderCots,catalogo:renderCat,refacciones:renderRefs,ventas:renderVentas,respaldos:renderRespaldos};
+
+function nav(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.sbi').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.sbi').forEach(x=>{if(x.getAttribute('onclick')?.includes("'"+p+"'"))x.classList.add('active');});
+  document.getElementById('tbt').textContent=PTITLES[p]||p;
+  closeSB(); if(PFNS[p])PFNS[p]();
+}
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function openSB(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbov').classList.add('open');}
+function closeSB(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbov').classList.remove('open');}
+function gSearch(q){if(!q)return;nav('clientes');setTimeout(()=>{document.getElementById('f-cli').value=q;renderCli();},100);}
+function updateBadgeOS(){
+  const n=DB('ordenes').filter(o=>!['Entregado','Cancelado'].includes(o.estado)).length;
+  const b=document.getElementById('badge-os');b.textContent=n;b.style.display=n?'inline-block':'none';
+}
+
+// ══ IMPRESIÓN EN VENTANA NUEVA ════════════════════════════════════════════════
+function abrirImprimir(html,titulo){
+  const win=window.open('','_blank','width=820,height=920,scrollbars=yes');
+  if(!win){toast('Activa ventanas emergentes para imprimir','error');return;}
+  win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${titulo}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Space Grotesk',sans-serif;background:#f0f0f0;padding:20px;display:flex;flex-direction:column;align-items:center;gap:14px}
+  .pw{background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,.1);max-width:740px;width:100%;overflow:hidden}
+  .np{display:flex;gap:10px}.bp{padding:10px 26px;background:#00D4FF;color:#0A0E1A;border:none;border-radius:7px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif}
+  .bc_{padding:10px 18px;background:#555;color:#fff;border:none;border-radius:7px;font-size:14px;cursor:pointer;font-family:'Space Grotesk',sans-serif}
+  @media print{body{background:#fff;padding:0}.np{display:none!important}.pw{box-shadow:none;border-radius:0}}</style></head>
+  <body><div class="np"><button class="bp" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button><button class="bc_" onclick="window.close()">✕ Cerrar</button></div>
+  <div class="pw">${html}</div><script>setTimeout(()=>window.print(),700);<\/script></body></html>`);
+  win.document.close();
+}
+
+// ══ DASHBOARD ═════════════════════════════════════════════════════════════════
+function renderDash(){
+  const os=DB('ordenes'),cot=DB('cotizaciones'),ven=DB('ventas'),eq=DB('equipos'),ref=DB('refacciones');
+  const activas=os.filter(o=>!['Entregado','Cancelado'].includes(o.estado));
+  const listas=os.filter(o=>o.estado==='Listo');
+  const ms=new Date().toISOString().substr(0,7);
+  const ingMes=ven.filter(v=>v.fecha?.startsWith(ms)).reduce((s,v)=>s+v.total,0);
+  const crit=[...eq,...ref].filter(p=>p.stock<=p.stockMin);
+  document.getElementById('sg').innerHTML=`
+    <div class="sc"><div class="si ic"><i class="ti ti-tool"></i></div><div><div class="sv">${activas.length}</div><div class="sl">Órdenes activas</div></div></div>
+    <div class="sc"><div class="si io"><i class="ti ti-clock"></i></div><div><div class="sv">${listas.length}</div><div class="sl">Listas p/entregar</div></div></div>
+    <div class="sc"><div class="si ig"><i class="ti ti-currency-dollar"></i></div><div><div class="sv" style="font-size:18px">${fmtM(ingMes)}</div><div class="sl">Ingresos del mes</div></div></div>
+    <div class="sc"><div class="si ip"><i class="ti ti-file-invoice"></i></div><div><div class="sv">${cot.filter(c=>c.estado==='Enviada').length}</div><div class="sl">Cotiz. enviadas</div></div></div>
+    <div class="sc"><div class="si ir"><i class="ti ti-alert-triangle"></i></div><div><div class="sv">${crit.length}</div><div class="sl">Stock crítico</div></div></div>`;
+  const eC={Recibido:'bw2',Diagnóstico:'bp2','En reparación':'bo2','Esperando refacción':'by2',Listo:'bg2',Entregado:'bc2',Cancelado:'br2'};
+  const pC={Alta:'var(--red)',Media:'var(--orange)',Baja:'var(--cyan)'};
+  document.getElementById('d-os').innerHTML=activas.length?activas.slice(0,5).map(o=>`
+    <div style="display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer" onclick="verOS('${o.id}')">
+      <span class="pdot" style="background:${pC[o.prioridad]};flex-shrink:0"></span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--cyan)">${o.folio}</div>
+        <div style="font-size:12px;color:var(--t2)">${o.clienteNombre} · ${o.marca} ${o.modelo}</div>
+      </div>
+      <span class="badge ${eC[o.estado]||'bw2'}">${o.estado}</span>
+    </div>`).join(''):'<div class="es" style="padding:22px"><i class="ti ti-check"></i><p>Sin órdenes activas</p></div>';
+  const eCC={Borrador:'bw2',Enviada:'bc2',Aceptada:'bg2',Rechazada:'br2',Vencida:'bo2'};
+  document.getElementById('d-cot').innerHTML=cot.slice(-4).reverse().map(c=>{
+    const sub=c.items?.reduce((s,i)=>s+i.subtotal,0)||0;
+    const tot=sub*(1+(c.iva||0)/100);
+    return`<div style="display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--border)">
+      <div style="flex:1"><div style="font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--text)">${c.folio}</div><div style="font-size:12px;color:var(--t3)">${c.cliente}</div></div>
+      <span style="font-size:12px;font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace">${fmtM(tot)}</span>
+      <span class="badge ${eCC[c.estado]||'bw2'}">${c.estado}</span>
+    </div>`;}).join('');
+  document.getElementById('d-stk').innerHTML=crit.length?crit.slice(0,5).map(p=>`
+    <div style="display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--border)">
+      <span class="ctag">${p.sku}</span>
+      <div style="flex:1;font-size:12px;color:var(--t2)">${p.nombre.substr(0,34)}</div>
+      <span class="badge br2">${p.stock} uds</span>
+    </div>`).join(''):'<div class="es" style="padding:22px"><i class="ti ti-packages"></i><p>Todo en stock ✓</p></div>';
+  const meses=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const ing={};meses.forEach(m=>ing[m]=0);
+  ven.filter(v=>v.fecha?.startsWith(String(new Date().getFullYear()))).forEach(v=>{
+    const mm=new Date(v.fecha+'T12:00').getMonth();ing[meses[mm]]=(ing[meses[mm]]||0)+v.total;
+  });
+  const mx=Math.max(...Object.values(ing),1);
+  const cd=meses.filter(m=>ing[m]>0);
+  document.getElementById('d-cha').innerHTML=`<div style="display:flex;flex-direction:column;gap:8px">${(cd.length?cd:meses.slice(0,5)).map(m=>`
+    <div style="display:flex;align-items:center;gap:9px;font-size:12px">
+      <div style="width:28px;color:var(--t3);font-family:'JetBrains Mono',monospace">${m}</div>
+      <div class="pb" style="flex:1"><div class="pf" style="width:${Math.round(ing[m]/mx*100)}%"></div></div>
+      <div style="width:72px;text-align:right;color:var(--t2);font-family:'JetBrains Mono',monospace">${fmtM(ing[m])}</div>
+    </div>`).join('')}</div>`;
+}
+
+// ══ CLIENTES ══════════════════════════════════════════════════════════════════
+function renderCli(){
+  const lista=DB('clientes');
+  const q=(document.getElementById('f-cli')?.value||'').toLowerCase();
+  const t=document.getElementById('f-cli-t')?.value||'';
+  const f=lista.filter(c=>(!q||(c.nombre+c.tel+c.email+(c.codigo||'')).toLowerCase().includes(q))&&(!t||c.tipo===t));
+  const ords=DB('ordenes');
+  const tb=document.getElementById('t-cli');
+  if(!f.length){tb.innerHTML=`<tr><td colspan="7"><div class="es"><i class="ti ti-users"></i><p>Sin clientes registrados</p></div></td></tr>`;return;}
+  tb.innerHTML=f.map(c=>{
+    const n=ords.filter(o=>o.clienteNombre===c.nombre).length;
+    return`<tr>
+      <td><strong>${c.nombre}</strong><br><span class="ctag">${c.codigo||'—'}</span></td>
+      <td><span class="badge ${c.tipo==='Empresa'?'bc2':'bp2'}">${c.tipo}</span></td>
+      <td>${c.tel||'—'}</td><td style="font-size:12px">${c.email||'—'}</td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:11px">${c.rfc||'—'}</td>
+      <td><span class="badge bw2">${n}</span></td>
+      <td><div style="display:flex;gap:4px">
+        <button class="btn bg_ bsm bic" onclick="editarCli('${c.id}')" title="Editar"><i class="ti ti-edit"></i></button>
+        <button class="btn bg_ bsm bic" onclick="eliminarCli('${c.id}')" title="Eliminar"><i class="ti ti-trash"></i></button>
+      </div></td>
+    </tr>`;}).join('');
+}
+function resetCli(){document.getElementById('cli-id').value='';document.getElementById('mcli-t').textContent='Nuevo Cliente';['cli-n','cli-cod','cli-tel','cli-email','cli-rfc','cli-con','cli-dir','cli-not'].forEach(id=>document.getElementById(id).value='');document.getElementById('cli-t').value='Empresa';}
+function genCodCli(){document.getElementById('cli-cod').value='CLI-'+String(DB('clientes').length+1).padStart(4,'0');}
+function guardarCli(e){
+  e.preventDefault();const id=document.getElementById('cli-id').value;const lista=DB('clientes');
+  const data={id:id||genId(),codigo:document.getElementById('cli-cod').value,nombre:document.getElementById('cli-n').value,tipo:document.getElementById('cli-t').value,tel:document.getElementById('cli-tel').value,email:document.getElementById('cli-email').value,rfc:document.getElementById('cli-rfc').value,contacto:document.getElementById('cli-con').value,dir:document.getElementById('cli-dir').value,notas:document.getElementById('cli-not').value};
+  if(id){const i=lista.findIndex(c=>c.id===id);lista[i]=data;}else lista.push(data);
+  DBSET('clientes',lista);closeModal('modal-cli');renderCli();toast('Cliente guardado');
+}
+function editarCli(id){
+  const c=DB('clientes').find(x=>x.id===id);if(!c)return;
+  document.getElementById('mcli-t').textContent='Editar Cliente';
+  document.getElementById('cli-id').value=c.id;document.getElementById('cli-n').value=c.nombre;document.getElementById('cli-t').value=c.tipo;
+  document.getElementById('cli-cod').value=c.codigo||'';document.getElementById('cli-tel').value=c.tel||'';
+  document.getElementById('cli-email').value=c.email||'';document.getElementById('cli-rfc').value=c.rfc||'';
+  document.getElementById('cli-con').value=c.contacto||'';document.getElementById('cli-dir').value=c.dir||'';document.getElementById('cli-not').value=c.notas||'';
+  openModal('modal-cli');
+}
+function eliminarCli(id){if(!confirm('¿Eliminar este cliente?'))return;DBSET('clientes',DB('clientes').filter(c=>c.id!==id));renderCli();toast('Cliente eliminado','error');}
+function popDL(dlId){
+  const dl=document.getElementById(dlId);if(!dl)return;dl.innerHTML='';
+  DB('clientes').forEach(c=>{const o=document.createElement('option');o.value=c.nombre;dl.appendChild(o);});
+}
+
+// ══ ÓRDENES DE SERVICIO ════════════════════════════════════════════════════════
+function genFolioOS(){return`OS-${new Date().getFullYear()}-${String(DB('ordenes').length+1).padStart(3,'0')}`;}
+function openModalOS(){
+  document.getElementById('os-id').value='';document.getElementById('mos-t').textContent='Nueva Orden de Servicio';
+  document.getElementById('os-folio').value=genFolioOS();document.getElementById('os-fecha').value=today();
+  ['os-cli','os-marca','os-modelo','os-serie','os-tec','os-falla','os-diag','os-trab','os-not','os-fest','os-fent'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('os-mo').value=0;document.getElementById('os-ref').value=0;
+  document.getElementById('os-pri').value='Media';document.getElementById('os-est').value='Recibido';
+  popDL('os-cli-dl');openModal('modal-os');
+}
+function guardarOS(e){
+  e.preventDefault();const id=document.getElementById('os-id').value;const lista=DB('ordenes');
+  const data={id:id||genId(),folio:document.getElementById('os-folio').value,clienteNombre:document.getElementById('os-cli').value,fecha:document.getElementById('os-fecha').value,tipoEquipo:document.getElementById('os-teq').value,marca:document.getElementById('os-marca').value,modelo:document.getElementById('os-modelo').value,serie:document.getElementById('os-serie').value,prioridad:document.getElementById('os-pri').value,estado:document.getElementById('os-est').value,tecnico:document.getElementById('os-tec').value,falla:document.getElementById('os-falla').value,diagnostico:document.getElementById('os-diag').value,trabajo:document.getElementById('os-trab').value,costoMO:Number(document.getElementById('os-mo').value)||0,costoRef:Number(document.getElementById('os-ref').value)||0,notas:document.getElementById('os-not').value,fechaEst:document.getElementById('os-fest').value,fechaEnt:document.getElementById('os-fent').value};
+  if(id){const i=lista.findIndex(o=>o.id===id);lista[i]=data;}else lista.push(data);
+  DBSET('ordenes',lista);closeModal('modal-os');renderOS();updateBadgeOS();toast('Orden guardada');
+}
+function renderOS(){
+  const lista=DB('ordenes');
+  const q=(document.getElementById('f-os')?.value||'').toLowerCase();
+  const est=document.getElementById('f-os-e')?.value||'';
+  const pri=document.getElementById('f-os-p')?.value||'';
+  const f=lista.filter(o=>(!q||(o.folio+o.clienteNombre+o.marca+o.modelo).toLowerCase().includes(q))&&(!est||o.estado===est)&&(!pri||o.prioridad===pri)).sort((a,b)=>(b.fecha||'').localeCompare(a.fecha||''));
+  const el=document.getElementById('os-lista');
+  if(!f.length){el.innerHTML='<div class="es"><i class="ti ti-tool"></i><p>Sin órdenes que coincidan</p></div>';return;}
+  const eC={Recibido:'bw2',Diagnóstico:'bp2','En reparación':'bo2','Esperando refacción':'by2',Listo:'bg2',Entregado:'bc2',Cancelado:'br2'};
+  const pC={Alta:'var(--red)',Media:'var(--orange)',Baja:'var(--cyan)'};
+  const eBar={Recibido:'#3a3a3a',Diagnóstico:'var(--purple)','En reparación':'var(--orange)','Esperando refacción':'var(--yellow)',Listo:'var(--green)',Entregado:'var(--cyan)',Cancelado:'var(--red)'};
+  el.innerHTML=f.map(o=>`
+    <div class="oscard" onclick="verOS('${o.id}')">
+      <div class="osbar" style="background:${eBar[o.estado]||'#3a3a3a'}"></div>
+      <div style="display:flex;align-items:flex-start;gap:13px;flex-wrap:wrap">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:4px;flex-wrap:wrap">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--cyan)">${o.folio}</span>
+            <span class="badge ${eC[o.estado]||'bw2'}">${o.estado}</span>
+            <span class="badge bw2" style="color:${pC[o.prioridad]}">● ${o.prioridad}</span>
+          </div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:2px">${o.clienteNombre}</div>
+          <div style="font-size:12px;color:var(--t3)">${o.tipoEquipo} · ${o.marca} ${o.modelo}${o.serie?' · S/N: '+o.serie:''}</div>
+          <div style="font-size:12px;color:var(--t3);margin-top:3px">${(o.falla||'').substr(0,90)}${(o.falla||'').length>90?'...':''}</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:18px;font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace">${fmtM((o.costoMO||0)+(o.costoRef||0))}</div>
+          <div style="font-size:10px;color:var(--t3)">MO + Refacciones</div>
+          ${o.tecnico?`<div style="font-size:10px;color:var(--t3);margin-top:3px">👤 ${o.tecnico}</div>`:''}
+          ${o.fechaEst?`<div style="font-size:10px;color:var(--t3)">📅 Est: ${fmtD(o.fechaEst)}</div>`:''}
+        </div>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:11px" onclick="event.stopPropagation()">
+        <button class="btn bg_ bsm" onclick="editarOS('${o.id}')"><i class="ti ti-edit"></i> Editar</button>
+        <button class="btn bc bsm" onclick="verOS('${o.id}')"><i class="ti ti-eye"></i> Ver / Imprimir</button>
+        ${!['Entregado','Cancelado'].includes(o.estado)?`<button class="btn bgr bsm" onclick="sigEstOS('${o.id}')"><i class="ti ti-arrow-right"></i> Siguiente estado</button>`:''}
+      </div>
+    </div>`).join('');
+}
+function editarOS(id){
+  const o=DB('ordenes').find(x=>x.id===id);if(!o)return;
+  document.getElementById('mos-t').textContent='Editar Orden';
+  const m={id:'id',folio:'folio','cli':'clienteNombre',fecha:'fecha','teq':'tipoEquipo',marca:'marca',modelo:'modelo',serie:'serie','pri':'prioridad','est':'estado','tec':'tecnico',falla:'falla','diag':'diagnostico','trab':'trabajo','mo':'costoMO','ref':'costoRef','not':'notas','fest':'fechaEst','fent':'fechaEnt'};
+  Object.entries(m).forEach(([k,v])=>{const el=document.getElementById('os-'+k);if(el)el.value=o[v]||'';});
+  popDL('os-cli-dl');openModal('modal-os');
+}
+function sigEstOS(id){
+  const flujo=['Recibido','Diagnóstico','En reparación','Esperando refacción','Listo','Entregado'];
+  const lista=DB('ordenes');const i=lista.findIndex(o=>o.id===id);
+  const idx=flujo.indexOf(lista[i].estado);
+  if(idx<flujo.length-1){lista[i].estado=flujo[idx+1];DBSET('ordenes',lista);renderOS();updateBadgeOS();toast('Estado actualizado: '+lista[i].estado);}
+}
+function verOS(id){
+  const o=DB('ordenes').find(x=>x.id===id);if(!o)return;
+  const eBar={Recibido:'#555',Diagnóstico:'#7C4DFF','En reparación':'#FF9100','Esperando refacción':'#FFD600',Listo:'#00E676',Entregado:'#00D4FF',Cancelado:'#FF4757'};
+  _hp=`<div style="padding:32px;font-family:'Space Grotesk',sans-serif;max-width:680px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;padding-bottom:20px;border-bottom:2px solid #eee">
+      <div><div style="font-size:28px;font-weight:700;letter-spacing:-1px">ORDEN DE SERVICIO</div><div style="font-size:13px;color:#888;margin-top:2px">TechServ Pro · Cómputo &amp; Electrónica</div></div>
+      <div style="text-align:right"><div style="font-size:21px;font-weight:700;color:#00D4FF;font-family:'JetBrains Mono',monospace">${o.folio}</div>
+        <div style="font-size:12px;color:#888">Fecha: ${fmtD(o.fecha)}</div>
+        <div style="display:inline-block;background:${eBar[o.estado]||'#555'};color:#fff;padding:3px 12px;border-radius:99px;font-size:11px;font-weight:700;margin-top:4px">${o.estado}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px">
+      <div style="background:#f8f9fa;border-radius:10px;padding:15px">
+        <div style="font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">CLIENTE</div>
+        <div style="font-size:15px;font-weight:600">${o.clienteNombre}</div>
+        ${o.tecnico?`<div style="font-size:12px;color:#666;margin-top:4px">Técnico: ${o.tecnico}</div>`:''}
+        <div style="font-size:12px;color:#666">Prioridad: <strong style="color:${o.prioridad==='Alta'?'#FF4757':o.prioridad==='Media'?'#FF9100':'#00D4FF'}">${o.prioridad}</strong></div>
+        ${o.fechaEst?`<div style="font-size:12px;color:#666">Entrega est.: ${fmtD(o.fechaEst)}</div>`:''}
+        ${o.fechaEnt?`<div style="font-size:12px;color:#666">Entregado: ${fmtD(o.fechaEnt)}</div>`:''}
+      </div>
+      <div style="background:#f8f9fa;border-radius:10px;padding:15px">
+        <div style="font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">EQUIPO</div>
+        <div style="font-size:14px;font-weight:600">${o.tipoEquipo} · ${o.marca} ${o.modelo}</div>
+        ${o.serie?`<div style="font-size:12px;color:#666;font-family:'JetBrains Mono',monospace;margin-top:4px">S/N: ${o.serie}</div>`:''}
+      </div>
+    </div>
+    <div style="margin-bottom:14px"><div style="font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">FALLA REPORTADA POR EL CLIENTE</div>
+      <div style="background:#fff3cd;border-left:4px solid #FF9100;border-radius:0 8px 8px 0;padding:12px 16px;font-size:13px;line-height:1.6">${o.falla||'—'}</div></div>
+    ${o.diagnostico?`<div style="margin-bottom:14px"><div style="font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">DIAGNÓSTICO TÉCNICO</div>
+      <div style="background:#e8f5e9;border-left:4px solid #00E676;border-radius:0 8px 8px 0;padding:12px 16px;font-size:13px;line-height:1.6">${o.diagnostico}</div></div>`:''}
+    ${o.trabajo?`<div style="margin-bottom:14px"><div style="font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">TRABAJO REALIZADO</div>
+      <div style="background:#e3f2fd;border-left:4px solid #00D4FF;border-radius:0 8px 8px 0;padding:12px 16px;font-size:13px;line-height:1.6">${o.trabajo}</div></div>`:''}
+    <div style="background:#f8f9fa;border-radius:10px;padding:16px;margin-bottom:20px">
+      <div style="font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">COSTOS DEL SERVICIO</div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px"><span style="color:#666">Mano de obra</span><strong>${fmtM(o.costoMO||0)}</strong></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px"><span style="color:#666">Refacciones y materiales</span><strong>${fmtM(o.costoRef||0)}</strong></div>
+      <div style="display:flex;justify-content:space-between;font-size:19px;font-weight:700;border-top:2px solid #ddd;padding-top:10px"><span>TOTAL</span><span style="color:#00D4FF">${fmtM((o.costoMO||0)+(o.costoRef||0))}</span></div>
+    </div>
+    ${o.notas?`<div style="font-size:12px;color:#888;padding-top:10px;border-top:1px dashed #ddd">Notas internas: ${o.notas}</div>`:''}
+    <div style="margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px">
+      <div style="border-top:1.5px solid #333;padding-top:8px;text-align:center;font-size:12px;color:#666">Firma del Técnico</div>
+      <div style="border-top:1.5px solid #333;padding-top:8px;text-align:center;font-size:12px;color:#666">Firma del Cliente / Recibí conforme</div>
+    </div>
+  </div>`;
+  document.getElementById('os-det-body').innerHTML=_hp;openModal('modal-os-det');
+}
+
+// ══ COTIZACIONES ══════════════════════════════════════════════════════════════
+function openModalCot(){
+  cotItems=[];
+  document.getElementById('cot-folio').value='COT-'+new Date().getFullYear()+'-'+String(DB('cotizaciones').length+1).padStart(3,'0');
+  document.getElementById('cot-fecha').value=today();
+  const v=new Date();v.setDate(v.getDate()+15);document.getElementById('cot-val').value=v.toISOString().split('T')[0];
+  ['cot-cli','cot-not','cot-idesc'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('cot-iqty').value=1;document.getElementById('cot-ipre').value='';
+  document.getElementById('cot-est').value='Borrador';document.getElementById('cot-iva').value='16';
+  popDL('cot-cli-dl');renderCotItems();openModal('modal-cot');
+  setTimeout(()=>document.getElementById('cot-cli').focus(),200);
+}
+function buscarIC(q){
+  const box=document.getElementById('cot-sug');
+  if(!q.trim()){box.style.display='none';return;}
+  const t=q.toLowerCase();
+  const items=[...DB('equipos').map(e=>({...e,_tipo:'Equipo'})),...DB('refacciones').map(r=>({...r,_tipo:'Refacción',venta:r.venta}))].filter(p=>p.nombre.toLowerCase().includes(t)||(p.sku||'').toLowerCase().includes(t));
+  if(!items.length){box.style.display='none';return;}
+  box.style.display='block';
+  box.innerHTML=items.slice(0,7).map(p=>`
+    <div onmousedown="selIC('${encodeURIComponent(p.nombre)}',${p.venta||0})"
+      style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)"
+      onmouseover="this.style.background='var(--bg3)'" onmouseout="this.style.background=''">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--text)">${p.nombre}</div>
+        <div style="font-size:10px;color:var(--t3)">${p._tipo} · <span style="font-family:'JetBrains Mono',monospace;color:var(--cyan)">${p.sku||''}</span></div>
+      </div>
+      <span style="font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace;flex-shrink:0;margin-left:8px">${fmtM(p.venta||0)}</span>
+    </div>`).join('');
+}
+function navIC(e){
+  if(e.key==='Enter'){e.preventDefault();const sug=document.getElementById('cot-sug');const first=sug.querySelector('div');if(first)first.dispatchEvent(new Event('mousedown'));}
+  if(e.key==='Escape')document.getElementById('cot-sug').style.display='none';
+}
+function selIC(nombre,precio){
+  document.getElementById('cot-idesc').value=decodeURIComponent(nombre);
+  document.getElementById('cot-ipre').value=precio;
+  document.getElementById('cot-sug').style.display='none';
+  document.getElementById('cot-iqty').focus();
+}
+function addIC(){
+  const desc=document.getElementById('cot-idesc').value.trim();
+  const qty=Number(document.getElementById('cot-iqty').value);
+  const precio=Number(document.getElementById('cot-ipre').value);
+  if(!desc){toast('Escribe o selecciona un concepto','error');return;}
+  if(!qty||qty<1){toast('Cantidad inválida','error');return;}
+  if(!precio||precio<=0){toast('Ingresa un precio válido','error');return;}
+  cotItems.push({desc,qty,precio,subtotal:qty*precio});
+  document.getElementById('cot-idesc').value='';document.getElementById('cot-iqty').value=1;document.getElementById('cot-ipre').value='';
+  document.getElementById('cot-sug').style.display='none';
+  renderCotItems();document.getElementById('cot-idesc').focus();
+}
+function quitarIC(i){cotItems.splice(i,1);renderCotItems();}
+function renderCotItems(){
+  const el=document.getElementById('cot-items');
+  if(!cotItems.length){el.innerHTML=`<div style="text-align:center;padding:18px;color:var(--t3);font-size:13px;border:1px dashed var(--border);border-radius:8px;margin-bottom:13px">Agrega conceptos a la cotización</div>`;recalcCot();return;}
+  el.innerHTML=`<div class="tw" style="margin-bottom:13px"><table>
+    <thead><tr><th>Descripción / Concepto</th><th>Cant.</th><th>Precio Unit.</th><th>Subtotal</th><th></th></tr></thead>
+    <tbody>${cotItems.map((it,i)=>`<tr>
+      <td style="color:var(--text)">${it.desc}</td><td>${it.qty}</td>
+      <td style="font-family:'JetBrains Mono',monospace">${fmtM(it.precio)}</td>
+      <td style="font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace">${fmtM(it.subtotal)}</td>
+      <td><button class="btn bg_ bsm bic" onclick="quitarIC(${i})"><i class="ti ti-trash"></i></button></td>
+    </tr>`).join('')}</tbody>
+  </table></div>`;recalcCot();
+}
+function recalcCot(){
+  const sub=cotItems.reduce((s,i)=>s+i.subtotal,0);
+  const ivp=Number(document.getElementById('cot-iva')?.value||0);
+  const ivaV=sub*ivp/100;
+  document.getElementById('cot-sub').textContent=fmtM(sub);
+  document.getElementById('cot-iva-v').textContent=fmtM(ivaV);
+  document.getElementById('cot-tot').textContent=fmtM(sub+ivaV);
+}
+function guardarCot(){
+  const cli=document.getElementById('cot-cli').value.trim();
+  if(!cli){toast('Escribe el nombre del cliente','error');return;}
+  if(!cotItems.length){toast('Agrega al menos un concepto','error');return;}
+  const lista=DB('cotizaciones');
+  const cot={id:genId(),folio:document.getElementById('cot-folio').value,cliente:cli,fecha:document.getElementById('cot-fecha').value,valida:document.getElementById('cot-val').value,estado:document.getElementById('cot-est').value,notas:document.getElementById('cot-not').value,iva:Number(document.getElementById('cot-iva').value||0),items:[...cotItems]};
+  lista.push(cot);DBSET('cotizaciones',lista);closeModal('modal-cot');renderCots();toast('Cotización guardada');
+  setTimeout(()=>verCot(cot.id),300);
+}
+function renderCots(){
+  const lista=DB('cotizaciones');
+  const q=(document.getElementById('f-cot')?.value||'').toLowerCase();
+  const est=document.getElementById('f-cot-e')?.value||'';
+  const f=lista.filter(c=>(!q||(c.folio+c.cliente).toLowerCase().includes(q))&&(!est||c.estado===est)).sort((a,b)=>(b.fecha||'').localeCompare(a.fecha||''));
+  const eCC={Borrador:'bw2',Enviada:'bc2',Aceptada:'bg2',Rechazada:'br2',Vencida:'bo2'};
+  const tb=document.getElementById('t-cot');
+  if(!f.length){tb.innerHTML=`<tr><td colspan="7"><div class="es"><i class="ti ti-file-invoice"></i><p>Sin cotizaciones</p></div></td></tr>`;return;}
+  tb.innerHTML=f.map(c=>{
+    const sub=c.items?.reduce((s,i)=>s+i.subtotal,0)||0;
+    const tot=sub*(1+(c.iva||0)/100);
+    const venc=c.valida&&new Date(c.valida+'T12:00')<new Date()&&!['Aceptada','Rechazada'].includes(c.estado);
+    const ef=venc?'Vencida':c.estado;
+    return`<tr>
+      <td><span class="ctag">${c.folio}</span></td>
+      <td><strong>${c.cliente}</strong></td>
+      <td>${fmtD(c.fecha)}</td>
+      <td style="color:${venc?'var(--red)':'var(--t3)'}">${fmtD(c.valida)}</td>
+      <td><strong style="color:var(--green);font-family:'JetBrains Mono',monospace">${fmtM(tot)}</strong></td>
+      <td><span class="badge ${eCC[ef]||'bw2'}">${ef}</span></td>
+      <td><div style="display:flex;gap:4px">
+        <button class="btn bg_ bsm bic" onclick="verCot('${c.id}')" title="Ver / Imprimir"><i class="ti ti-eye"></i></button>
+        <button class="btn bg_ bsm bic" onclick="cotToVenta('${c.id}')" title="Convertir a venta"><i class="ti ti-shopping-cart"></i></button>
+        <button class="btn bg_ bsm bic" onclick="eliminarCot('${c.id}')"><i class="ti ti-trash"></i></button>
+      </div></td>
+    </tr>`;}).join('');
+}
+function eliminarCot(id){if(!confirm('¿Eliminar esta cotización?'))return;DBSET('cotizaciones',DB('cotizaciones').filter(c=>c.id!==id));renderCots();toast('Cotización eliminada','error');}
+function verCot(id){
+  const c=DB('cotizaciones').find(x=>x.id===id);if(!c)return;
+  const sub=c.items?.reduce((s,i)=>s+i.subtotal,0)||0;
+  const ivaV=sub*(c.iva||0)/100;const tot=sub+ivaV;
+  _hp=`<div style="padding:36px;font-family:'Space Grotesk',sans-serif;max-width:700px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:24px;border-bottom:2px solid #eee">
+      <div><div style="font-size:32px;font-weight:700;letter-spacing:-1px">COTIZACIÓN</div><div style="font-size:13px;color:#888;margin-top:2px">TechServ Pro · Cómputo &amp; Electrónica</div></div>
+      <div style="text-align:right"><div style="font-size:22px;font-weight:700;color:#00D4FF;font-family:'JetBrains Mono',monospace">${c.folio}</div>
+        <div style="font-size:12px;color:#888">Fecha: ${fmtD(c.fecha)}</div>
+        <div style="font-size:12px;color:#888">Válida hasta: <strong>${fmtD(c.valida)}</strong></div>
+      </div>
+    </div>
+    <div style="background:#f8f9fa;border-radius:10px;padding:16px;margin-bottom:24px">
+      <div style="font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">CLIENTE</div>
+      <div style="font-size:17px;font-weight:700">${c.cliente}</div>
+    </div>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:22px;font-size:13px">
+      <thead><tr style="background:#0A0E1A;color:#fff">
+        <th style="padding:11px 14px;text-align:left;border-radius:8px 0 0 0">Descripción / Concepto</th>
+        <th style="padding:11px 14px;text-align:center;width:60px">Cant.</th>
+        <th style="padding:11px 14px;text-align:right;width:120px">Precio Unit.</th>
+        <th style="padding:11px 14px;text-align:right;width:120px;border-radius:0 8px 0 0">Subtotal</th>
+      </tr></thead>
+      <tbody>${c.items?.map((it,idx)=>`<tr style="background:${idx%2===0?'#fff':'#f8f9fa'}">
+        <td style="padding:11px 14px">${it.desc}</td>
+        <td style="padding:11px 14px;text-align:center">${it.qty}</td>
+        <td style="padding:11px 14px;text-align:right;font-family:'JetBrains Mono',monospace">${fmtM(it.precio)}</td>
+        <td style="padding:11px 14px;text-align:right;font-weight:600;font-family:'JetBrains Mono',monospace">${fmtM(it.subtotal)}</td>
+      </tr>`).join('')||''}</tbody>
+    </table>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:24px">
+      <div style="width:260px">
+        <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;color:#666"><span>Subtotal</span><span style="font-family:'JetBrains Mono',monospace">${fmtM(sub)}</span></div>
+        ${c.iva?`<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;color:#666"><span>IVA ${c.iva}%</span><span style="font-family:'JetBrains Mono',monospace">${fmtM(ivaV)}</span></div>`:''}
+        <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:21px;font-weight:700;border-top:2px solid #0A0E1A;margin-top:4px"><span>TOTAL</span><span style="color:#00D4FF;font-family:'JetBrains Mono',monospace">${fmtM(tot)}</span></div>
+      </div>
+    </div>
+    ${c.notas?`<div style="background:#e3f2fd;border-left:4px solid #00D4FF;border-radius:0 8px 8px 0;padding:14px 18px;font-size:13px;line-height:1.7;margin-bottom:20px"><strong>Notas y condiciones:</strong><br>${c.notas}</div>`:''}
+    <div style="margin-top:42px;display:grid;grid-template-columns:1fr 1fr;gap:40px">
+      <div style="border-top:1.5px solid #333;padding-top:8px;text-align:center;font-size:12px;color:#666">Autorización TechServ Pro</div>
+      <div style="border-top:1.5px solid #333;padding-top:8px;text-align:center;font-size:12px;color:#666">Aceptación del Cliente</div>
+    </div>
+  </div>`;
+  document.getElementById('cot-prev-body').innerHTML=_hp;openModal('modal-cot-prev');
+}
+function cotToVenta(cotId){
+  const c=DB('cotizaciones').find(x=>x.id===cotId);if(!c)return;
+  if(!confirm(`¿Convertir la cotización ${c.folio} en venta?`))return;
+  const sub=c.items?.reduce((s,i)=>s+i.subtotal,0)||0;
+  const tot=sub*(1+(c.iva||0)/100);
+  const folio='VTA-'+new Date().getFullYear()+'-'+String(DB('ventas').length+1).padStart(3,'0');
+  const venta={id:genId(),folio,cliente:c.cliente,fecha:today(),metodo:'Por definir',total:tot,items:c.items?.map(i=>({...i,nombre:i.desc}))||[],cotRef:c.folio};
+  const ventas=DB('ventas');ventas.push(venta);DBSET('ventas',ventas);
+  const cots=DB('cotizaciones');const i=cots.findIndex(x=>x.id===cotId);cots[i].estado='Aceptada';DBSET('cotizaciones',cots);
+  toast('✅ Venta '+folio+' creada desde cotización');nav('ventas');
+}
+
+// ══ CATÁLOGO EQUIPOS ══════════════════════════════════════════════════════════
+const CATICONS={'Laptop':'ti-device-laptop','Desktop / All-in-One':'ti-device-desktop','Servidor':'ti-server','Impresora':'ti-printer','Red / Networking':'ti-router','Periférico':'ti-keyboard','Componente':'ti-cpu','Otro':'ti-box'};
+function renderCat(){
+  const lista=DB('equipos');
+  const q=(document.getElementById('f-eq')?.value||'').toLowerCase();
+  const cat=document.getElementById('f-eq-c')?.value||'';
+  const f=lista.filter(e=>(!q||(e.nombre+e.marca+(e.sku||'')).toLowerCase().includes(q))&&(!cat||e.categoria===cat));
+  const tot=lista.reduce((s,e)=>s+e.stock*e.venta,0);
+  document.getElementById('cat-sg').innerHTML=`
+    <div class="sc"><div class="si ic"><i class="ti ti-devices"></i></div><div><div class="sv">${lista.length}</div><div class="sl">Modelos</div></div></div>
+    <div class="sc"><div class="si ig"><i class="ti ti-packages"></i></div><div><div class="sv">${lista.reduce((s,e)=>s+e.stock,0)}</div><div class="sl">En stock</div></div></div>
+    <div class="sc"><div class="si io"><i class="ti ti-alert-triangle"></i></div><div><div class="sv">${lista.filter(e=>e.stock<=e.stockMin).length}</div><div class="sl">Stock bajo</div></div></div>
+    <div class="sc"><div class="si iy"><i class="ti ti-currency-dollar"></i></div><div><div class="sv" style="font-size:17px">${fmtM(tot)}</div><div class="sl">Valor inventario</div></div></div>`;
+  const grid=document.getElementById('eq-grid');
+  if(!f.length){grid.innerHTML=`<div class="es" style="grid-column:1/-1"><i class="ti ti-devices"></i><p>Sin equipos que coincidan</p></div>`;return;}
+  grid.innerHTML=f.map(e=>{
+    const pct=Math.min(100,Math.round(e.stock/Math.max(e.stockMin*3,1)*100));
+    const sc=e.stock<=0?'var(--red)':e.stock<=e.stockMin?'var(--orange)':'var(--green)';
+    const mg=e.compra>0?Math.round((e.venta-e.compra)/e.venta*100):null;
+    return`<div class="card" style="padding:16px">
+      <div style="display:flex;align-items:flex-start;gap:11px;margin-bottom:11px">
+        <div class="si ic" style="width:36px;height:36px;font-size:17px;flex-shrink:0"><i class="ti ${CATICONS[e.categoria]||'ti-box'}"></i></div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:13px;font-weight:700;line-height:1.3">${e.nombre}</div>
+          <div style="font-size:11px;color:var(--t3);margin-top:1px">${e.categoria}${e.marca?' · '+e.marca:''}</div>
+          <span class="ctag" style="margin-top:3px;display:inline-block">${e.sku||'—'}</span>
+        </div>
+      </div>
+      ${e.specs?`<div style="font-size:10px;color:var(--t3);margin-bottom:9px;padding:7px;background:var(--bg3);border-radius:6px;font-family:'JetBrains Mono',monospace;line-height:1.6">${e.specs}</div>`:''}
+      <div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px"><span style="color:var(--t3)">Stock</span><strong style="color:${sc}">${e.stock} uds</strong></div>
+      <div class="pb" style="margin-bottom:10px"><div class="pf ${pct<33?'low':pct<66?'mid':''}" style="width:${pct}%"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:11px">
+        <div><div style="color:var(--t3);margin-bottom:1px">Compra</div><div style="font-family:'JetBrains Mono',monospace">${fmtM(e.compra||0)}</div></div>
+        <div style="text-align:right"><div style="color:var(--t3);margin-bottom:1px">Venta</div><div style="font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace">${fmtM(e.venta||0)}</div></div>
+        ${mg!==null?`<div style="text-align:right"><div style="color:var(--t3);margin-bottom:1px">Margen</div><div style="font-weight:700;color:var(--cyan)">${mg}%</div></div>`:''}
+      </div>
+      <div style="display:flex;gap:5px">
+        <button class="btn bg_ bsm" style="flex:1" onclick="editarEq('${e.id}')"><i class="ti ti-edit"></i> Editar</button>
+        <button class="btn bg_ bsm bic" onclick="eliminarEq('${e.id}')"><i class="ti ti-trash"></i></button>
+      </div>
+    </div>`;}).join('');
+}
+function openModalEq(){document.getElementById('eq-id').value='';document.getElementById('meq-t').textContent='Nuevo Equipo';['eq-n','eq-sku','eq-marca','eq-modelo','eq-specs','eq-desc'].forEach(id=>document.getElementById(id).value='');document.getElementById('eq-stk').value=0;document.getElementById('eq-stkm').value=2;document.getElementById('eq-comp').value='';document.getElementById('eq-ven').value='';openModal('modal-eq');}
+function genSKUeq(){document.getElementById('eq-sku').value='EQ-'+String(DB('equipos').length+1).padStart(3,'0');}
+function guardarEq(e){
+  e.preventDefault();const id=document.getElementById('eq-id').value;const lista=DB('equipos');
+  const data={id:id||genId(),sku:document.getElementById('eq-sku').value,nombre:document.getElementById('eq-n').value,categoria:document.getElementById('eq-cat').value,marca:document.getElementById('eq-marca').value,modelo:document.getElementById('eq-modelo').value,stock:Number(document.getElementById('eq-stk').value)||0,stockMin:Number(document.getElementById('eq-stkm').value)||2,compra:Number(document.getElementById('eq-comp').value)||0,venta:Number(document.getElementById('eq-ven').value)||0,specs:document.getElementById('eq-specs').value,desc:document.getElementById('eq-desc').value};
+  if(id){const i=lista.findIndex(x=>x.id===id);lista[i]=data;}else lista.push(data);
+  DBSET('equipos',lista);closeModal('modal-eq');renderCat();toast('Equipo guardado');
+}
+function editarEq(id){
+  const e=DB('equipos').find(x=>x.id===id);if(!e)return;
+  document.getElementById('meq-t').textContent='Editar Equipo';
+  document.getElementById('eq-id').value=e.id;document.getElementById('eq-n').value=e.nombre;document.getElementById('eq-sku').value=e.sku||'';document.getElementById('eq-cat').value=e.categoria;document.getElementById('eq-marca').value=e.marca||'';document.getElementById('eq-modelo').value=e.modelo||'';document.getElementById('eq-stk').value=e.stock;document.getElementById('eq-stkm').value=e.stockMin;document.getElementById('eq-comp').value=e.compra||0;document.getElementById('eq-ven').value=e.venta||0;document.getElementById('eq-specs').value=e.specs||'';document.getElementById('eq-desc').value=e.desc||'';
+  openModal('modal-eq');
+}
+function eliminarEq(id){if(!confirm('¿Eliminar este equipo?'))return;DBSET('equipos',DB('equipos').filter(e=>e.id!==id));renderCat();toast('Eliminado','error');}
+
+// ══ REFACCIONES ═══════════════════════════════════════════════════════════════
+function renderRefs(){
+  const lista=DB('refacciones');
+  const q=(document.getElementById('f-ref')?.value||'').toLowerCase();
+  const cat=document.getElementById('f-ref-c')?.value||'';
+  const f=lista.filter(r=>(!q||(r.nombre+(r.sku||'')+(r.compat||'')+(r.marca||'')).toLowerCase().includes(q))&&(!cat||r.categoria===cat));
+  const sc=r=>r.stock<=0?'var(--red)':r.stock<=r.stockMin?'var(--orange)':'var(--green)';
+  document.getElementById('ref-sg').innerHTML=`
+    <div class="sc"><div class="si ip"><i class="ti ti-components"></i></div><div><div class="sv">${lista.length}</div><div class="sl">Refacciones</div></div></div>
+    <div class="sc"><div class="si ig"><i class="ti ti-packages"></i></div><div><div class="sv">${lista.reduce((s,r)=>s+r.stock,0)}</div><div class="sl">Piezas total</div></div></div>
+    <div class="sc"><div class="si ir"><i class="ti ti-alert-triangle"></i></div><div><div class="sv">${lista.filter(r=>r.stock<=r.stockMin).length}</div><div class="sl">Stock bajo</div></div></div>
+    <div class="sc"><div class="si iy"><i class="ti ti-currency-dollar"></i></div><div><div class="sv" style="font-size:17px">${fmtM(lista.reduce((s,r)=>s+r.stock*r.venta,0))}</div><div class="sl">Valor</div></div></div>`;
+  const tb=document.getElementById('t-ref');
+  if(!f.length){tb.innerHTML=`<tr><td colspan="9"><div class="es"><i class="ti ti-components"></i><p>Sin refacciones</p></div></td></tr>`;return;}
+  tb.innerHTML=f.map(r=>`<tr>
+    <td><strong>${r.nombre}</strong>${r.marca?`<br><span style="font-size:11px;color:var(--t3)">${r.marca}</span>`:''}</td>
+    <td><span class="badge bp2">${r.categoria}</span></td>
+    <td><span class="ctag">${r.sku||'—'}</span></td>
+    <td style="font-size:11px;color:var(--t3);max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.compat||''}">${r.compat||'—'}</td>
+    <td style="font-weight:700;color:${sc(r)};font-family:'JetBrains Mono',monospace">${r.stock}</td>
+    <td style="font-family:'JetBrains Mono',monospace;font-size:12px">${fmtM(r.compra||0)}</td>
+    <td style="font-weight:600;color:var(--green);font-family:'JetBrains Mono',monospace">${fmtM(r.venta||0)}</td>
+    <td>${r.stock<=0?'<span class="badge br2">Agotado</span>':r.stock<=r.stockMin?'<span class="badge bo2">Bajo</span>':'<span class="badge bg2">OK</span>'}</td>
+    <td><div style="display:flex;gap:4px">
+      <button class="btn bg_ bsm bic" onclick="editarRef('${r.id}')"><i class="ti ti-edit"></i></button>
+      <button class="btn bg_ bsm bic" onclick="eliminarRef('${r.id}')"><i class="ti ti-trash"></i></button>
+    </div></td>
+  </tr>`).join('');
+}
+function openModalRef(){document.getElementById('ref-id').value='';document.getElementById('mref-t').textContent='Nueva Refacción';['ref-n','ref-sku','ref-marca','ref-compat','ref-not'].forEach(id=>document.getElementById(id).value='');document.getElementById('ref-stk').value=0;document.getElementById('ref-stkm').value=3;document.getElementById('ref-comp').value='';document.getElementById('ref-ven').value='';openModal('modal-ref');}
+function genSKUref(){const cat=document.getElementById('ref-cat').value;const p={Procesador:'CPU','Memoria RAM':'RAM',Almacenamiento:'SSD',Pantalla:'PAN',Batería:'BAT',Teclado:'TEC','Tarjeta madre':'MTB','Fuente de poder':'PSU',Cooling:'FAN',Otro:'OTR'}[cat]||'REF';document.getElementById('ref-sku').value=p+'-'+String(DB('refacciones').length+1).padStart(3,'0');}
+function guardarRef(e){
+  e.preventDefault();const id=document.getElementById('ref-id').value;const lista=DB('refacciones');
+  const data={id:id||genId(),sku:document.getElementById('ref-sku').value,nombre:document.getElementById('ref-n').value,categoria:document.getElementById('ref-cat').value,marca:document.getElementById('ref-marca').value,compat:document.getElementById('ref-compat').value,stock:Number(document.getElementById('ref-stk').value)||0,stockMin:Number(document.getElementById('ref-stkm').value)||3,compra:Number(document.getElementById('ref-comp').value)||0,venta:Number(document.getElementById('ref-ven').value)||0,notas:document.getElementById('ref-not').value};
+  if(id){const i=lista.findIndex(x=>x.id===id);lista[i]=data;}else lista.push(data);
+  DBSET('refacciones',lista);closeModal('modal-ref');renderRefs();toast('Refacción guardada');
+}
+function editarRef(id){
+  const r=DB('refacciones').find(x=>x.id===id);if(!r)return;
+  document.getElementById('mref-t').textContent='Editar Refacción';
+  document.getElementById('ref-id').value=r.id;document.getElementById('ref-n').value=r.nombre;document.getElementById('ref-sku').value=r.sku||'';document.getElementById('ref-cat').value=r.categoria;document.getElementById('ref-marca').value=r.marca||'';document.getElementById('ref-compat').value=r.compat||'';document.getElementById('ref-stk').value=r.stock;document.getElementById('ref-stkm').value=r.stockMin;document.getElementById('ref-comp').value=r.compra||0;document.getElementById('ref-ven').value=r.venta||0;document.getElementById('ref-not').value=r.notas||'';
+  openModal('modal-ref');
+}
+function eliminarRef(id){if(!confirm('¿Eliminar esta refacción?'))return;DBSET('refacciones',DB('refacciones').filter(r=>r.id!==id));renderRefs();toast('Eliminada','error');}
+
+// ══ VENTAS ════════════════════════════════════════════════════════════════════
+function openModalVen(){
+  ventaItems=[];
+  document.getElementById('v-cli').value='';document.getElementById('v-fecha').value=today();
+  document.getElementById('v-ibuscar').value='';document.getElementById('v-iid').value='';
+  document.getElementById('v-qty').value=1;document.getElementById('v-pre').value='';document.getElementById('v-os').value='';
+  limpiarSelV();
+  const dl=document.getElementById('v-cli-dl');dl.innerHTML='';
+  DB('clientes').forEach(c=>{const o=document.createElement('option');o.value=c.nombre;dl.appendChild(o);});
+  const dlo=document.getElementById('v-os-dl');dlo.innerHTML='';
+  DB('ordenes').forEach(o=>{const opt=document.createElement('option');opt.value=o.folio;dlo.appendChild(opt);});
+  renderVItems();openModal('modal-ven');
+  setTimeout(()=>document.getElementById('v-ibuscar').focus(),200);
+}
+function buscarIV(q){
+  const box=document.getElementById('v-sug');
+  if(!q.trim()){box.style.display='none';return;}
+  const t=q.toLowerCase();
+  const items=[
+    ...DB('equipos').filter(e=>e.stock>0).map(e=>({id:e.id,tipo:'EQ',nombre:e.nombre,sku:e.sku,precio:e.venta,stock:e.stock})),
+    ...DB('refacciones').filter(r=>r.stock>0).map(r=>({id:r.id,tipo:'REF',nombre:r.nombre,sku:r.sku,precio:r.venta,stock:r.stock}))
+  ].filter(p=>p.nombre.toLowerCase().includes(t)||(p.sku||'').toLowerCase().includes(t));
+  if(!items.length){box.style.display='none';return;}
+  box.style.display='block';
+  box.innerHTML=items.slice(0,7).map(p=>`
+    <div onmousedown="selIV('${p.id}','${p.tipo}','${encodeURIComponent(p.nombre)}',${p.precio||0},${p.stock})"
+      style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)"
+      onmouseover="this.style.background='var(--bg3)'" onmouseout="this.style.background=''">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.nombre}</div>
+        <div style="font-size:10px;color:var(--t3)">
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--cyan)">${p.sku||''}</span>
+          &nbsp;·&nbsp; ${p.tipo} &nbsp;·&nbsp;
+          <span style="color:${p.stock<=3?'var(--orange)':'var(--green)'}">Stock: ${p.stock}</span>
+        </div>
+      </div>
+      <span style="font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace;flex-shrink:0;margin-left:8px">${fmtM(p.precio||0)}</span>
+    </div>`).join('');
+}
+function selIV(id,tipo,nombre,precio,stock){
+  document.getElementById('v-iid').value=id+'|'+tipo;
+  document.getElementById('v-ibuscar').value=decodeURIComponent(nombre);
+  document.getElementById('v-sug').style.display='none';
+  document.getElementById('v-pre').value=precio;
+  const prev=document.getElementById('v-sel-prev');
+  prev.style.display='flex';
+  document.getElementById('v-sel-n').textContent=decodeURIComponent(nombre);
+  const sc=stock<=0?'var(--red)':stock<=3?'var(--orange)':'var(--green)';
+  document.getElementById('v-sel-i').innerHTML=`<span style="font-family:'JetBrains Mono',monospace;color:var(--cyan)">${id}</span> · Precio: <strong>${fmtM(precio)}</strong> · <span style="color:${sc}">Stock disponible: ${stock}</span>`;
+  document.getElementById('v-qty').focus();document.getElementById('v-qty').select();
+}
+function limpiarSelV(){
+  document.getElementById('v-iid').value='';document.getElementById('v-ibuscar').value='';
+  document.getElementById('v-sug').style.display='none';
+  const p=document.getElementById('v-sel-prev');if(p)p.style.display='none';
+}
+function addIV(){
+  const raw=document.getElementById('v-iid').value;
+  const desc=document.getElementById('v-ibuscar').value.trim();
+  const qty=Number(document.getElementById('v-qty').value);
+  const precio=Number(document.getElementById('v-pre').value);
+  if(!desc){toast('Busca y selecciona un producto','error');document.getElementById('v-ibuscar').focus();return;}
+  if(!qty||qty<1){toast('Cantidad inválida','error');return;}
+  if(!precio||precio<=0){toast('Precio inválido','error');return;}
+  if(raw){
+    const[id,tipo]=raw.split('|');
+    const src=tipo==='EQ'?DB('equipos'):DB('refacciones');
+    const prod=src.find(x=>x.id===id);
+    if(prod){
+      const yaEn=ventaItems.filter(x=>x.id===raw).reduce((s,x)=>s+x.qty,0);
+      if(yaEn+qty>prod.stock){toast(`Stock insuficiente. Disponible: ${prod.stock-yaEn}`,'error');return;}
+    }
+  }
+  const ex=ventaItems.find(x=>x.id===raw&&x.desc===desc);
+  if(ex){ex.qty+=qty;ex.subtotal=ex.qty*ex.precio;}
+  else ventaItems.push({id:raw,desc,qty,precio,subtotal:qty*precio});
+  limpiarSelV();
+  document.getElementById('v-qty').value=1;document.getElementById('v-pre').value='';
+  renderVItems();toast('✅ '+desc+' agregado');
+  document.getElementById('v-ibuscar').focus();
+}
+function quitarIV(i){ventaItems.splice(i,1);renderVItems();}
+function renderVItems(){
+  const el=document.getElementById('v-items');
+  const tot=ventaItems.reduce((s,i)=>s+i.subtotal,0);
+  document.getElementById('v-tot').textContent=fmtM(tot);
+  if(!ventaItems.length){el.innerHTML=`<div style="text-align:center;padding:18px;color:var(--t3);font-size:13px;border:1px dashed var(--border);border-radius:8px;margin-bottom:13px">Agrega productos o servicios a la venta</div>`;return;}
+  el.innerHTML=`<div class="tw" style="margin-bottom:13px"><table>
+    <thead><tr><th>Descripción</th><th>Precio</th><th>Cant.</th><th>Subtotal</th><th></th></tr></thead>
+    <tbody>${ventaItems.map((it,i)=>`<tr>
+      <td style="color:var(--text)">${it.desc}</td>
+      <td style="font-family:'JetBrains Mono',monospace">${fmtM(it.precio)}</td>
+      <td>${it.qty}</td>
+      <td style="font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace">${fmtM(it.subtotal)}</td>
+      <td><button class="btn bg_ bsm bic" onclick="quitarIV(${i})"><i class="ti ti-trash"></i></button></td>
+    </tr>`).join('')}</tbody>
+  </table></div>`;
+}
+function guardarVenta(){
+  if(!ventaItems.length){toast('Agrega al menos un producto','error');return;}
+  const cliente=document.getElementById('v-cli').value||'Cliente general';
+  const fecha=document.getElementById('v-fecha').value;
+  const metodo=document.getElementById('v-met').value;
+  const total=ventaItems.reduce((s,i)=>s+i.subtotal,0);
+  const folio='VTA-'+new Date().getFullYear()+'-'+String(DB('ventas').length+1).padStart(3,'0');
+  // Descontar stock
+  ventaItems.forEach(it=>{
+    if(it.id){
+      const[id,tipo]=it.id.split('|');
+      const key=tipo==='EQ'?'equipos':'refacciones';
+      const lista=DB(key);const i=lista.findIndex(x=>x.id===id);
+      if(i>=0){lista[i].stock=Math.max(0,lista[i].stock-it.qty);DBSET(key,lista);}
+    }
+  });
+  const venta={id:genId(),folio,cliente,fecha,metodo,total,items:[...ventaItems],osRef:document.getElementById('v-os').value||''};
+  const ventas=DB('ventas');ventas.push(venta);DBSET('ventas',ventas);
+  closeModal('modal-ven');renderVentas();
+  toast('✅ Venta '+folio+' registrada');
+  setTimeout(()=>verRecibo(venta.id),300);
+}
+function renderVentas(){
+  const lista=DB('ventas').sort((a,b)=>(b.fecha||'').localeCompare(a.fecha||''));
+  const ms=new Date().toISOString().substr(0,7);
+  const tM=lista.filter(v=>v.fecha?.startsWith(ms)).reduce((s,v)=>s+v.total,0);
+  document.getElementById('ven-sg').innerHTML=`
+    <div class="sc"><div class="si ig"><i class="ti ti-receipt"></i></div><div><div class="sv">${lista.length}</div><div class="sl">Ventas totales</div></div></div>
+    <div class="sc"><div class="si ic"><i class="ti ti-currency-dollar"></i></div><div><div class="sv" style="font-size:17px">${fmtM(lista.reduce((s,v)=>s+v.total,0))}</div><div class="sl">Ingresos totales</div></div></div>
+    <div class="sc"><div class="si io"><i class="ti ti-calendar-month"></i></div><div><div class="sv" style="font-size:17px">${fmtM(tM)}</div><div class="sl">Este mes</div></div></div>`;
+  const tb=document.getElementById('t-ven');
+  if(!lista.length){tb.innerHTML=`<tr><td colspan="7"><div class="es"><i class="ti ti-shopping-cart"></i><p>Sin ventas registradas</p></div></td></tr>`;return;}
+  tb.innerHTML=lista.map(v=>`<tr>
+    <td><span class="ctag">${v.folio}</span></td>
+    <td>${fmtD(v.fecha)}</td>
+    <td><strong>${v.cliente}</strong></td>
+    <td style="font-size:11px;color:var(--t3)">${v.items?.map(i=>`${i.qty}x ${i.desc||i.nombre}`).slice(0,2).join(', ')}${(v.items?.length||0)>2?' +más':''}</td>
+    <td><strong style="color:var(--green);font-family:'JetBrains Mono',monospace">${fmtM(v.total)}</strong></td>
+    <td>${v.metodo}</td>
+    <td><button class="btn bg_ bsm bic" onclick="verRecibo('${v.id}')" title="Ver recibo"><i class="ti ti-receipt"></i></button></td>
+  </tr>`).join('');
+}
+function verRecibo(id){
+  const v=DB('ventas').find(x=>x.id===id);if(!v)return;
+  _hp=`<div style="padding:32px;font-family:'Space Grotesk',sans-serif;max-width:480px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:20px;padding-bottom:20px;border-bottom:2px solid #eee">
+      <div style="font-size:24px;font-weight:700;letter-spacing:-1px">TechServ Pro</div>
+      <div style="font-size:12px;color:#888">Cómputo &amp; Electrónica</div>
+      <div style="font-size:11px;color:#888;margin-top:3px">Recibo de Venta</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;margin:5px 0"><span style="color:#888">Folio:</span><strong style="font-family:'JetBrains Mono',monospace">${v.folio}</strong></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;margin:5px 0"><span style="color:#888">Fecha:</span><span>${fmtD(v.fecha)}</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;margin:5px 0"><span style="color:#888">Cliente:</span><strong>${v.cliente}</strong></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;margin:5px 0"><span style="color:#888">Método:</span><span>${v.metodo}</span></div>
+    ${v.osRef?`<div style="display:flex;justify-content:space-between;font-size:12px;margin:5px 0"><span style="color:#888">Ref. O.S.:</span><span style="font-family:'JetBrains Mono',monospace">${v.osRef}</span></div>`:''}
+    <div style="border-top:1px dashed #ddd;margin:14px 0"></div>
+    <div style="font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">CONCEPTOS</div>
+    ${v.items?.map(i=>`
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin:6px 0">
+        <span style="flex:1">${i.qty}x ${i.desc||i.nombre}</span>
+        <strong style="margin-left:12px;font-family:'JetBrains Mono',monospace">${fmtM(i.subtotal)}</strong>
+      </div>
+      <div style="font-size:10px;color:#bbb;padding-left:14px;margin-bottom:2px">${fmtM(i.precio)} c/u</div>`).join('')||''}
+    <div style="border-top:2px solid #0A0E1A;margin:16px 0;padding-top:12px;display:flex;justify-content:space-between;font-size:21px;font-weight:700">
+      <span>TOTAL</span><span style="color:#00D4FF;font-family:'JetBrains Mono',monospace">${fmtM(v.total)}</span>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#aaa;margin-top:16px;line-height:1.9">
+      ¡Gracias por su preferencia!<br>TechServ Pro · Cómputo &amp; Electrónica
+    </div>
+  </div>`;
+  document.getElementById('rec-body').innerHTML=_hp;openModal('modal-recibo');
+}
+
+// ══ RESPALDOS ═════════════════════════════════════════════════════════════════
+function renderRespaldos(){
+  const m={c:'clientes',o:'ordenes',ct:'cotizaciones',e:'equipos',r:'refacciones',v:'ventas'};
+  Object.entries(m).forEach(([k,v])=>{const el=document.getElementById('rb-'+k);if(el)el.textContent=DB(v).length;});
+}
+function exportarRespaldo(){
+  const datos={clientes:DB('clientes'),ordenes:DB('ordenes'),cotizaciones:DB('cotizaciones'),equipos:DB('equipos'),refacciones:DB('refacciones'),ventas:DB('ventas')};
+  const blob=new Blob([JSON.stringify({version:'1.0',exportadoEl:new Date().toISOString(),sistema:'TechServ Pro',datos},null,2)],{type:'application/json'});
+  const fn='respaldo_techserv_'+new Date().toISOString().replace('T','_').substr(0,16).replace(':','-')+'.json';
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:fn});
+  a.click();URL.revokeObjectURL(a.href);renderRespaldos();toast('✅ Respaldo descargado: '+fn);
+}
+function leerRespaldo(input){
+  const file=input.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{try{
+    const data=JSON.parse(e.target.result);
+    if(!data.datos?.clientes){toast('Archivo no válido para TechServ Pro','error');return;}
+    pendingImport=data;const d=data.datos;
+    const fe=data.exportadoEl?new Date(data.exportadoEl).toLocaleString('es-MX'):'Desconocida';
+    document.getElementById('rb-info').innerHTML=`<i class="ti ti-circle-check"></i>
+      <div style="font-size:12px"><strong>Archivo válido — TechServ Pro v${data.version||'1.0'}</strong><br>
+      Exportado: ${fe}<br>
+      Clientes: ${d.clientes?.length||0} · Órdenes: ${d.ordenes?.length||0} · Cotizaciones: ${d.cotizaciones?.length||0}<br>
+      Equipos: ${d.equipos?.length||0} · Refacciones: ${d.refacciones?.length||0} · Ventas: ${d.ventas?.length||0}</div>`;
+    document.getElementById('rb-prev').style.display='block';
+  }catch{toast('Error al leer el archivo JSON','error');}};
+  r.readAsText(file);
+}
+function confirmarImport(){
+  if(!pendingImport)return;
+  if(!confirm('¿Confirmar? Se reemplazarán TODOS los datos actuales. Esta acción no se puede deshacer.'))return;
+  const d=pendingImport.datos;
+  ['clientes','ordenes','cotizaciones','equipos','refacciones','ventas'].forEach(k=>{if(d[k])DBSET(k,d[k]);});
+  pendingImport=null;document.getElementById('rb-prev').style.display='none';document.getElementById('rb-file').value='';
+  renderRespaldos();toast('✅ Respaldo importado correctamente');
+}
+function exportarCSV(data,fn){
+  if(!data.length){toast('Sin datos para exportar','error');return;}
+  const keys=Object.keys(data[0]);
+  let csv=keys.join(',')+'\n';
+  data.forEach(r=>{csv+=keys.map(k=>'"'+String(r[k]||'').replace(/"/g,'""')+'"').join(',')+'\n';});
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:fn+'.csv'});
+  a.click();URL.revokeObjectURL(a.href);toast('Archivo CSV descargado');
+}
+
+// ══ CERRAR DROPDOWNS AL CLICK FUERA ══════════════════════════════════════════
+document.addEventListener('click',e=>{
+  if(!e.target.closest('#cot-idesc')&&!e.target.closest('#cot-sug')){const b=document.getElementById('cot-sug');if(b)b.style.display='none';}
+  if(!e.target.closest('#v-ibuscar')&&!e.target.closest('#v-sug')){const b=document.getElementById('v-sug');if(b)b.style.display='none';}
+});
+
+// ══ INIT ══════════════════════════════════════════════════════════════════════
+initDemo();
+</script>
+</body>
+</html>
