@@ -1,0 +1,15 @@
+Coloca aqui los archivos de imagen de tus productos.
+
+El nombre de cada archivo debe coincidir EXACTAMENTE con lo que
+escribas en la columna "Foto del Producto" de productos.xlsx.
+
+Ejemplo:
+  Columna "Foto del Producto" = DH-H3A.jpg
+  Archivo en esta carpeta     = imagenes/DH-H3A.jpg
+
+Si un producto no tiene imagen o el archivo no coincide,
+la pagina muestra automaticamente un icono segun su categoria
+(no se rompe ni se ve un espacio vacio).
+
+Formatos recomendados: .jpg o .png, idealmente cuadradas,
+menores a 300KB cada una para que la pagina cargue rapido.
