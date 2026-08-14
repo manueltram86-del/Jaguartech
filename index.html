@@ -3,1225 +3,5546 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="JAGUAR TECH - Tecnología, Seguridad y Soporte">
-<title id="pageTitle">JAGUAR TECH | Tecnología • Seguridad • Soporte</title>
+
+<meta name="description"
+      content="JAGUAR TECH - Tecnología, Seguridad y Soporte">
+
+<title id="pageTitle">
+    JAGUAR TECH | Tecnología • Seguridad • Soporte
+</title>
 
 <style>
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
 :root{
     --bg:#07090d;
     --bg2:#0d1118;
     --card:#111720;
     --card2:#151c26;
+
     --text:#f5f7fa;
     --muted:#9ba5b3;
     --line:#252e3a;
+
     --gold:#f5b400;
     --gold2:#ffcf33;
+
     --green:#18c77a;
     --danger:#ff5c5c;
+
     --shadow:0 15px 45px rgba(0,0,0,.35);
+
     --radius:18px;
 }
 
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
-a{color:inherit;text-decoration:none;}
-button,input,select,textarea{font:inherit;}
 
-header{position:sticky;top:0;z-index:1000;background:rgba(7,9,13,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
-.navbar{max-width:1250px;margin:auto;min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 20px;}
-.logo{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:1px;}
-.logo-icon{width:45px;height:45px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#8d6200);display:grid;place-items:center;color:#111;font-size:24px;box-shadow:0 8px 25px rgba(245,180,0,.25);overflow:hidden;flex-shrink:0;}
-.logo-icon img{width:100%;height:100%;object-fit:cover;}
-.logo-text{font-size:21px;}
-.logo-text small{display:block;color:var(--muted);font-size:9px;letter-spacing:2px;}
-.nav-links{display:flex;gap:22px;align-items:center;}
-.nav-links a{color:#cbd1d9;font-size:14px;transition:.2s;}
-.nav-links a:hover{color:var(--gold);}
-.nav-actions{display:flex;align-items:center;gap:9px;}
-.icon-btn{border:1px solid var(--line);background:var(--card);color:white;width:42px;height:42px;border-radius:12px;cursor:pointer;position:relative;}
-.cart-count{position:absolute;top:-6px;right:-6px;background:var(--gold);color:#111;font-size:11px;font-weight:bold;min-width:20px;height:20px;border-radius:50%;display:grid;place-items:center;}
-.menu-btn{display:none;}
+/* =========================================================
+   RESET
+========================================================= */
 
-.hero{max-width:1250px;margin:auto;padding:75px 20px 45px;display:grid;grid-template-columns:1.2fr .8fr;gap:45px;align-items:center;}
-.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid rgba(245,180,0,.3);background:rgba(245,180,0,.07);color:var(--gold2);border-radius:50px;font-size:12px;font-weight:bold;margin-bottom:20px;}
-.hero h1{font-size:clamp(40px,6vw,76px);line-height:.95;margin-bottom:22px;letter-spacing:-3px;}
-.hero h1 span{color:var(--gold);}
-.hero p{color:var(--muted);max-width:650px;font-size:17px;margin-bottom:30px;}
-.hero-buttons{display:flex;flex-wrap:wrap;gap:12px;}
-.btn{border:0;border-radius:12px;padding:13px 19px;font-weight:bold;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;}
-.btn:hover{transform:translateY(-2px);}
-.btn-primary{background:var(--gold);color:#111;}
-.btn-secondary{background:var(--card);border:1px solid var(--line);color:white;}
-.hero-card{min-height:380px;border:1px solid var(--line);border-radius:28px;background:radial-gradient(circle at 70% 30%,rgba(245,180,0,.16),transparent 35%),linear-gradient(145deg,#131a23,#080b10);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.hero-jaguar{font-size:180px;filter:drop-shadow(0 20px 30px rgba(245,180,0,.2));}
-.hero-card::after{content:"TECHNOLOGY";position:absolute;bottom:22px;right:25px;color:rgba(255,255,255,.04);font-size:55px;font-weight:900;}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-section{max-width:1250px;margin:auto;padding:55px 20px;}
-.section-title{margin-bottom:28px;}
-.section-title h2{font-size:32px;margin-bottom:7px;}
-.section-title p{color:var(--muted);}
+html{
+    scroll-behavior:smooth;
+}
 
-.services{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;}
-.service{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:23px;transition:.25s;}
-.service:hover{transform:translateY(-5px);border-color:rgba(245,180,0,.5);}
-.service-icon{font-size:30px;margin-bottom:16px;}
-.service h3{margin-bottom:8px;}
-.service p{color:var(--muted);font-size:13px;}
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+}
 
-.category-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px;}
-.category{background:var(--card);border:1px solid var(--line);color:#cbd1d9;padding:10px 15px;border-radius:50px;cursor:pointer;font-size:13px;}
-.category.active,.category:hover{background:var(--gold);color:#111;border-color:var(--gold);}
+a{
+    color:inherit;
+    text-decoration:none;
+}
 
-.shop-tools{display:flex;gap:12px;margin-bottom:25px;}
-.search{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;color:white;padding:13px 16px;outline:none;}
-.search:focus{border-color:var(--gold);}
-.sort{width:190px;background:var(--card);border:1px solid var(--line);border-radius:12px;color:white;padding:13px;}
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
 
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-.product{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.25s;}
-.product:hover{transform:translateY(-5px);border-color:rgba(245,180,0,.45);}
-.product-img{height:205px;background:#0a0e14;display:grid;place-items:center;position:relative;overflow:hidden;}
-.product-img img{width:100%;height:100%;object-fit:cover;}
-.product-placeholder{font-size:70px;}
-.product-tag{position:absolute;top:12px;left:12px;background:var(--gold);color:#111;font-weight:bold;font-size:10px;padding:5px 8px;border-radius:6px;}
-.product-body{padding:17px;}
-.product-category{color:var(--gold);font-size:10px;text-transform:uppercase;font-weight:bold;}
-.product h3{font-size:16px;margin:7px 0;}
-.product p{color:var(--muted);font-size:12px;min-height:38px;}
-.price{font-size:21px;font-weight:900;margin:13px 0;}
-.product-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 
-.promo{max-width:1210px;margin:20px auto;padding:35px;border:1px solid rgba(245,180,0,.35);border-radius:25px;background:radial-gradient(circle at 80% 50%,rgba(245,180,0,.14),transparent 35%),var(--card);display:flex;align-items:center;justify-content:space-between;gap:30px;}
-.promo h2{font-size:32px;}
-.promo p{color:var(--muted);margin-top:8px;}
+/* =========================================================
+   HEADER
+========================================================= */
 
-.about{display:grid;grid-template-columns:1fr 1fr;gap:25px;}
-.about-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;}
-.about-card p{color:var(--muted);}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-.stat{padding:22px;border:1px solid var(--line);border-radius:15px;background:var(--bg2);}
-.stat strong{display:block;color:var(--gold);font-size:28px;}
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
 
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.contact-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;}
-.contact-item{display:flex;gap:13px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);}
-.contact-item:last-child{border-bottom:0;}
-.contact-icon{width:40px;height:40px;border-radius:10px;background:rgba(245,180,0,.1);display:grid;place-items:center;}
+    background:rgba(7,9,13,.92);
+    backdrop-filter:blur(14px);
 
-footer{border-top:1px solid var(--line);background:#05070a;}
-.footer-inner{max-width:1250px;margin:auto;padding:35px 20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
-footer p{color:var(--muted);font-size:13px;}
-.socials{display:flex;gap:10px;align-items:center;}
-.social{width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px;}
-.footer-link-btn{border:1px solid var(--line);background:var(--card);color:var(--muted);padding:8px 13px;border-radius:10px;font-size:12px;cursor:pointer;}
-.footer-link-btn:hover{color:var(--gold);border-color:rgba(245,180,0,.4);}
+    border-bottom:1px solid var(--line);
+}
 
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2000;padding:20px;align-items:center;justify-content:center;}
-.modal.show{display:flex;}
-.modal-box{width:min(600px,100%);max-height:90vh;overflow:auto;background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:25px;box-shadow:var(--shadow);}
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
-.close{border:0;background:none;color:white;font-size:25px;cursor:pointer;}
-.cart-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);}
-.cart-item-icon{width:55px;height:55px;display:grid;place-items:center;background:#0a0e14;border-radius:10px;font-size:25px;overflow:hidden;}
-.cart-item-icon img{width:100%;height:100%;object-fit:cover;}
-.cart-item-info{flex:1;}
-.cart-item-info small{color:var(--muted);}
-.qty-controls{display:flex;align-items:center;gap:6px;}
-.qty-btn{width:26px;height:26px;border-radius:6px;border:1px solid var(--line);background:var(--bg2);color:white;cursor:pointer;}
-.remove{border:0;background:none;color:var(--danger);cursor:pointer;font-size:18px;}
-.cart-total{display:flex;justify-content:space-between;font-size:20px;font-weight:bold;margin:14px 0 4px;}
-.cart-subline{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);padding:3px 0;}
-.ticket-preview{display:none;align-items:center;justify-content:space-between;background:rgba(245,180,0,.08);border:1px dashed rgba(245,180,0,.4);border-radius:12px;padding:12px 15px;margin-top:8px;font-size:13px;}
-.ticket-preview.show{display:flex;}
-.ticket-preview strong{color:var(--gold2);font-size:15px;}
+.navbar{
+    max-width:1250px;
+    margin:auto;
 
-.form-group{margin-bottom:16px;}
-.form-group label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;}
-.form-input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:white;padding:11px 13px;outline:none;}
-.form-input:focus{border-color:var(--gold);}
-.form-hint{font-size:11px;color:#737b86;margin-top:5px;}
-.logo-mode-tabs{display:flex;gap:8px;margin-bottom:12px;}
-.logo-mode-tab{flex:1;text-align:center;padding:9px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--muted);cursor:pointer;font-size:12px;}
-.logo-mode-tab.active{background:var(--gold);color:#111;border-color:var(--gold);font-weight:bold;}
-.logo-preview-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding:12px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;}
-.settings-actions{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;}
-.settings-actions .btn{flex:1;min-width:130px;}
-.export-box{display:none;margin-top:16px;}
-.export-box.show{display:block;}
-.export-box textarea{width:100%;min-height:140px;background:#05070a;color:#8fd694;border:1px solid var(--line);border-radius:10px;padding:12px;font-family:monospace;font-size:12px;resize:vertical;}
-.notice-box{background:rgba(245,180,0,.08);border:1px solid rgba(245,180,0,.3);border-radius:12px;padding:12px 14px;font-size:12px;color:var(--muted);margin-bottom:18px;}
-.history-item{padding:14px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:var(--bg2);}
-.history-item-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.history-item-head strong{color:var(--gold2);}
-.history-item small{color:var(--muted);}
+    min-height:76px;
 
-.catalog-status{padding:60px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:18px;}
-.catalog-status.error{color:var(--danger);border-color:rgba(255,92,92,.4);}
-.catalog-status input[type=file]{margin-top:16px;}
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-.toast{position:fixed;right:20px;bottom:20px;background:#171e27;border:1px solid var(--line);border-left:4px solid var(--gold);padding:15px 18px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(100px);opacity:0;pointer-events:none;transition:.3s;z-index:3000;max-width:320px;}
-.toast.show{transform:translateY(0);opacity:1;}
+    gap:20px;
+    padding:12px 20px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo-icon{
+    width:52px;
+    height:52px;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        135deg,
+        var(--gold),
+        #8d6200
+    );
+
+    display:grid;
+    place-items:center;
+
+    color:#111;
+
+    font-size:24px;
+
+    box-shadow:
+        0 8px 25px rgba(245,180,0,.25);
+
+    overflow:hidden;
+
+    flex-shrink:0;
+}
+
+.logo-icon img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    display:block;
+}
+
+.logo-text{
+    font-size:21px;
+}
+
+.logo-text small{
+    display:block;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+    letter-spacing:2px;
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.nav-links{
+    display:flex;
+    gap:22px;
+    align-items:center;
+}
+
+.nav-links a{
+    color:#cbd1d9;
+    font-size:14px;
+
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    color:var(--gold);
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.icon-btn{
+    border:1px solid var(--line);
+
+    background:var(--card);
+
+    color:white;
+
+    width:42px;
+    height:42px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    position:relative;
+}
+
+.cart-count{
+    position:absolute;
+
+    top:-6px;
+    right:-6px;
+
+    background:var(--gold);
+
+    color:#111;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    min-width:20px;
+    height:20px;
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+}
+
+.menu-btn{
+    display:none;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    max-width:1250px;
+    margin:auto;
+
+    padding:75px 20px 45px;
+
+    display:grid;
+
+    grid-template-columns:1.2fr .8fr;
+
+    gap:45px;
+
+    align-items:center;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 13px;
+
+    border:1px solid rgba(245,180,0,.3);
+
+    background:rgba(245,180,0,.07);
+
+    color:var(--gold2);
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(40px,6vw,76px);
+
+    line-height:.95;
+
+    margin-bottom:22px;
+
+    letter-spacing:-3px;
+}
+
+.hero h1 span{
+    color:var(--gold);
+}
+
+.hero p{
+    color:var(--muted);
+
+    max-width:650px;
+
+    font-size:17px;
+
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+.btn{
+    border:0;
+
+    border-radius:12px;
+
+    padding:13px 19px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:var(--gold);
+    color:#111;
+}
+
+.btn-secondary{
+    background:var(--card);
+
+    border:1px solid var(--line);
+
+    color:white;
+}
+
+
+/* =========================================================
+   HERO CARD
+========================================================= */
+
+.hero-card{
+    min-height:380px;
+
+    border:1px solid var(--line);
+
+    border-radius:28px;
+
+    background:
+        radial-gradient(
+            circle at 70% 30%,
+            rgba(245,180,0,.16),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #131a23,
+            #080b10
+        );
+
+    box-shadow:var(--shadow);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.hero-logo{
+    width:70%;
+
+    max-width:320px;
+
+    max-height:300px;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(
+            0 20px 30px rgba(245,180,0,.2)
+        );
+}
+
+.hero-card::after{
+    content:"TECHNOLOGY";
+
+    position:absolute;
+
+    bottom:22px;
+    right:25px;
+
+    color:rgba(255,255,255,.04);
+
+    font-size:55px;
+
+    font-weight:900;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section{
+    max-width:1250px;
+    margin:auto;
+
+    padding:55px 20px;
+}
+
+.section-title{
+    margin-bottom:28px;
+}
+
+.section-title h2{
+    font-size:32px;
+
+    margin-bottom:7px;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+}
+
+.service{
+    background:var(--card);
+
+    border:1px solid var(--line);
+
+    border-radius:var(--radius);
+
+    padding:23px;
+
+    transition:.25s;
+}
+
+.service:hover{
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(245,180,0,.5);
+}
+
+.service-icon{
+    font-size:30px;
+
+    margin-bottom:16px;
+}
+
+.service h3{
+    margin-bottom:8px;
+}
+
+.service p{
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   PROMO
+========================================================= */
+
+.promo{
+    max-width:1210px;
+
+    margin:20px auto;
+
+    padding:35px;
+
+    border:1px solid
+        rgba(245,180,0,.35);
+
+    border-radius:25px;
+
+    background:
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(245,180,0,.14),
+            transparent 35%
+        ),
+        var(--card);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+}
+
+.promo h2{
+    font-size:32px;
+}
+
+.promo p{
+    color:var(--muted);
+
+    margin-top:8px;
+}
+
+
+/* =========================================================
+   CATALOG
+========================================================= */
+
+.category-bar{
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+}
+
+.category{
+    background:var(--card);
+
+    border:1px solid var(--line);
+
+    color:#cbd1d9;
+
+    padding:10px 15px;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:13px;
+}
+
+.category.active,
+.category:hover{
+    background:var(--gold);
+
+    color:#111;
+
+    border-color:var(--gold);
+}
+
+.shop-tools{
+    display:flex;
+
+    gap:12px;
+
+    margin-bottom:25px;
+}
+
+.search{
+    flex:1;
+
+    background:var(--card);
+
+    border:1px solid var(--line);
+
+    border-radius:12px;
+
+    color:white;
+
+    padding:13px 16px;
+
+    outline:none;
+}
+
+.search:focus{
+    border-color:var(--gold);
+}
+
+.sort{
+    width:190px;
+
+    background:var(--card);
+
+    border:1px solid var(--line);
+
+    border-radius:12px;
+
+    color:white;
+
+    padding:13px;
+}
+
+.products{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+}
+
+.product{
+    background:var(--card);
+
+    border:1px solid var(--line);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.25s;
+}
+
+.product:hover{
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(245,180,0,.45);
+}
+
+.product-img{
+    height:205px;
+
+    background:#0a0e14;
+
+    display:grid;
+
+    place-items:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.product-img img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+}
+
+.product-placeholder{
+    font-size:70px;
+}
+
+.product-tag{
+    position:absolute;
+
+    top:12px;
+    left:12px;
+
+    background:var(--gold);
+
+    color:#111;
+
+    font-weight:bold;
+
+    font-size:10px;
+
+    padding:5px 8px;
+
+    border-radius:6px;
+}
+
+.product-body{
+    padding:17px;
+}
+
+.product-category{
+    color:var(--gold);
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    font-weight:bold;
+}
+
+.product h3{
+    font-size:16px;
+
+    margin:7px 0;
+}
+
+.product p{
+    color:var(--muted);
+
+    font-size:12px;
+
+    min-height:38px;
+}
+
+.price{
+    font-size:21px;
+
+    font-weight:900;
+
+    margin:13px 0;
+}
+
+.product-buttons{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:8px;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:25px;
+}
+
+.about-card{
+    background:var(--card);
+
+    border:1px solid var(--line);
+
+    border-radius:20px;
+
+    padding:28px;
+}
+
+.about-card p{
+    color:var(--muted);
+}
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+}
+
+.stat{
+    padding:22px;
+
+    border:1px solid var(--line);
+
+    border-radius:15px;
+
+    background:var(--bg2);
+}
+
+.stat strong{
+    display:block;
+
+    color:var(--gold);
+
+    font-size:28px;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:20px;
+}
+
+.contact-card{
+    background:var(--card);
+
+    border:1px solid var(--line);
+
+    border-radius:20px;
+
+    padding:28px;
+}
+
+.contact-item{
+    display:flex;
+
+    gap:13px;
+
+    align-items:center;
+
+    padding:13px 0;
+
+    border-bottom:
+        1px solid var(--line);
+}
+
+.contact-item:last-child{
+    border-bottom:0;
+}
+
+.contact-icon{
+    width:40px;
+    height:40px;
+
+    border-radius:10px;
+
+    background:
+        rgba(245,180,0,.1);
+
+    display:grid;
+
+    place-items:center;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    border-top:1px solid var(--line);
+
+    background:#05070a;
+}
+
+.footer-inner{
+    max-width:1250px;
+
+    margin:auto;
+
+    padding:35px 20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+}
+
+footer p{
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+.socials{
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+}
+
+.social{
+    width:38px;
+    height:38px;
+
+    display:grid;
+
+    place-items:center;
+
+    border:1px solid var(--line);
+
+    border-radius:10px;
+}
+
+.footer-link-btn{
+    border:1px solid var(--line);
+
+    background:var(--card);
+
+    color:var(--muted);
+
+    padding:8px 13px;
+
+    border-radius:10px;
+
+    font-size:12px;
+
+    cursor:pointer;
+}
+
+.footer-link-btn:hover{
+    color:var(--gold);
+
+    border-color:
+        rgba(245,180,0,.4);
+}
+
+
+/* =========================================================
+   MODALES
+========================================================= */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    z-index:2000;
+
+    padding:20px;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(600px,100%);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:var(--card2);
+
+    border:1px solid var(--line);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+}
+
+.modal-head{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.close{
+    border:0;
+
+    background:none;
+
+    color:white;
+
+    font-size:25px;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+.cart-item{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 0;
+
+    border-bottom:
+        1px solid var(--line);
+}
+
+.cart-item-icon{
+    width:55px;
+    height:55px;
+
+    display:grid;
+
+    place-items:center;
+
+    background:#0a0e14;
+
+    border-radius:10px;
+
+    font-size:25px;
+
+    overflow:hidden;
+}
+
+.cart-item-icon img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+}
+
+.cart-item-info{
+    flex:1;
+}
+
+.cart-item-info small{
+    color:var(--muted);
+}
+
+.qty-controls{
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+}
+
+.qty-btn{
+    width:26px;
+    height:26px;
+
+    border-radius:6px;
+
+    border:1px solid var(--line);
+
+    background:var(--bg2);
+
+    color:white;
+
+    cursor:pointer;
+}
+
+.remove{
+    border:0;
+
+    background:none;
+
+    color:var(--danger);
+
+    cursor:pointer;
+
+    font-size:18px;
+}
+
+.cart-total{
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    margin:14px 0 4px;
+}
+
+.cart-subline{
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:13px;
+
+    color:var(--muted);
+
+    padding:3px 0;
+}
+
+.ticket-preview{
+    display:none;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:
+        rgba(245,180,0,.08);
+
+    border:
+        1px dashed rgba(245,180,0,.4);
+
+    border-radius:12px;
+
+    padding:12px 15px;
+
+    margin-top:8px;
+
+    font-size:13px;
+}
+
+.ticket-preview.show{
+    display:flex;
+}
+
+.ticket-preview strong{
+    color:var(--gold2);
+
+    font-size:15px;
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+
+    font-size:13px;
+
+    color:var(--muted);
+
+    margin-bottom:6px;
+}
+
+.form-input{
+    width:100%;
+
+    background:var(--bg2);
+
+    border:1px solid var(--line);
+
+    border-radius:10px;
+
+    color:white;
+
+    padding:11px 13px;
+
+    outline:none;
+}
+
+.form-input:focus{
+    border-color:var(--gold);
+}
+
+.form-hint{
+    font-size:11px;
+
+    color:#737b86;
+
+    margin-top:5px;
+}
+
+.logo-mode-tabs{
+    display:flex;
+
+    gap:8px;
+
+    margin-bottom:12px;
+}
+
+.logo-mode-tab{
+    flex:1;
+
+    text-align:center;
+
+    padding:9px;
+
+    border-radius:10px;
+
+    border:1px solid var(--line);
+
+    background:var(--bg2);
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    font-size:12px;
+}
+
+.logo-mode-tab.active{
+    background:var(--gold);
+
+    color:#111;
+
+    border-color:var(--gold);
+
+    font-weight:bold;
+}
+
+.logo-preview-row{
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:14px;
+
+    padding:12px;
+
+    background:var(--bg2);
+
+    border:1px solid var(--line);
+
+    border-radius:12px;
+}
+
+.settings-actions{
+    display:flex;
+
+    gap:10px;
+
+    margin-top:10px;
+
+    flex-wrap:wrap;
+}
+
+.settings-actions .btn{
+    flex:1;
+
+    min-width:130px;
+}
+
+.export-box{
+    display:none;
+
+    margin-top:16px;
+}
+
+.export-box.show{
+    display:block;
+}
+
+.export-box textarea{
+    width:100%;
+
+    min-height:140px;
+
+    background:#05070a;
+
+    color:#8fd694;
+
+    border:1px solid var(--line);
+
+    border-radius:10px;
+
+    padding:12px;
+
+    font-family:monospace;
+
+    font-size:12px;
+
+    resize:vertical;
+}
+
+.notice-box{
+    background:
+        rgba(245,180,0,.08);
+
+    border:
+        1px solid rgba(245,180,0,.3);
+
+    border-radius:12px;
+
+    padding:12px 14px;
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    margin-bottom:18px;
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+.history-item{
+    padding:14px;
+
+    border:1px solid var(--line);
+
+    border-radius:12px;
+
+    margin-bottom:10px;
+
+    background:var(--bg2);
+}
+
+.history-item-head{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:8px;
+}
+
+.history-item-head strong{
+    color:var(--gold2);
+}
+
+.history-item small{
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   CATALOG STATUS
+========================================================= */
+
+.catalog-status{
+    padding:60px 20px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    border:1px dashed var(--line);
+
+    border-radius:18px;
+}
+
+.catalog-status.error{
+    color:var(--danger);
+
+    border-color:
+        rgba(255,92,92,.4);
+}
+
+.catalog-status input[type=file]{
+    margin-top:16px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    background:#171e27;
+
+    border:1px solid var(--line);
+
+    border-left:
+        4px solid var(--gold);
+
+    padding:15px 18px;
+
+    border-radius:12px;
+
+    box-shadow:var(--shadow);
+
+    transform:translateY(100px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+
+    z-index:3000;
+
+    max-width:320px;
+}
+
+.toast.show{
+    transform:translateY(0);
+
+    opacity:1;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:1050px){
-    .services,.products{grid-template-columns:repeat(2,1fr);}
-    .nav-links{display:none;}
-    .menu-btn{display:block;}
-    .hero{grid-template-columns:1fr;}
-    .hero-card{min-height:260px;}
+
+    .services,
+    .products{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .hero-card{
+        min-height:260px;
+    }
 }
+
+
 @media(max-width:700px){
-    .navbar{min-height:65px;padding:10px 14px;}
-    .logo-text{font-size:17px;}
-    .logo-icon{width:39px;height:39px;}
-    .hero{padding-top:50px;}
-    .hero h1{font-size:47px;letter-spacing:-2px;}
-    .hero p{font-size:15px;}
-    section{padding:40px 15px;}
-    .services,.products,.about,.contact{grid-template-columns:1fr;}
-    .shop-tools{flex-direction:column;}
-    .sort{width:100%;}
-    .promo{margin:10px 15px;padding:25px;flex-direction:column;align-items:flex-start;}
-    .promo h2{font-size:26px;}
-    .footer-inner{flex-direction:column;}
-    .hero-jaguar{font-size:110px;}
+
+    .navbar{
+        min-height:65px;
+
+        padding:10px 14px;
+    }
+
+    .logo-text{
+        font-size:17px;
+    }
+
+    .logo-icon{
+        width:42px;
+        height:42px;
+    }
+
+    .hero{
+        padding-top:50px;
+    }
+
+    .hero h1{
+        font-size:47px;
+
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    section{
+        padding:40px 15px;
+    }
+
+    .services,
+    .products,
+    .about,
+    .contact{
+        grid-template-columns:1fr;
+    }
+
+    .shop-tools{
+        flex-direction:column;
+    }
+
+    .sort{
+        width:100%;
+    }
+
+    .promo{
+        margin:10px 15px;
+
+        padding:25px;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .promo h2{
+        font-size:26px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+    }
+
+    .hero-logo{
+        width:55%;
+    }
 }
+
+
 @media(max-width:400px){
-    .nav-actions .icon-btn:nth-child(2){display:none;}
-    .hero-buttons{display:grid;grid-template-columns:1fr;}
-    .product-buttons{grid-template-columns:1fr;}
+
+    .nav-actions .icon-btn:nth-child(2){
+        display:none;
+    }
+
+    .hero-buttons{
+        display:grid;
+
+        grid-template-columns:1fr;
+    }
+
+    .product-buttons{
+        grid-template-columns:1fr;
+    }
 }
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
 <header>
-    <nav class="navbar">
-        <a href="#inicio" class="logo">
-            <div class="logo-icon" id="logoIcon">🐆</div>
-            <div class="logo-text">
-                <span id="logoBrandName">JAGUAR TECH</span>
-                <small id="logoBrandTagline">TECNOLOGÍA • SEGURIDAD • SOPORTE</small>
-            </div>
-        </a>
-        <div class="nav-links">
-            <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#productos">Productos</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#contacto">Contacto</a>
-        </div>
-        <div class="nav-actions">
-            <button class="icon-btn menu-btn" onclick="toggleMenu()">☰</button>
-            <button class="icon-btn" onclick="openSettings()" title="Configuración del sitio">⚙️</button>
-            <button class="icon-btn" onclick="openCart()">
-                🛒
-                <span class="cart-count" id="cartCount">0</span>
-            </button>
-        </div>
-    </nav>
+
+<nav class="navbar">
+
+<a href="#inicio" class="logo">
+
+    <div class="logo-icon" id="logoIcon">
+
+        <img
+            src="imagenes/Logo.jpeg"
+            alt="JAGUAR TECH"
+            onerror="this.style.display='none';this.parentElement.textContent='🐆';"
+        >
+
+    </div>
+
+    <div class="logo-text">
+
+        <span id="logoBrandName">
+            JAGUAR TECH
+        </span>
+
+        <small id="logoBrandTagline">
+            TECNOLOGÍA • SEGURIDAD • SOPORTE
+        </small>
+
+    </div>
+
+</a>
+
+
+<div class="nav-links">
+
+    <a href="#inicio">Inicio</a>
+
+    <a href="#servicios">Servicios</a>
+
+    <a href="#productos">Productos</a>
+
+    <a href="#nosotros">Nosotros</a>
+
+    <a href="#contacto">Contacto</a>
+
+</div>
+
+
+<div class="nav-actions">
+
+    <button
+        class="icon-btn menu-btn"
+        onclick="toggleMenu()">
+        ☰
+    </button>
+<!--
+    <button
+        class="icon-btn"
+        onclick="openSettings()"
+        title="Configuración del sitio">
+        ⚙️
+    </button>
+-->
+    <button
+        class="icon-btn"
+        onclick="openCart()">
+
+        🛒
+
+        <span
+            class="cart-count"
+            id="cartCount">
+            0
+        </span>
+
+    </button>
+
+</div>
+
+</nav>
+
 </header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
 
 <main>
 
-<section class="hero" id="inicio">
-    <div>
-        <div class="badge">● SOLUCIONES TECNOLÓGICAS PROFESIONALES</div>
-        <h1>Tecnología que<br><span>protege y conecta.</span></h1>
-        <p>En JAGUAR TECH encontrarás soluciones de seguridad, cómputo, redes, soporte técnico y tecnología para tu hogar o empresa.</p>
-        <div class="hero-buttons">
-            <a href="#productos" class="btn btn-primary">Ver productos</a>
-            <a id="heroWaBtn" href="#" target="_blank" class="btn btn-secondary">💬 Cotizar por WhatsApp</a>
-        </div>
-    </div>
-    <div class="hero-card"><div class="hero-jaguar">🐆</div></div>
-</section>
 
-<section id="servicios">
-    <div class="section-title">
-        <h2>Lo que hacemos</h2>
-        <p>Soluciones para particulares, negocios y empresas.</p>
-    </div>
-    <div class="services">
-        <div class="service"><div class="service-icon">📹</div><h3>Videovigilancia</h3><p>Cámaras IP, CCTV, grabadores, cámaras con IA, audio y soluciones de monitoreo.</p></div>
-        <div class="service"><div class="service-icon">🔐</div><h3>Seguridad</h3><p>Alarmas, control de acceso, videoporteros, barreras y sistemas de seguridad.</p></div>
-        <div class="service"><div class="service-icon">💻</div><h3>Cómputo</h3><p>Computadoras, laptops, componentes, accesorios y equipos para oficina.</p></div>
-        <div class="service"><div class="service-icon">🛠️</div><h3>Soporte técnico</h3><p>Reparación, mantenimiento, redes, servidores, instalación y configuración.</p></div>
-    </div>
-</section>
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-<div class="promo">
-    <div>
-        <div class="badge">🔥 PROMOCIONES</div>
-        <h2>¿Tienes un proyecto?</h2>
-        <p>Cotizamos tu proyecto y buscamos la mejor solución para tu presupuesto.</p>
+<section
+    class="hero"
+    id="inicio">
+
+<div>
+
+    <div class="badge">
+        ● SOLUCIONES TECNOLÓGICAS PROFESIONALES
     </div>
-    <a id="promoWaBtn" href="#" target="_blank" class="btn btn-primary">Solicitar cotización</a>
+
+    <h1>
+        Tecnología que<br>
+        <span>protege y conecta.</span>
+    </h1>
+
+    <p>
+        En JAGUAR TECH encontrarás soluciones de seguridad,
+        cómputo, redes, soporte técnico y tecnología para tu
+        hogar o empresa.
+    </p>
+
+    <div class="hero-buttons">
+
+        <a
+            href="#productos"
+            class="btn btn-primary">
+            Ver productos
+        </a>
+
+        <a
+            id="heroWaBtn"
+            href="#"
+            target="_blank"
+            class="btn btn-secondary">
+            💬 Cotizar por WhatsApp
+        </a>
+
+    </div>
+
 </div>
 
-<section id="productos">
-    <div class="section-title">
-        <h2>Catálogo</h2>
-        <p>Productos cargados directamente desde <code>productos.xlsx</code>.</p>
-    </div>
 
-    <div id="catalogLoading" class="catalog-status">Cargando catálogo desde productos.xlsx…</div>
+<div class="hero-card">
 
-    <div id="catalogContent" style="display:none;">
+    <img
+        src="imagenes/Logo2.jpeg"
+        alt="JAGUAR TECH"
+        class="hero-logo"
+        onerror="
+            this.style.display='none';
+            this.parentElement.insertAdjacentHTML(
+                'afterbegin',
+                '<div style=&quot;font-size:150px&quot;>🐆</div>'
+            );
+        "
+    >
 
-        <div class="category-bar" id="categoryBar"></div>
-
-        <div class="shop-tools">
-            <input type="search" id="search" class="search" placeholder="🔎 Buscar producto, marca o modelo..." oninput="renderProducts()">
-            <select id="sort" class="sort" onchange="renderProducts()">
-                <option value="default">Ordenar</option>
-                <option value="low">Precio menor</option>
-                <option value="high">Precio mayor</option>
-                <option value="name">Nombre A-Z</option>
-            </select>
-        </div>
-
-        <div class="products" id="products"></div>
-
-    </div>
+</div>
 
 </section>
+
+
+
+<!-- =========================================================
+     SERVICIOS
+========================================================= -->
+
+<section id="servicios">
+
+<div class="section-title">
+
+    <h2>
+        Lo que hacemos
+    </h2>
+
+    <p>
+        Soluciones para particulares,
+        negocios y empresas.
+    </p>
+
+</div>
+
+
+<div class="services">
+
+<div class="service">
+
+    <div class="service-icon">
+        📹
+    </div>
+
+    <h3>
+        Videovigilancia
+    </h3>
+
+    <p>
+        Cámaras IP, CCTV, grabadores,
+        cámaras con IA, audio y
+        soluciones de monitoreo.
+    </p>
+
+</div>
+
+
+<div class="service">
+
+    <div class="service-icon">
+        🔐
+    </div>
+
+    <h3>
+        Seguridad
+    </h3>
+
+    <p>
+        Alarmas, control de acceso,
+        videoporteros, barreras y
+        sistemas de seguridad.
+    </p>
+
+</div>
+
+
+<div class="service">
+
+    <div class="service-icon">
+        💻
+    </div>
+
+    <h3>
+        Cómputo
+    </h3>
+
+    <p>
+        Computadoras, laptops,
+        componentes, accesorios y
+        equipos para oficina.
+    </p>
+
+</div>
+
+
+<div class="service">
+
+    <div class="service-icon">
+        🛠️
+    </div>
+
+    <h3>
+        Soporte técnico
+    </h3>
+
+    <p>
+        Reparación, mantenimiento,
+        redes, servidores, instalación
+        y configuración.
+    </p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROMOCIÓN
+========================================================= -->
+
+<div class="promo">
+
+<div>
+
+    <div class="badge">
+        🔥 PROMOCIONES
+    </div>
+
+    <h2>
+        ¿Tienes un proyecto?
+    </h2>
+
+    <p>
+        🔹Si eres instalador, revendedor o empresa, JAGUAR TECH es tu aliado. 
+    </p>
+     <p>
+        Ofrecemos precios por volumen, asesoría sin costo y cotización de proyectos,
+        </p>
+           <p></p>
+        buscando siempre la mejor solución para tu presupuesto.
+     </p>
+
+</div>
+
+
+<a
+    id="promoWaBtn"
+    href="#"
+    target="_blank"
+    class="btn btn-primary">
+
+    Solicitar cotización
+
+</a>
+
+</div>
+
+
+
+<!-- =========================================================
+     PRODUCTOS
+========================================================= -->
+
+<section id="productos">
+
+<div class="section-title">
+
+    <h2>
+        Catálogo
+    </h2>
+
+    <p>
+        Productos cargados directamente
+        desde <code>productos.xlsx</code>.
+    </p>
+
+</div>
+
+
+<div
+    id="catalogLoading"
+    class="catalog-status">
+
+    Cargando catálogo desde productos.xlsx…
+
+</div>
+
+
+<div
+    id="catalogContent"
+    style="display:none;">
+
+    <div
+        class="category-bar"
+        id="categoryBar">
+    </div>
+
+
+    <div class="shop-tools">
+
+        <input
+            type="search"
+            id="search"
+            class="search"
+            placeholder="🔎 Buscar producto, marca o modelo..."
+            oninput="renderProducts()"
+        >
+
+
+        <select
+            id="sort"
+            class="sort"
+            onchange="renderProducts()">
+
+            <option value="default">
+                Ordenar
+            </option>
+
+            <option value="low">
+                Precio menor
+            </option>
+
+            <option value="high">
+                Precio mayor
+            </option>
+
+            <option value="name">
+                Nombre A-Z
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div
+        class="products"
+        id="products">
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     NOSOTROS
+========================================================= -->
 
 <section id="nosotros">
-    <div class="section-title">
-        <h2 id="aboutBrandTitle">JAGUAR TECH</h2>
-        <p>Más que tecnología, soluciones.</p>
-    </div>
-    <div class="about">
-        <div class="about-card">
-            <h2>Una solución para cada necesidad</h2><br>
-            <p>En JAGUAR TECH integramos tecnología, seguridad y soporte técnico para ayudarte a elegir, instalar y mantener tus equipos.</p><br>
-            <p>Trabajamos con soluciones para hogares, comercios, oficinas, escuelas y empresas.</p><br>
-            <a id="aboutWaBtn" href="#" target="_blank" class="btn btn-primary">Hablar con un asesor</a>
-        </div>
-        <div class="stats">
-            <div class="stat"><strong>24/7</strong><span>Soluciones de seguridad</span></div>
-            <div class="stat"><strong>4+</strong><span>Áreas tecnológicas</span></div>
-            <div class="stat"><strong>100%</strong><span>Atención personalizada</span></div>
-            <div class="stat"><strong>PRO</strong><span>Instalación y soporte</span></div>
-        </div>
-    </div>
+
+<div class="section-title">
+
+    <h2 id="aboutBrandTitle">
+        JAGUAR TECH
+    </h2>
+
+    <p>
+        Más que tecnología, soluciones.
+    </p>
+
+</div>
+
+
+<div class="about">
+
+
+<div class="about-card">
+
+    <h2>
+        Una solución para cada necesidad
+    </h2>
+
+    <br>
+
+    <p>
+        En JAGUAR TECH integramos tecnología,
+        seguridad y soporte técnico para ayudarte
+        a elegir, instalar y mantener tus equipos.
+    </p>
+
+    <br>
+
+    <p>
+        Trabajamos con soluciones para hogares,
+        comercios, oficinas, escuelas y empresas.
+    </p>
+
+    <br>
+
+    <a
+        id="aboutWaBtn"
+        href="#"
+        target="_blank"
+        class="btn btn-primary">
+
+        Hablar con un asesor
+
+    </a>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+    <strong>
+        24/7
+    </strong>
+
+    <span>
+        Soluciones de seguridad
+    </span>
+
+</div>
+
+
+<div class="stat">
+
+    <strong>
+        4+
+    </strong>
+
+    <span>
+        Áreas tecnológicas
+    </span>
+
+</div>
+
+
+<div class="stat">
+
+    <strong>
+        100%
+    </strong>
+
+    <span>
+        Atención personalizada
+    </span>
+
+</div>
+
+
+<div class="stat">
+
+    <strong>
+        PRO
+    </strong>
+
+    <span>
+        Instalación y soporte
+    </span>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
+
+
+<!-- =========================================================
+     CONTACTO
+========================================================= -->
+
 <section id="contacto">
-    <div class="section-title">
-        <h2>Contáctanos</h2>
-        <p>Estamos listos para ayudarte.</p>
+
+<div class="section-title">
+
+    <h2>
+        Contáctanos
+    </h2>
+
+    <p>
+        Estamos listos para ayudarte.
+    </p>
+
+</div>
+
+
+<div class="contact">
+
+
+<div class="contact-card">
+
+<div class="contact-item">
+
+    <div class="contact-icon">
+        📱
     </div>
-    <div class="contact">
-        <div class="contact-card">
-            <div class="contact-item"><div class="contact-icon">📱</div><div><small>WhatsApp</small><strong id="contactWaNumber">812 570 7031</strong></div></div>
-            <div class="contact-item"><div class="contact-icon">📍</div><div><small>Ubicación</small><strong>Nuevo León, México</strong></div></div>
-            <div class="contact-item"><div class="contact-icon">💬</div><div><small>Atención</small><strong>Cotizaciones y proyectos</strong></div></div>
-        </div>
-        <div class="contact-card">
-            <h3>¿Necesitas una cotización?</h3>
-            <p style="color:var(--muted);margin:12px 0 20px;">Escríbenos por WhatsApp y cuéntanos qué necesitas. Te ayudamos a encontrar la solución adecuada.</p>
-            <a id="contactWaBtn" href="#" target="_blank" class="btn btn-primary" style="width:100%;">💬 Enviar mensaje</a>
-        </div>
+
+    <div>
+
+        <small>
+            WhatsApp:  
+        </small>
+
+        <strong id="contactWaNumber">
+            812 570 7031
+        </strong>
+
     </div>
+
+</div>
+
+
+<div class="contact-item">
+
+    <div class="contact-icon">
+        📍
+    </div>
+
+    <div>
+
+        <small>
+            Ubicación: 
+        </small>
+
+        <strong>
+            Río Bravo 6000A, Alfonso Martínez Domínguez (FOMERREY-32), 67185 Guadalupe, N.L.
+        </strong>
+
+    </div>
+
+</div>
+
+
+<div class="contact-item">
+
+    <div class="contact-icon">
+        💬
+    </div>
+
+    <div>
+
+        <small>
+            Atención: 
+        </small>
+
+        <strong>
+            Cotizaciones y proyectos
+        </strong>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="contact-card">
+
+    <h3>
+        ¿Necesitas una cotización?
+    </h3>
+
+    <p
+        style="
+        color:var(--muted);
+        margin:12px 0 20px;
+        ">
+
+        Escríbenos por WhatsApp y cuéntanos
+        qué necesitas. Te ayudamos a encontrar
+        la solución adecuada.
+
+    </p>
+
+
+    <a
+        id="contactWaBtn"
+        href="#"
+        target="_blank"
+        class="btn btn-primary"
+        style="width:100%;">
+
+        💬 Enviar mensaje
+
+    </a>
+
+</div>
+
+</div>
+
 </section>
 
 </main>
 
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
-    <div class="footer-inner">
-        <div>
-            <div class="logo">
-                <div class="logo-icon" id="footerLogoIcon">🐆</div>
-                <div class="logo-text">
-                    <span id="footerBrandName">JAGUAR TECH</span>
-                    <small id="footerBrandTagline">TECNOLOGÍA • SEGURIDAD • SOPORTE</small>
-                </div>
-            </div><br>
-            <p>Tecnología • Seguridad • Soporte</p>
-            <p>© <span id="year"></span> <span id="footerCopyName">JAGUAR TECH</span>. Todos los derechos reservados.</p>
-        </div>
-        <div class="socials">
-            <a class="social" href="#" title="Facebook">f</a>
-            <a class="social" href="#" title="Instagram">◎</a>
-            <a class="social" id="footerWaBtn" href="#" target="_blank" title="WhatsApp">☏</a>
-            <button class="footer-link-btn" onclick="openHistory()">🎫 Mis cotizaciones</button>
-        </div>
-    </div>
+
+<div class="footer-inner">
+
+
+<div>
+
+<div class="logo">
+
+<div
+    class="logo-icon"
+    id="footerLogoIcon">
+
+    <img
+        src="imagenes/Logo.jpeg"
+        alt="JAGUAR TECH"
+        onerror="
+            this.style.display='none';
+            this.parentElement.textContent='🐆';
+        "
+    >
+
+</div>
+
+
+<div class="logo-text">
+
+<span id="footerBrandName">
+    JAGUAR TECH
+</span>
+
+<small id="footerBrandTagline">
+    TECNOLOGÍA • SEGURIDAD • SOPORTE
+</small>
+
+</div>
+
+</div>
+
+<br>
+
+<p>
+    Tecnología • Seguridad • Soporte
+</p>
+
+<p>
+    ©
+    <span id="year"></span>
+
+    <span id="footerCopyName">
+        JAGUAR TECH
+    </span>.
+
+    Todos los derechos reservados.
+</p>
+
+</div>
+
+
+<div class="socials">
+
+<a
+    class="social"
+    href="https://www.facebook.com/jaguarcctvalarmasycamaras"
+    title="Facebook">
+    f
+</a>
+
+<a
+    class="social"
+    href="#"
+    title="Instagram">
+    ◎
+</a>
+
+<a
+    class="social"
+    id="footerWaBtn"
+    href="#"
+    target="_blank"
+    title="WhatsApp">
+    ☏
+</a>
+
+<button
+    class="footer-link-btn"
+    onclick="openHistory()">
+
+    🎫 Mis cotizaciones
+
+</button>
+
+</div>
+
+</div>
+
 </footer>
 
-<!-- CART MODAL -->
-<div class="modal" id="cartModal">
-    <div class="modal-box">
-        <div class="modal-head"><h2>Mi cotización</h2><button class="close" onclick="closeCart()">×</button></div>
-        <div id="cartItems"></div>
-        <div class="ticket-preview" id="ticketPreview">
-            <span>Se generará un ticket para esta cotización</span>
-            <strong id="ticketPreviewNumber"></strong>
-        </div>
-        <div class="cart-subline"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
-        <div class="cart-subline"><span>Anticipo (70%)</span><span id="cartAdvance">$0.00</span></div>
-        <div class="cart-subline"><span>Saldo contra entrega (30%)</span><span id="cartBalance">$0.00</span></div>
-        <div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
-        <button class="btn btn-primary" style="width:100%;" onclick="sendQuote()">💬 Solicitar cotización por WhatsApp</button>
-    </div>
+
+
+<!-- =========================================================
+     CART MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="cartModal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2>
+    Mi cotización
+</h2>
+
+<button
+    class="close"
+    onclick="closeCart()">
+    ×
+</button>
+
 </div>
 
-<!-- SETTINGS MODAL -->
-<div class="modal" id="settingsModal">
-    <div class="modal-box">
-        <div class="modal-head"><h2>⚙️ Configuración del sitio</h2><button class="close" onclick="closeSettings()">×</button></div>
-        <div class="notice-box">
-            Página estática (GitHub Pages), sin base de datos. Los cambios de este panel se ven de inmediato en <strong>este navegador</strong> para que revises cómo queda. Para que se vean para <strong>todos los visitantes</strong>, usa "Exportar código" y pega el bloque en <code>SITE_CONFIG</code> dentro de <code>index.html</code> antes de subirlo a GitHub.
-        </div>
-        <div class="form-group"><label>Nombre del negocio</label><input type="text" class="form-input" id="inputBrandName"></div>
-        <div class="form-group"><label>Eslogan / lema corto</label><input type="text" class="form-input" id="inputBrandTagline"></div>
-        <div class="form-group">
-            <label>Número de WhatsApp (lada + número, sin espacios ni +)</label>
-            <input type="text" class="form-input" id="inputWaNumber" placeholder="528125707031">
-            <div class="form-hint">Ejemplo México: 52 + 10 dígitos. Así: 528125707031</div>
-        </div>
-        <div class="form-group">
-            <label>Logo</label>
-            <div class="logo-mode-tabs">
-                <div class="logo-mode-tab active" id="tabEmoji" onclick="setLogoMode('emoji')">Emoji / texto</div>
-                <div class="logo-mode-tab" id="tabImage" onclick="setLogoMode('image')">Subir imagen</div>
-            </div>
-            <div id="logoEmojiFields">
-                <input type="text" class="form-input" id="inputLogoEmoji" placeholder="🐆" maxlength="4">
-                <div class="form-hint">Pega un emoji o hasta 2-3 letras (ej. JT).</div>
-            </div>
-            <div id="logoImageFields" style="display:none;">
-                <input type="file" class="form-input" id="inputLogoImage" accept="image/*">
-                <div class="form-hint">Imagen cuadrada (ej. 200×200px), menor a 500KB.</div>
-            </div>
-            <div class="logo-preview-row">
-                <div class="logo-icon" id="settingsLogoPreview" style="width:55px;height:55px;font-size:28px;">🐆</div>
-                <span style="color:var(--muted);font-size:13px;">Así se verá tu logo</span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Anticipo requerido (%)</label>
-            <input type="number" class="form-input" id="inputAdvancePct" min="0" max="100" step="5">
-            <div class="form-hint">El resto se muestra como saldo contra entrega.</div>
-        </div>
-        <div class="settings-actions">
-            <button class="btn btn-primary" onclick="saveSettings()">Guardar y previsualizar</button>
-            <button class="btn btn-secondary" onclick="exportSettings()">Exportar código</button>
-            <button class="btn btn-secondary" onclick="resetSettings()">Restablecer</button>
-        </div>
-        <div class="export-box" id="exportBox">
-            <div class="form-hint" style="margin-bottom:8px;">Copia este bloque y reemplaza el objeto <code>SITE_CONFIG</code> al inicio del <code>&lt;script&gt;</code> en tu <code>index.html</code>.</div>
-            <textarea id="exportTextarea" readonly onclick="this.select()"></textarea>
-        </div>
-    </div>
+
+<div id="cartItems">
 </div>
 
-<!-- HISTORY MODAL -->
-<div class="modal" id="historyModal">
-    <div class="modal-box">
-        <div class="modal-head"><h2>🎫 Mis cotizaciones</h2><button class="close" onclick="closeHistory()">×</button></div>
-        <div class="notice-box">Este historial se guarda solo en este navegador/dispositivo (no hay servidor detrás de esta página).</div>
-        <div id="historyItems"></div>
-    </div>
+
+<div
+    class="ticket-preview"
+    id="ticketPreview">
+
+    <span>
+        Se generará un ticket para esta cotización
+    </span>
+
+    <strong
+        id="ticketPreviewNumber">
+    </strong>
+
 </div>
 
-<div class="toast" id="toast"></div>
 
-<!-- SheetJS: lee el productos.xlsx directamente en el navegador -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<div class="cart-subline">
+
+    <span>
+        Subtotal
+    </span>
+
+    <span id="cartSubtotal">
+        $0.00
+    </span>
+
+</div>
+
+
+<div class="cart-subline">
+
+    <span>
+        Anticipo (70%)
+    </span>
+
+    <span id="cartAdvance">
+        $0.00
+    </span>
+
+</div>
+
+
+<div class="cart-subline">
+
+    <span>
+        Saldo contra entrega (30%)
+    </span>
+
+    <span id="cartBalance">
+        $0.00
+    </span>
+
+</div>
+
+
+<div class="cart-total">
+
+    <span>
+        Total
+    </span>
+
+    <span id="cartTotal">
+        $0.00
+    </span>
+
+</div>
+
+
+<button
+    class="btn btn-primary"
+    style="width:100%;"
+    onclick="sendQuote()">
+
+    💬 Solicitar cotización por WhatsApp
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================================
+     SETTINGS MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="settingsModal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2>
+    ⚙️ Configuración del sitio
+</h2>
+
+<button
+    class="close"
+    onclick="closeSettings()">
+    ×
+</button>
+
+</div>
+
+
+<div class="notice-box">
+
+    Página estática sin base de datos.
+
+    Los cambios de este panel se guardan
+    únicamente en este navegador.
+
+    Para publicarlos para todos los visitantes,
+    utiliza <strong>Exportar código</strong>.
+
+</div> 
+
+
+<div class="form-group">
+
+<label>
+    Nombre del negocio
+</label>
+
+<input
+    type="text"
+    class="form-input"
+    id="inputBrandName">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Eslogan / lema corto
+</label>
+
+<input
+    type="text"
+    class="form-input"
+    id="inputBrandTagline">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Número de WhatsApp
+</label>
+
+<input
+    type="text"
+    class="form-input"
+    id="inputWaNumber"
+    placeholder="528125707031">
+
+<div class="form-hint">
+    México: 52 + número.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Logo
+</label>
+
+
+<div class="logo-mode-tabs">
+
+<div
+    class="logo-mode-tab active"
+    id="tabEmoji"
+    onclick="setLogoMode('emoji')">
+
+    Emoji / texto
+
+</div>
+
+
+<div
+    class="logo-mode-tab"
+    id="tabImage"
+    onclick="setLogoMode('image')">
+
+    Imagen
+
+</div>
+
+</div>
+
+
+<div
+    id="logoEmojiFields">
+
+<input
+    type="text"
+    class="form-input"
+    id="inputLogoEmoji"
+    placeholder="🐆"
+    maxlength="4">
+
+</div>
+
+
+<div
+    id="logoImageFields"
+    style="display:none;">
+
+<input
+    type="file"
+    class="form-input"
+    id="inputLogoImage"
+    accept="image/*">
+
+<div class="form-hint">
+
+    Imagen cuadrada.
+    Recomendado 500×500 px.
+
+</div>
+
+</div>
+
+
+<div class="logo-preview-row">
+
+<div
+    class="logo-icon"
+    id="settingsLogoPreview"
+    style="
+    width:55px;
+    height:55px;
+    font-size:28px;
+    ">
+
+    <img
+        src="imagenes/Logo.jpeg"
+        alt="Logo">
+
+</div>
+
+<span
+    style="
+    color:var(--muted);
+    font-size:13px;
+    ">
+
+    Así se verá tu logo
+
+</span>
+
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Anticipo requerido (%)
+</label>
+
+<input
+    type="number"
+    class="form-input"
+    id="inputAdvancePct"
+    min="0"
+    max="100"
+    step="5">
+
+<div class="form-hint">
+    El resto se muestra como saldo contra entrega.
+</div>
+
+</div>
+
+
+<div class="settings-actions">
+
+<button
+    class="btn btn-primary"
+    onclick="saveSettings()">
+
+    Guardar y previsualizar
+
+</button>
+
+
+<button
+    class="btn btn-secondary"
+    onclick="exportSettings()">
+
+    Exportar código
+
+</button>
+
+
+<button
+    class="btn btn-secondary"
+    onclick="resetSettings()">
+
+    Restablecer
+
+</button>
+
+</div>
+
+
+<div
+    class="export-box"
+    id="exportBox">
+
+<div
+    class="form-hint"
+    style="margin-bottom:8px;">
+
+    Copia este bloque y reemplaza
+    <code>SITE_CONFIG</code>.
+
+</div>
+
+
+<textarea
+    id="exportTextarea"
+    readonly
+    onclick="this.select()">
+</textarea>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================================
+     HISTORY MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="historyModal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2>
+    🎫 Mis cotizaciones
+</h2>
+
+<button
+    class="close"
+    onclick="closeHistory()">
+    ×
+</button>
+
+</div>
+
+
+<div class="notice-box">
+
+    Este historial se guarda solamente
+    en este navegador.
+
+</div>
+
+
+<div id="historyItems">
+</div>
+
+</div>
+
+</div>
+
+
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+
+<!-- =========================================================
+     SHEETJS
+========================================================= -->
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js">
+</script>
+
+
 
 <script>
 
-/* =====================================
-   CONFIGURACIÓN DEL SITIO (valores por defecto)
-   Edítalos aquí para que el cambio sea permanente
-   para todos los visitantes en GitHub Pages, o usa
-   el panel ⚙️ del sitio y el botón "Exportar código".
-===================================== */
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
 
 const SITE_CONFIG = {
-    brandName: "JAGUAR TECH",
-    brandTagline: "TECNOLOGÍA • SEGURIDAD • SOPORTE",
-    whatsapp: "528125707031",
-    logoMode: "emoji",
-    logoEmoji: "🐆",
-    logoImage: null,
-    advancePct: 70
+
+    brandName:
+        "JAGUAR TECH",
+
+    brandTagline:
+        "TECNOLOGÍA • SEGURIDAD • SOPORTE",
+
+    whatsapp:
+        "528125707031",
+
+    logoMode:
+        "image",
+
+    logoEmoji:
+        "🐆",
+
+    logoImage:
+        "imagenes/Logo.jpeg",
+
+    advancePct:
+        70
+
 };
 
-/* =====================================
-   MAPEO DE COLUMNAS DEL EXCEL
-   Deben coincidir con los encabezados de productos.xlsx
-===================================== */
+
+/* =========================================================
+   COLUMNAS EXCEL
+========================================================= */
 
 const COLS = {
+
     id:"ID",
+
     claveTVC:"Clave TVC",
+
     nombre:"Nombre",
+
     marca:"Marca",
+
     modelo:"Modelo",
+
     tipo:"Tipo de producto",
+
     etapa:"Etapa de producto",
+
     claveSAT:"Clave SAT",
+
     descSAT:"Descripción SAT",
+
     cat1:"Categoría 1",
+
     cat2:"Categoría 2",
+
     precioLista:"Precio de Lista USD",
+
     precioDistribuidor:"Precio de Distribuidor USD",
+
     foto:"Foto del Producto"
+
 };
 
-const IMAGES_FOLDER = "imagenes/";
+
+const IMAGES_FOLDER =
+    "imagenes/";
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
 
 let allProducts = [];
-let currentCategory = "Todos";
+
+let currentCategory =
+    "Todos";
+
 let cart = [];
+
 let config = {};
+
 let pendingTicket = null;
 
-const SETTINGS_KEY = "jaguartech_site_settings";
-const TICKETS_KEY = "jaguartech_tickets";
-const TICKET_COUNTER_KEY = "jaguartech_ticket_counter";
 
-/* =====================================
-   CARGA DEL CATÁLOGO DESDE productos.xlsx
-===================================== */
+const SETTINGS_KEY =
+    "jaguartech_site_settings";
+
+const TICKETS_KEY =
+    "jaguartech_tickets";
+
+const TICKET_COUNTER_KEY =
+    "jaguartech_ticket_counter";
+
+
+/* =========================================================
+   CATÁLOGO
+========================================================= */
 
 function loadCatalog(){
 
     fetch("productos.xlsx")
+
         .then(res => {
-            if(!res.ok) throw new Error("No se encontró productos.xlsx");
+
+            if(!res.ok){
+
+                throw new Error(
+                    "No se encontró productos.xlsx"
+                );
+
+            }
+
             return res.arrayBuffer();
+
         })
-        .then(buffer => parseWorkbook(buffer))
-        .catch(err => showCatalogFallback(err));
+
+        .then(buffer => {
+
+            parseWorkbook(buffer);
+
+        })
+
+        .catch(err => {
+
+            showCatalogFallback(err);
+
+        });
 
 }
+
 
 function parseWorkbook(buffer){
 
     try{
 
-        const workbook = XLSX.read(buffer, {type:"array"});
-        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-        const rows = XLSX.utils.sheet_to_json(firstSheet, {defval:""});
+        const workbook =
+            XLSX.read(
+                buffer,
+                {type:"array"}
+            );
 
-        allProducts = rows
-            .map((row, index) => mapRow(row, index))
-            .filter(p => p.nombre);
 
-        if(allProducts.length === 0){
-            showCatalogError("El archivo productos.xlsx no tiene filas con datos.");
+        const firstSheet =
+            workbook.Sheets[
+                workbook.SheetNames[0]
+            ];
+
+
+        const rows =
+            XLSX.utils.sheet_to_json(
+                firstSheet,
+                {defval:""}
+            );
+
+
+        allProducts =
+            rows
+
+            .map(
+                (row,index)=>
+                    mapRow(row,index)
+            )
+
+            .filter(
+                p=>p.nombre
+            );
+
+
+        if(allProducts.length===0){
+
+            showCatalogError(
+                "El archivo productos.xlsx no tiene productos."
+            );
+
             return;
+
         }
 
-        document.getElementById("catalogLoading").style.display = "none";
-        document.getElementById("catalogContent").style.display = "block";
+
+        document
+            .getElementById(
+                "catalogLoading"
+            )
+            .style.display="none";
+
+
+        document
+            .getElementById(
+                "catalogContent"
+            )
+            .style.display="block";
+
 
         buildCategoryBar();
+
         renderProducts();
 
-    }catch(err){
-        showCatalogError("No se pudo leer productos.xlsx: " + err.message);
+    }
+
+    catch(err){
+
+        showCatalogError(
+            "No se pudo leer productos.xlsx: "
+            + err.message
+        );
+
     }
 
 }
 
-function mapRow(row, index){
 
-    const get = key => (row[COLS[key]] !== undefined ? String(row[COLS[key]]).trim() : "");
+function mapRow(row,index){
 
-    const precioLista = parseFloat(String(get("precioLista")).replace(/[^0-9.]/g,"")) || 0;
+    const get =
+        key => {
+
+            return row[COLS[key]]
+                !== undefined
+
+                ? String(
+                    row[COLS[key]]
+                ).trim()
+
+                : "";
+
+        };
+
+
+    const precioLista =
+        parseFloat(
+            String(
+                get("precioLista")
+            )
+            .replace(
+                /[^0-9.]/g,
+                ""
+            )
+        ) || 0;
+
 
     return {
-        _uid: index,
-        id: get("id"),
-        claveTVC: get("claveTVC"),
-        nombre: get("nombre"),
-        marca: get("marca"),
-        modelo: get("modelo"),
-        tipo: get("tipo"),
-        etapa: get("etapa"),
-        cat1: get("cat1") || "Sin categoría",
-        cat2: get("cat2"),
-        descSAT: get("descSAT"),
-        precio: precioLista,
-        foto: get("foto")
+
+        _uid:index,
+
+        id:get("id"),
+
+        claveTVC:get("claveTVC"),
+
+        nombre:get("nombre"),
+
+        marca:get("marca"),
+
+        modelo:get("modelo"),
+
+        tipo:get("tipo"),
+
+        etapa:get("etapa"),
+
+        cat1:
+            get("cat1")
+            ||
+            "Sin categoría",
+
+        cat2:
+            get("cat2"),
+
+        descSAT:
+            get("descSAT"),
+
+        precio:
+            precioLista,
+
+        foto:
+            get("foto")
+
     };
 
 }
 
+
+/* =========================================================
+   FALLBACK EXCEL
+========================================================= */
+
 function showCatalogFallback(err){
 
-    const el = document.getElementById("catalogLoading");
+    const el =
+        document.getElementById(
+            "catalogLoading"
+        );
 
-    el.className = "catalog-status";
 
     el.innerHTML = `
-        No se pudo cargar <code>productos.xlsx</code> automáticamente
-        (esto es normal si abriste el archivo con doble clic en vez de
-        un servidor local o GitHub Pages).<br><br>
-        Selecciona tu archivo manualmente para probar el catálogo aquí mismo:
+
+        No se pudo cargar
+        <code>productos.xlsx</code> automáticamente.
+
+        <br><br>
+
+        Selecciona el archivo manualmente:
+
         <br>
-        <input type="file" id="manualFile" accept=".xlsx,.xls">
+
+        <input
+            type="file"
+            id="manualFile"
+            accept=".xlsx,.xls">
+
     `;
 
-    document.getElementById("manualFile").addEventListener("change", e=>{
 
-        const file = e.target.files[0];
+    document
+        .getElementById(
+            "manualFile"
+        )
+        .addEventListener(
+            "change",
+            e=>{
 
-        if(!file) return;
+                const file =
+                    e.target.files[0];
 
-        const reader = new FileReader();
+                if(!file)
+                    return;
 
-        reader.onload = ev => parseWorkbook(ev.target.result);
 
-        reader.readAsArrayBuffer(file);
+                const reader =
+                    new FileReader();
 
-    });
+
+                reader.onload =
+                    ev => {
+
+                        parseWorkbook(
+                            ev.target.result
+                        );
+
+                    };
+
+
+                reader.readAsArrayBuffer(
+                    file
+                );
+
+            }
+        );
 
 }
+
 
 function showCatalogError(message){
 
-    const el = document.getElementById("catalogLoading");
+    const el =
+        document.getElementById(
+            "catalogLoading"
+        );
 
-    el.className = "catalog-status error";
+    el.className =
+        "catalog-status error";
 
-    el.textContent = message;
+    el.textContent =
+        message;
 
 }
+
+
+/* =========================================================
+   CATEGORÍAS
+========================================================= */
 
 function buildCategoryBar(){
 
-    const categories = Array.from(new Set(allProducts.map(p=>p.cat1))).sort((a,b)=>a.localeCompare(b,"es"));
+    const categories =
+        Array.from(
+            new Set(
+                allProducts.map(
+                    p=>p.cat1
+                )
+            )
+        )
+        .sort(
+            (a,b)=>
+                a.localeCompare(
+                    b,
+                    "es"
+                )
+        );
 
-    const bar = document.getElementById("categoryBar");
 
-    bar.innerHTML = `<button class="category active" data-cat="Todos" onclick="filterCategory('Todos',this)">Todos</button>` +
-        categories.map(cat =>
-            `<button class="category" data-cat="${escapeAttr(cat)}" onclick="filterCategory('${escapeAttr(cat)}',this)">${cat}</button>`
-        ).join("");
+    const bar =
+        document.getElementById(
+            "categoryBar"
+        );
+
+
+    bar.innerHTML =
+
+        `<button
+            class="category active"
+            onclick="filterCategory('Todos',this)">
+            Todos
+        </button>`
+
+        +
+
+        categories
+        .map(
+            cat => `
+
+                <button
+                    class="category"
+                    onclick="filterCategory('${escapeJS(cat)}',this)">
+
+                    ${escapeHTML(cat)}
+
+                </button>
+
+            `
+        )
+        .join("");
 
 }
 
-function escapeAttr(str){
-    return String(str).replace(/'/g,"&#39;").replace(/"/g,"&quot;");
+
+function escapeHTML(str){
+
+    return String(str)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
+
+
+function escapeJS(str){
+
+    return String(str)
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+        .replace(
+            /'/g,
+            "\\'"
+        );
+
+}
+
 
 function categoryIcon(cat1){
 
-    const c = (cat1 || "").toLowerCase();
+    const c =
+        (cat1 || "")
+        .toLowerCase();
 
-    if(c.includes("cámara") || c.includes("camara") || c.includes("cctv")) return "📹";
-    if(c.includes("cómputo") || c.includes("computo") || c.includes("laptop") || c.includes("pc")) return "💻";
-    if(c.includes("seguridad") || c.includes("alarma") || c.includes("acceso")) return "🔐";
-    if(c.includes("red") || c.includes("network") || c.includes("wifi")) return "🌐";
-    if(c.includes("accesorio")) return "🔌";
+
+    if(
+        c.includes("cámara") ||
+        c.includes("camara") ||
+        c.includes("cctv")
+    )
+        return "📹";
+
+
+    if(
+        c.includes("cómputo") ||
+        c.includes("computo") ||
+        c.includes("laptop") ||
+        c.includes("pc")
+    )
+        return "💻";
+
+
+    if(
+        c.includes("seguridad") ||
+        c.includes("alarma") ||
+        c.includes("acceso")
+    )
+        return "🔐";
+
+
+    if(
+        c.includes("red") ||
+        c.includes("network") ||
+        c.includes("wifi")
+    )
+        return "🌐";
+
+
+    if(
+        c.includes("accesorio")
+    )
+        return "🔌";
+
 
     return "📦";
 
 }
 
-/* =====================================
-   CONFIGURACIÓN: CARGA Y APLICACIÓN
-===================================== */
+
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
 
 function loadConfig(){
 
     let stored = null;
 
+
     try{
-        stored = JSON.parse(localStorage.getItem(SETTINGS_KEY));
-    }catch(e){
-        stored = null;
+
+        stored =
+            JSON.parse(
+                localStorage.getItem(
+                    SETTINGS_KEY
+                )
+            );
+
     }
 
-    config = Object.assign({}, SITE_CONFIG, stored || {});
+    catch(e){
+
+        stored=null;
+
+    }
+
+
+    config =
+        Object.assign(
+            {},
+            SITE_CONFIG,
+            stored || {}
+        );
+
 
     applyConfig();
 
 }
 
+
 function applyConfig(){
 
-    document.getElementById("pageTitle").textContent = config.brandName + " | " + config.brandTagline;
-    document.getElementById("logoBrandName").textContent = config.brandName;
-    document.getElementById("logoBrandTagline").textContent = config.brandTagline;
-    document.getElementById("footerBrandName").textContent = config.brandName;
-    document.getElementById("footerBrandTagline").textContent = config.brandTagline;
-    document.getElementById("footerCopyName").textContent = config.brandName;
-    document.getElementById("aboutBrandTitle").textContent = config.brandName;
-    document.getElementById("contactWaNumber").textContent = formatWaNumber(config.whatsapp);
+    document
+        .getElementById(
+            "pageTitle"
+        )
+        .textContent =
+            config.brandName
+            +
+            " | "
+            +
+            config.brandTagline;
 
-    renderLogoInto("logoIcon", config);
-    renderLogoInto("footerLogoIcon", config);
+
+    document
+        .getElementById(
+            "logoBrandName"
+        )
+        .textContent =
+            config.brandName;
+
+
+    document
+        .getElementById(
+            "logoBrandTagline"
+        )
+        .textContent =
+            config.brandTagline;
+
+
+    document
+        .getElementById(
+            "footerBrandName"
+        )
+        .textContent =
+            config.brandName;
+
+
+    document
+        .getElementById(
+            "footerBrandTagline"
+        )
+        .textContent =
+            config.brandTagline;
+
+
+    document
+        .getElementById(
+            "footerCopyName"
+        )
+        .textContent =
+            config.brandName;
+
+
+    document
+        .getElementById(
+            "aboutBrandTitle"
+        )
+        .textContent =
+            config.brandName;
+
+
+    document
+        .getElementById(
+            "contactWaNumber"
+        )
+        .textContent =
+            formatWaNumber(
+                config.whatsapp
+            );
+
+
+    renderLogoInto(
+        "logoIcon",
+        config
+    );
+
+
+    renderLogoInto(
+        "footerLogoIcon",
+        config
+    );
+
 
     updateWhatsappLinks();
 
 }
 
-function formatWaNumber(number){
-    const digits = (number || "").replace(/\D/g,"");
-    if(digits.length <= 4) return digits;
-    return digits.slice(0,2)+" "+digits.slice(2,6)+" "+digits.slice(6);
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+function renderLogoInto(
+    elementId,
+    cfg
+){
+
+    const el =
+        document.getElementById(
+            elementId
+        );
+
+
+    if(!el)
+        return;
+
+
+    if(
+        cfg.logoMode === "image"
+        &&
+        cfg.logoImage
+    ){
+
+        el.innerHTML = `
+
+            <img
+                src="${escapeHTML(cfg.logoImage)}"
+                alt="${escapeHTML(cfg.brandName)}">
+
+        `;
+
+    }
+
+    else{
+
+        el.textContent =
+            cfg.logoEmoji
+            ||
+            "🐆";
+
+    }
+
 }
 
-function renderLogoInto(elementId, cfg){
-    const el = document.getElementById(elementId);
-    if(!el) return;
-    if(cfg.logoMode === "image" && cfg.logoImage){
-        el.innerHTML = `<img src="${cfg.logoImage}" alt="${cfg.brandName}">`;
-    }else{
-        el.textContent = cfg.logoEmoji || "🐆";
-    }
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+function formatWaNumber(number){
+
+    const digits =
+        (number || "")
+        .replace(
+            /\D/g,
+            ""
+        );
+
+
+    if(
+        digits.length <= 4
+    )
+        return digits;
+
+
+    return (
+
+        digits.slice(0,2)
+        +
+        " "
+        +
+        digits.slice(2,6)
+        +
+        " "
+        +
+        digits.slice(6)
+
+    );
+
 }
+
 
 function updateWhatsappLinks(){
 
-    const number = (config.whatsapp || "").replace(/\D/g,"");
+    const number =
+        (config.whatsapp || "")
+        .replace(
+            /\D/g,
+            ""
+        );
+
 
     const links = {
-        heroWaBtn: `Hola ${config.brandName}, quiero una cotización`,
-        promoWaBtn: `Hola ${config.brandName}, quiero cotizar un proyecto`,
-        aboutWaBtn: `Hola ${config.brandName}`,
-        contactWaBtn: `Hola ${config.brandName}, quiero una cotización`,
-        footerWaBtn: null
+
+        heroWaBtn:
+            `Hola ${config.brandName}, quiero una cotización`,
+
+        promoWaBtn:
+            `Hola ${config.brandName}, quiero cotizar un proyecto`,
+
+        aboutWaBtn:
+            `Hola ${config.brandName}`,
+
+        contactWaBtn:
+            `Hola ${config.brandName}, quiero una cotización`,
+
+        footerWaBtn:
+            null
+
     };
 
-    Object.keys(links).forEach(id => {
-        const el = document.getElementById(id);
-        if(!el) return;
-        const text = links[id];
-        el.href = text ? `https://wa.me/${number}?text=${encodeURIComponent(text)}` : `https://wa.me/${number}`;
-    });
+
+    Object.keys(links)
+        .forEach(id=>{
+
+            const el =
+                document.getElementById(
+                    id
+                );
+
+
+            if(!el)
+                return;
+
+
+            const text =
+                links[id];
+
+
+            el.href =
+                text
+
+                ?
+
+                `https://wa.me/${number}?text=${encodeURIComponent(text)}`
+
+                :
+
+                `https://wa.me/${number}`;
+
+        });
 
 }
 
-/* =====================================
-   PANEL DE CONFIGURACIÓN (UI)
-===================================== */
+
+/* =========================================================
+   SETTINGS
+========================================================= */
 
 function openSettings(){
 
-    document.getElementById("inputBrandName").value = config.brandName;
-    document.getElementById("inputBrandTagline").value = config.brandTagline;
-    document.getElementById("inputWaNumber").value = config.whatsapp;
-    document.getElementById("inputLogoEmoji").value = config.logoEmoji || "";
-    document.getElementById("inputAdvancePct").value = config.advancePct;
+    document
+        .getElementById(
+            "inputBrandName"
+        )
+        .value =
+            config.brandName;
 
-    setLogoMode(config.logoMode || "emoji");
 
-    renderLogoInto("settingsLogoPreview", config);
+    document
+        .getElementById(
+            "inputBrandTagline"
+        )
+        .value =
+            config.brandTagline;
 
-    document.getElementById("exportBox").classList.remove("show");
 
-    document.getElementById("settingsModal").classList.add("show");
+    document
+        .getElementById(
+            "inputWaNumber"
+        )
+        .value =
+            config.whatsapp;
+
+
+    document
+        .getElementById(
+            "inputLogoEmoji"
+        )
+        .value =
+            config.logoEmoji || "";
+
+
+    document
+        .getElementById(
+            "inputAdvancePct"
+        )
+        .value =
+            config.advancePct;
+
+
+    setLogoMode(
+        config.logoMode || "image"
+    );
+
+
+    renderLogoInto(
+        "settingsLogoPreview",
+        config
+    );
+
+
+    document
+        .getElementById(
+            "exportBox"
+        )
+        .classList
+        .remove("show");
+
+
+    document
+        .getElementById(
+            "settingsModal"
+        )
+        .classList
+        .add("show");
 
 }
+
 
 function closeSettings(){
-    document.getElementById("settingsModal").classList.remove("show");
+
+    document
+        .getElementById(
+            "settingsModal"
+        )
+        .classList
+        .remove("show");
+
 }
+
 
 function setLogoMode(mode){
 
-    config._pendingLogoMode = mode;
+    config._pendingLogoMode =
+        mode;
 
-    document.getElementById("tabEmoji").classList.toggle("active", mode==="emoji");
-    document.getElementById("tabImage").classList.toggle("active", mode==="image");
-    document.getElementById("logoEmojiFields").style.display = mode==="emoji" ? "block" : "none";
-    document.getElementById("logoImageFields").style.display = mode==="image" ? "block" : "none";
+
+    document
+        .getElementById(
+            "tabEmoji"
+        )
+        .classList
+        .toggle(
+            "active",
+            mode === "emoji"
+        );
+
+
+    document
+        .getElementById(
+            "tabImage"
+        )
+        .classList
+        .toggle(
+            "active",
+            mode === "image"
+        );
+
+
+    document
+        .getElementById(
+            "logoEmojiFields"
+        )
+        .style
+        .display =
+            mode === "emoji"
+            ? "block"
+            : "none";
+
+
+    document
+        .getElementById(
+            "logoImageFields"
+        )
+        .style
+        .display =
+            mode === "image"
+            ? "block"
+            : "none";
 
 }
 
-document.getElementById("inputLogoEmoji").addEventListener("input", e=>{
-    renderLogoInto("settingsLogoPreview", {logoMode:"emoji", logoEmoji:e.target.value || "🐆"});
-});
 
-document.getElementById("inputLogoImage").addEventListener("change", e=>{
+document
+    .getElementById(
+        "inputLogoEmoji"
+    )
+    .addEventListener(
+        "input",
+        e=>{
 
-    const file = e.target.files[0];
+            renderLogoInto(
+                "settingsLogoPreview",
+                {
+                    logoMode:"emoji",
+                    logoEmoji:
+                        e.target.value
+                        ||
+                        "🐆"
+                }
+            );
 
-    if(!file) return;
+        }
+    );
 
-    if(file.size > 700*1024){
-        showToast("La imagen es muy pesada, usa una menor a 500KB.");
-        e.target.value = "";
-        return;
-    }
 
-    const reader = new FileReader();
+document
+    .getElementById(
+        "inputLogoImage"
+    )
+    .addEventListener(
+        "change",
+        e=>{
 
-    reader.onload = function(ev){
-        config._pendingLogoImage = ev.target.result;
-        renderLogoInto("settingsLogoPreview", {logoMode:"image", logoImage: ev.target.result});
-    };
+            const file =
+                e.target.files[0];
 
-    reader.readAsDataURL(file);
 
-});
+            if(!file)
+                return;
+
+
+            if(
+                file.size >
+                700*1024
+            ){
+
+                showToast(
+                    "La imagen es muy pesada."
+                );
+
+                e.target.value="";
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(ev){
+
+                    config._pendingLogoImage =
+                        ev.target.result;
+
+
+                    renderLogoInto(
+                        "settingsLogoPreview",
+                        {
+                            logoMode:"image",
+                            logoImage:
+                                ev.target.result
+                        }
+                    );
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
 
 function saveSettings(){
 
-    const mode = config._pendingLogoMode || "emoji";
+    const mode =
+        config._pendingLogoMode
+        ||
+        "image";
+
 
     const newConfig = {
-        brandName: document.getElementById("inputBrandName").value.trim() || SITE_CONFIG.brandName,
-        brandTagline: document.getElementById("inputBrandTagline").value.trim() || SITE_CONFIG.brandTagline,
-        whatsapp: document.getElementById("inputWaNumber").value.replace(/\D/g,"") || SITE_CONFIG.whatsapp,
-        logoMode: mode,
-        logoEmoji: document.getElementById("inputLogoEmoji").value.trim() || "🐆",
-        logoImage: mode === "image" ? (config._pendingLogoImage || config.logoImage || null) : config.logoImage,
-        advancePct: Math.min(100, Math.max(0, parseInt(document.getElementById("inputAdvancePct").value,10) || 0))
+
+        brandName:
+            document
+            .getElementById(
+                "inputBrandName"
+            )
+            .value
+            .trim()
+            ||
+            SITE_CONFIG.brandName,
+
+
+        brandTagline:
+            document
+            .getElementById(
+                "inputBrandTagline"
+            )
+            .value
+            .trim()
+            ||
+            SITE_CONFIG.brandTagline,
+
+
+        whatsapp:
+            document
+            .getElementById(
+                "inputWaNumber"
+            )
+            .value
+            .replace(
+                /\D/g,
+                ""
+            )
+            ||
+            SITE_CONFIG.whatsapp,
+
+
+        logoMode:
+            mode,
+
+
+        logoEmoji:
+            document
+            .getElementById(
+                "inputLogoEmoji"
+            )
+            .value
+            .trim()
+            ||
+            "🐆",
+
+
+        logoImage:
+            mode === "image"
+
+            ?
+
+            (
+                config._pendingLogoImage
+                ||
+                config.logoImage
+                ||
+                "imagenes/Logo.jpeg"
+            )
+
+            :
+
+            config.logoImage,
+
+
+        advancePct:
+            Math.min(
+                100,
+                Math.max(
+                    0,
+                    parseInt(
+                        document
+                        .getElementById(
+                            "inputAdvancePct"
+                        )
+                        .value,
+                        10
+                    )
+                    ||
+                    0
+                )
+            )
+
     };
 
-    config = Object.assign({}, config, newConfig);
+
+    config =
+        Object.assign(
+            {},
+            config,
+            newConfig
+        );
+
 
     try{
-        localStorage.setItem(SETTINGS_KEY, JSON.stringify({
-            brandName: config.brandName,
-            brandTagline: config.brandTagline,
-            whatsapp: config.whatsapp,
-            logoMode: config.logoMode,
-            logoEmoji: config.logoEmoji,
-            logoImage: config.logoImage,
-            advancePct: config.advancePct
-        }));
-    }catch(e){
-        showToast("No se pudo guardar (la imagen puede ser muy pesada).");
-        return;
+
+        localStorage.setItem(
+
+            SETTINGS_KEY,
+
+            JSON.stringify({
+
+                brandName:
+                    config.brandName,
+
+                brandTagline:
+                    config.brandTagline,
+
+                whatsapp:
+                    config.whatsapp,
+
+                logoMode:
+                    config.logoMode,
+
+                logoEmoji:
+                    config.logoEmoji,
+
+                logoImage:
+                    config.logoImage,
+
+                advancePct:
+                    config.advancePct
+
+            })
+
+        );
+
     }
 
+    catch(e){
+
+        showToast(
+            "No se pudo guardar la configuración."
+        );
+
+        return;
+
+    }
+
+
     applyConfig();
+
     updateCart();
 
-    showToast("Configuración guardada en este navegador ✔");
+    showToast(
+        "Configuración guardada ✔"
+    );
 
 }
 
-function resetSettings(){
-    localStorage.removeItem(SETTINGS_KEY);
-    loadConfig();
-    updateCart();
-    closeSettings();
-    showToast("Configuración restablecida a los valores por defecto.");
-}
+
+/* =========================================================
+   EXPORTAR CONFIG
+========================================================= */
 
 function exportSettings(){
 
-    const mode = config._pendingLogoMode || config.logoMode || "emoji";
+    const mode =
+        config._pendingLogoMode
+        ||
+        config.logoMode
+        ||
+        "image";
 
-    const logoImageValue = mode === "image"
-        ? JSON.stringify(config._pendingLogoImage || config.logoImage || null)
-        : "null";
+
+    const logoImageValue =
+        mode === "image"
+
+        ?
+
+        JSON.stringify(
+            config._pendingLogoImage
+            ||
+            config.logoImage
+            ||
+            "imagenes/Logo.jpeg"
+        )
+
+        :
+
+        "null";
+
 
     const code =
+
 `const SITE_CONFIG = {
-    brandName: ${JSON.stringify(document.getElementById("inputBrandName").value.trim() || config.brandName)},
-    brandTagline: ${JSON.stringify(document.getElementById("inputBrandTagline").value.trim() || config.brandTagline)},
-    whatsapp: ${JSON.stringify(document.getElementById("inputWaNumber").value.replace(/\\D/g,"") || config.whatsapp)},
+
+    brandName: ${JSON.stringify(
+        document
+        .getElementById(
+            "inputBrandName"
+        )
+        .value
+        .trim()
+        ||
+        config.brandName
+    )},
+
+    brandTagline: ${JSON.stringify(
+        document
+        .getElementById(
+            "inputBrandTagline"
+        )
+        .value
+        .trim()
+        ||
+        config.brandTagline
+    )},
+
+    whatsapp: ${JSON.stringify(
+        document
+        .getElementById(
+            "inputWaNumber"
+        )
+        .value
+        .replace(
+            /\\D/g,
+            ""
+        )
+        ||
+        config.whatsapp
+    )},
+
     logoMode: ${JSON.stringify(mode)},
-    logoEmoji: ${JSON.stringify(document.getElementById("inputLogoEmoji").value.trim() || config.logoEmoji)},
+
+    logoEmoji: ${JSON.stringify(
+        document
+        .getElementById(
+            "inputLogoEmoji"
+        )
+        .value
+        .trim()
+        ||
+        config.logoEmoji
+    )},
+
     logoImage: ${logoImageValue},
-    advancePct: ${JSON.stringify(parseInt(document.getElementById("inputAdvancePct").value,10) || config.advancePct)}
+
+    advancePct: ${JSON.stringify(
+        parseInt(
+            document
+            .getElementById(
+                "inputAdvancePct"
+            )
+            .value,
+            10
+        )
+        ||
+        config.advancePct
+    )}
+
 };`;
 
-    document.getElementById("exportTextarea").value = code;
-    document.getElementById("exportBox").classList.add("show");
+
+    document
+        .getElementById(
+            "exportTextarea"
+        )
+        .value =
+            code;
+
+
+    document
+        .getElementById(
+            "exportBox"
+        )
+        .classList
+        .add("show");
 
 }
 
-/* FORMATO MONEDA (USD, como vienen los precios del Excel) */
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetSettings(){
+
+    localStorage.removeItem(
+        SETTINGS_KEY
+    );
+
+    config =
+        Object.assign(
+            {},
+            SITE_CONFIG
+        );
+
+    applyConfig();
+
+    updateCart();
+
+    closeSettings();
+
+    showToast(
+        "Configuración restablecida."
+    );
+
+}
+
+
+/* =========================================================
+   MONEDA
+========================================================= */
 
 function money(value){
-    return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(value);
+
+    return new Intl.NumberFormat(
+        "en-US",
+        {
+            style:"currency",
+            currency:"USD"
+        }
+    ).format(value);
+
 }
 
-/* PRODUCTOS */
+
+/* =========================================================
+   PRODUCTOS
+========================================================= */
 
 function renderProducts(){
 
-    const container = document.getElementById("products");
-    const search = document.getElementById("search").value.toLowerCase();
-    const sort = document.getElementById("sort").value;
+    const container =
+        document.getElementById(
+            "products"
+        );
 
-    let list = allProducts.filter(p => {
 
-        const categoryMatch = currentCategory === "Todos" || p.cat1 === currentCategory;
+    const search =
+        document
+        .getElementById(
+            "search"
+        )
+        .value
+        .toLowerCase();
 
-        const haystack = [p.nombre,p.marca,p.modelo,p.cat1,p.cat2,p.descSAT].join(" ").toLowerCase();
-        const searchMatch = search.split(" ").every(term => haystack.includes(term));
 
-        return categoryMatch && searchMatch;
+    const sort =
+        document
+        .getElementById(
+            "sort"
+        )
+        .value;
 
-    });
 
-    if(sort === "low") list.sort((a,b)=>a.precio-b.precio);
-    if(sort === "high") list.sort((a,b)=>b.precio-a.precio);
-    if(sort === "name") list.sort((a,b)=>a.nombre.localeCompare(b.nombre,"es"));
+    let list =
+        allProducts.filter(
+            p=>{
 
-    if(list.length === 0){
-        container.innerHTML = `<div style="grid-column:1/-1;padding:50px;text-align:center;color:#9ba5b3;">No encontramos productos con esos filtros.</div>`;
-        return;
+                const categoryMatch =
+                    currentCategory === "Todos"
+                    ||
+                    p.cat1 === currentCategory;
+
+
+                const haystack = [
+
+                    p.nombre,
+
+                    p.marca,
+
+                    p.modelo,
+
+                    p.cat1,
+
+                    p.cat2,
+
+                    p.descSAT
+
+                ]
+                .join(" ")
+                .toLowerCase();
+
+
+                const searchMatch =
+                    search
+                    .split(" ")
+                    .every(
+                        term =>
+                            haystack.includes(term)
+                    );
+
+
+                return (
+                    categoryMatch
+                    &&
+                    searchMatch
+                );
+
+            }
+        );
+
+
+    if(sort==="low"){
+
+        list.sort(
+            (a,b)=>
+                a.precio-b.precio
+        );
+
     }
 
-    container.innerHTML = list.map(p => `
-        <article class="product">
-            <div class="product-img">
-                ${
-                    p.foto
-                    ? `<img src="${IMAGES_FOLDER}${p.foto}" alt="${p.nombre}" onerror="this.onerror=null;this.parentElement.innerHTML='<div class=&quot;product-placeholder&quot;>${categoryIcon(p.cat1)}</div>';">`
-                    : `<div class="product-placeholder">${categoryIcon(p.cat1)}</div>`
-                }
-                ${p.etapa && /nuevo|new/i.test(p.etapa) ? `<span class="product-tag">NUEVO</span>` : ""}
+
+    if(sort==="high"){
+
+        list.sort(
+            (a,b)=>
+                b.precio-a.precio
+        );
+
+    }
+
+
+    if(sort==="name"){
+
+        list.sort(
+            (a,b)=>
+                a.nombre.localeCompare(
+                    b.nombre,
+                    "es"
+                )
+        );
+
+    }
+
+
+    if(list.length===0){
+
+        container.innerHTML = `
+
+            <div
+                style="
+                grid-column:1/-1;
+                padding:50px;
+                text-align:center;
+                color:#9ba5b3;
+                ">
+
+                No encontramos productos
+                con esos filtros.
+
             </div>
-            <div class="product-body">
-                <div class="product-category">${p.cat1}${p.cat2 ? " · "+p.cat2 : ""}</div>
-                <h3>${p.nombre}</h3>
-                <p>${p.marca || ""}${p.marca && p.modelo ? " · " : ""}${p.modelo || ""}</p>
-                <div class="price">${money(p.precio)}</div>
-                <div class="product-buttons">
-                    <button class="btn btn-secondary" onclick="addToCart(${p._uid})">🛒 Agregar</button>
-                    <button class="btn btn-primary" onclick="quoteProduct(${p._uid})">Cotizar</button>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+
+        list.map(
+            p=>`
+
+            <article class="product">
+
+                <div class="product-img">
+
+                    ${
+                        p.foto
+
+                        ?
+
+                        `<img
+                            src="${IMAGES_FOLDER}${escapeHTML(p.foto)}"
+                            alt="${escapeHTML(p.nombre)}"
+                            onerror="
+                                this.onerror=null;
+                                this.parentElement.innerHTML='<div class=&quot;product-placeholder&quot;>${categoryIcon(p.cat1)}</div>';
+                            "
+                        >`
+
+                        :
+
+                        `<div
+                            class="product-placeholder">
+                            ${categoryIcon(p.cat1)}
+                        </div>`
+
+                    }
+
+
+                    ${
+                        p.etapa
+                        &&
+                        /nuevo|new/i.test(
+                            p.etapa
+                        )
+
+                        ?
+
+                        `<span class="product-tag">
+                            NUEVO
+                        </span>`
+
+                        :
+
+                        ""
+
+                    }
+
                 </div>
-            </div>
-        </article>
-    `).join("");
+
+
+                <div class="product-body">
+
+                    <div class="product-category">
+
+                        ${escapeHTML(p.cat1)}
+
+                        ${
+                            p.cat2
+                            ?
+                            " · "
+                            +
+                            escapeHTML(p.cat2)
+                            :
+                            ""
+                        }
+
+                    </div>
+
+
+                    <h3>
+                        ${escapeHTML(p.nombre)}
+                    </h3>
+
+
+                    <p>
+
+                        ${escapeHTML(p.marca || "")}
+
+                        ${
+                            p.marca && p.modelo
+                            ? " · "
+                            : ""
+                        }
+
+                        ${escapeHTML(p.modelo || "")}
+
+                    </p>
+
+
+                    <div class="price">
+
+                        ${money(p.precio)}
+
+                    </div>
+
+
+                    <div class="product-buttons">
+
+                        <button
+                            class="btn btn-secondary"
+                            onclick="addToCart(${p._uid})">
+
+                            🛒 Agregar
+
+                        </button>
+
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="quoteProduct(${p._uid})">
+
+                            Cotizar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        `
+        )
+        .join("");
 
 }
 
-function filterCategory(category, button){
-    currentCategory = category;
-    document.querySelectorAll(".category").forEach(btn => btn.classList.remove("active"));
-    button.classList.add("active");
+
+function filterCategory(
+    category,
+    button
+){
+
+    currentCategory =
+        category;
+
+
+    document
+        .querySelectorAll(
+            ".category"
+        )
+        .forEach(
+            btn =>
+                btn.classList.remove(
+                    "active"
+                )
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
     renderProducts();
+
 }
 
-/* CARRITO */
+
+/* =========================================================
+   CARRITO
+========================================================= */
 
 function addToCart(uid){
 
-    const product = allProducts.find(p=>p._uid===uid);
-    if(!product) return;
+    const product =
+        allProducts.find(
+            p=>p._uid===uid
+        );
 
-    const existing = cart.find(item=>item._uid===uid);
+
+    if(!product)
+        return;
+
+
+    const existing =
+        cart.find(
+            item=>item._uid===uid
+        );
+
 
     if(existing){
+
         existing.quantity++;
-    }else{
-        cart.push({...product, quantity:1});
+
     }
 
+    else{
+
+        cart.push({
+            ...product,
+            quantity:1
+        });
+
+    }
+
+
     updateCart();
-    showToast("Producto agregado a la cotización");
+
+
+    showToast(
+        "Producto agregado a la cotización"
+    );
 
 }
 
-function changeQty(uid, delta){
 
-    const item = cart.find(i=>i._uid===uid);
-    if(!item) return;
+function changeQty(
+    uid,
+    delta
+){
+
+    const item =
+        cart.find(
+            i=>i._uid===uid
+        );
+
+
+    if(!item)
+        return;
+
 
     item.quantity += delta;
 
-    if(item.quantity <= 0){
-        cart = cart.filter(i=>i._uid!==uid);
+
+    if(
+        item.quantity <= 0
+    ){
+
+        cart =
+            cart.filter(
+                i=>i._uid!==uid
+            );
+
     }
+
 
     updateCart();
 
 }
+
 
 function updateCart(){
 
-    const count = cart.reduce((t,i)=>t+i.quantity,0);
-    document.getElementById("cartCount").textContent = count;
+    const count =
+        cart.reduce(
+            (t,i)=>
+                t+i.quantity,
+            0
+        );
 
-    const items = document.getElementById("cartItems");
-    pendingTicket = null;
-    document.getElementById("ticketPreview").classList.remove("show");
 
-    if(cart.length === 0){
-        items.innerHTML = `<p style="color:var(--muted);text-align:center;padding:30px;">Tu cotización está vacía.</p>`;
+    document
+        .getElementById(
+            "cartCount"
+        )
+        .textContent =
+            count;
+
+
+    const items =
+        document.getElementById(
+            "cartItems"
+        );
+
+
+    pendingTicket=null;
+
+
+    document
+        .getElementById(
+            "ticketPreview"
+        )
+        .classList
+        .remove("show");
+
+
+    if(cart.length===0){
+
+        items.innerHTML = `
+
+            <p
+                style="
+                color:var(--muted);
+                text-align:center;
+                padding:30px;
+                ">
+
+                Tu cotización está vacía.
+
+            </p>
+
+        `;
+
+
         setCartTotals(0);
+
         return;
+
     }
 
-    items.innerHTML = cart.map(item => `
-        <div class="cart-item">
-            <div class="cart-item-icon">
-                ${item.foto ? `<img src="${IMAGES_FOLDER}${item.foto}" onerror="this.style.display='none';this.parentElement.textContent='${categoryIcon(item.cat1)}';">` : categoryIcon(item.cat1)}
-            </div>
-            <div class="cart-item-info">
-                <strong>${item.nombre}</strong>
-                <small>${money(item.precio)} c/u</small>
-            </div>
-            <div class="qty-controls">
-                <button class="qty-btn" onclick="changeQty(${item._uid},-1)">−</button>
-                <span>${item.quantity}</span>
-                <button class="qty-btn" onclick="changeQty(${item._uid},1)">+</button>
-            </div>
-            <strong>${money(item.precio * item.quantity)}</strong>
-            <button class="remove" onclick="removeFromCart(${item._uid})">×</button>
-        </div>
-    `).join("");
 
-    const total = cart.reduce((sum,item)=>sum+(item.precio*item.quantity),0);
-    setCartTotals(total);
+    items.innerHTML =
 
-    pendingTicket = peekNextTicketId();
-    document.getElementById("ticketPreviewNumber").textContent = pendingTicket;
-    document.getElementById("ticketPreview").classList.add("show");
+        cart.map(
+            item=>`
+
+            <div class="cart-item">
+
+                <div class="cart-item-icon">
+
+                    ${
+                        item.foto
+
+                        ?
+
+                        `<img
+                            src="${IMAGES_FOLDER}${escapeHTML(item.foto)}"
+                            onerror="
+                                this.style.display='none';
+                                this.parentElement.textContent='${categoryIcon(item.cat1)}';
+                            "
+                        >`
+
+                        :
+
+                        categoryIcon(item.cat1)
+
+                    }
+
+                </div>
+
+
+                <div class="cart-item-info">
+
+                    <strong>
+                        ${escapeHTML(item.nombre)}
+                    </strong>
+
+                    <small>
+                        ${money(item.precio)} c/u
+                    </small>
+
+                </div>
+
+
+                <div class="qty-controls">
+
+                    <button
+                        class="qty-btn"
+                        onclick="changeQty(${item._uid},-1)">
+
+                        −
+
+                    </button>
+
+                    <span>
+                        ${item.quantity}
+                    </span>
+
+                    <button
+                        class="qty-btn"
+                        onclick="changeQty(${item._uid},1)">
+
+                        +
+
+                    </button>
+
+                </div>
+
+
+                <strong>
+
+                    ${money(
+                        item.precio
+                        *
+                        item.quantity
+                    )}
+
+                </strong>
+
+
+                <button
+                    class="remove"
+                    onclick="removeFromCart(${item._uid})">
+
+                    ×
+
+                </button>
+
+            </div>
+
+        `
+        )
+        .join("");
+
+
+    const total =
+        cart.reduce(
+            (sum,item)=>
+                sum
+                +
+                (
+                    item.precio
+                    *
+                    item.quantity
+                ),
+            0
+        );
+
+
+    setCartTotals(
+        total
+    );
+
+
+    pendingTicket =
+        peekNextTicketId();
+
+
+    document
+        .getElementById(
+            "ticketPreviewNumber"
+        )
+        .textContent =
+            pendingTicket;
+
+
+    document
+        .getElementById(
+            "ticketPreview"
+        )
+        .classList
+        .add("show");
 
 }
 
-function setCartTotals(total){
 
-    const pct = (config.advancePct !== undefined ? config.advancePct : 70) / 100;
-    const advance = total * pct;
-    const balance = total - advance;
+function setCartTotals(
+    total
+){
 
-    document.getElementById("cartSubtotal").textContent = money(total);
-    document.getElementById("cartAdvance").textContent = money(advance);
-    document.getElementById("cartBalance").textContent = money(balance);
-    document.getElementById("cartTotal").textContent = money(total);
+    const pct =
+        (
+            config.advancePct !== undefined
+            ?
+            config.advancePct
+            :
+            70
+        )
+        /
+        100;
+
+
+    const advance =
+        total*pct;
+
+
+    const balance =
+        total-advance;
+
+
+    document
+        .getElementById(
+            "cartSubtotal"
+        )
+        .textContent =
+            money(total);
+
+
+    document
+        .getElementById(
+            "cartAdvance"
+        )
+        .textContent =
+            money(advance);
+
+
+    document
+        .getElementById(
+            "cartBalance"
+        )
+        .textContent =
+            money(balance);
+
+
+    document
+        .getElementById(
+            "cartTotal"
+        )
+        .textContent =
+            money(total);
 
 }
+
 
 function removeFromCart(uid){
-    cart = cart.filter(item=>item._uid!==uid);
+
+    cart =
+        cart.filter(
+            item=>
+                item._uid!==uid
+        );
+
     updateCart();
+
 }
+
 
 function openCart(){
+
     updateCart();
-    document.getElementById("cartModal").classList.add("show");
+
+    document
+        .getElementById(
+            "cartModal"
+        )
+        .classList
+        .add("show");
+
 }
+
 
 function closeCart(){
-    document.getElementById("cartModal").classList.remove("show");
+
+    document
+        .getElementById(
+            "cartModal"
+        )
+        .classList
+        .remove("show");
+
 }
 
-/* =====================================
+
+/* =========================================================
    TICKETS
-===================================== */
+========================================================= */
 
 function peekNextTicketId(){
-    let counter = parseInt(localStorage.getItem(TICKET_COUNTER_KEY) || "0", 10);
-    return buildTicketId(counter + 1);
+
+    let counter =
+        parseInt(
+            localStorage.getItem(
+                TICKET_COUNTER_KEY
+            )
+            ||
+            "0",
+            10
+        );
+
+
+    return buildTicketId(
+        counter+1
+    );
+
 }
 
-function buildTicketId(counter){
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth()+1).padStart(2,"0");
-    const d = String(now.getDate()).padStart(2,"0");
+
+function buildTicketId(
+    counter
+){
+
+    const now =
+        new Date();
+
+
+    const y =
+        now.getFullYear();
+
+
+    const m =
+        String(
+            now.getMonth()+1
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    const d =
+        String(
+            now.getDate()
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
     return `JT-${y}${m}${d}-${String(counter).padStart(4,"0")}`;
+
 }
+
 
 function generateTicketId(){
-    let counter = parseInt(localStorage.getItem(TICKET_COUNTER_KEY) || "0", 10);
+
+    let counter =
+        parseInt(
+            localStorage.getItem(
+                TICKET_COUNTER_KEY
+            )
+            ||
+            "0",
+            10
+        );
+
+
     counter++;
-    localStorage.setItem(TICKET_COUNTER_KEY, String(counter));
-    return buildTicketId(counter);
+
+
+    localStorage.setItem(
+        TICKET_COUNTER_KEY,
+        String(counter)
+    );
+
+
+    return buildTicketId(
+        counter
+    );
+
 }
 
-function saveTicketToHistory(ticketId, items, total, advance, balance){
 
-    let history = [];
+/* =========================================================
+   GUARDAR HISTORIAL
+========================================================= */
+
+function saveTicketToHistory(
+    ticketId,
+    items,
+    total,
+    advance,
+    balance
+){
+
+    let history=[];
+
 
     try{
-        history = JSON.parse(localStorage.getItem(TICKETS_KEY)) || [];
-    }catch(e){
-        history = [];
+
+        history =
+            JSON.parse(
+                localStorage.getItem(
+                    TICKETS_KEY
+                )
+            )
+            ||
+            [];
+
     }
 
+    catch(e){
+
+        history=[];
+
+    }
+
+
     history.unshift({
+
         ticketId,
-        date: new Date().toISOString(),
-        items: items.map(i=>({name:i.nombre, quantity:i.quantity, price:i.precio})),
-        total, advance, balance
+
+        date:
+            new Date().toISOString(),
+
+        items:
+            items.map(
+                i=>({
+
+                    name:
+                        i.nombre,
+
+                    quantity:
+                        i.quantity,
+
+                    price:
+                        i.precio
+
+                })
+            ),
+
+        total,
+
+        advance,
+
+        balance
+
     });
 
-    if(history.length > 200) history = history.slice(0,200);
 
-    localStorage.setItem(TICKETS_KEY, JSON.stringify(history));
+    if(
+        history.length>200
+    ){
+
+        history =
+            history.slice(
+                0,
+                200
+            );
+
+    }
+
+
+    localStorage.setItem(
+        TICKETS_KEY,
+        JSON.stringify(history)
+    );
 
 }
+
+
+/* =========================================================
+   HISTORIAL
+========================================================= */
 
 function openHistory(){
 
-    let history = [];
+    let history=[];
+
 
     try{
-        history = JSON.parse(localStorage.getItem(TICKETS_KEY)) || [];
-    }catch(e){
-        history = [];
+
+        history =
+            JSON.parse(
+                localStorage.getItem(
+                    TICKETS_KEY
+                )
+            )
+            ||
+            [];
+
     }
 
-    const container = document.getElementById("historyItems");
+    catch(e){
 
-    if(history.length === 0){
-        container.innerHTML = `<p style="color:var(--muted);text-align:center;padding:30px;">Aún no has generado ninguna cotización.</p>`;
-    }else{
-        container.innerHTML = history.map(h => {
+        history=[];
 
-            const dateStr = new Date(h.date).toLocaleString("es-MX");
-            const itemsText = h.items.map(i=>`• ${i.name} x${i.quantity}`).join("<br>");
-
-            return `
-                <div class="history-item">
-                    <div class="history-item-head"><strong>${h.ticketId}</strong><small>${dateStr}</small></div>
-                    <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">${itemsText}</div>
-                    <div style="display:flex;justify-content:space-between;align-items:center;">
-                        <strong>${money(h.total)}</strong>
-                        <button class="btn btn-secondary" style="padding:8px 12px;font-size:12px;" onclick='resendTicket(${JSON.stringify(h).replace(/'/g,"&apos;")})'>💬 Reenviar</button>
-                    </div>
-                </div>
-            `;
-
-        }).join("");
     }
 
-    document.getElementById("historyModal").classList.add("show");
+
+    const container =
+        document.getElementById(
+            "historyItems"
+        );
+
+
+    if(history.length===0){
+
+        container.innerHTML = `
+
+            <p
+                style="
+                color:var(--muted);
+                text-align:center;
+                padding:30px;
+                ">
+
+                Aún no has generado
+                ninguna cotización.
+
+            </p>
+
+        `;
+
+    }
+
+    else{
+
+        container.innerHTML =
+
+            history.map(
+                h=>{
+
+                    const dateStr =
+                        new Date(
+                            h.date
+                        )
+                        .toLocaleString(
+                            "es-MX"
+                        );
+
+
+                    const itemsText =
+                        h.items
+                        .map(
+                            i=>
+                                `• ${escapeHTML(i.name)} x${i.quantity}`
+                        )
+                        .join(
+                            "<br>"
+                        );
+
+
+                    return `
+
+                        <div class="history-item">
+
+                            <div class="history-item-head">
+
+                                <strong>
+                                    ${escapeHTML(h.ticketId)}
+                                </strong>
+
+                                <small>
+                                    ${dateStr}
+                                </small>
+
+                            </div>
+
+
+                            <div
+                                style="
+                                font-size:13px;
+                                color:var(--muted);
+                                margin-bottom:8px;
+                                ">
+
+                                ${itemsText}
+
+                            </div>
+
+
+                            <div
+                                style="
+                                display:flex;
+                                justify-content:space-between;
+                                align-items:center;
+                                ">
+
+                                <strong>
+                                    ${money(h.total)}
+                                </strong>
+
+                                <button
+                                    class="btn btn-secondary"
+                                    style="
+                                    padding:8px 12px;
+                                    font-size:12px;
+                                    "
+                                    onclick='resendTicket(${JSON.stringify(h)})'>
+
+                                    💬 Reenviar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+    }
+
+
+    document
+        .getElementById(
+            "historyModal"
+        )
+        .classList
+        .add("show");
 
 }
+
 
 function closeHistory(){
-    document.getElementById("historyModal").classList.remove("show");
+
+    document
+        .getElementById(
+            "historyModal"
+        )
+        .classList
+        .remove("show");
+
 }
+
+
+/* =========================================================
+   REENVIAR TICKET
+========================================================= */
 
 function resendTicket(h){
 
-    const number = (config.whatsapp || "").replace(/\D/g,"");
+    const number =
+        (config.whatsapp || "")
+        .replace(
+            /\D/g,
+            ""
+        );
 
-    let message = `Hola ${config.brandName}, quiero dar seguimiento a mi cotización:%0A%0A`;
-    message += `Ticket: ${h.ticketId}%0A%0A`;
 
-    h.items.forEach(item=>{
-        message += `• ${item.name} x${item.quantity} - ${money(item.price*item.quantity)}%0A`;
-    });
+    let message =
+        `Hola ${config.brandName}, quiero dar seguimiento a mi cotización:\n\n`;
 
-    message += `%0ATotal: ${money(h.total)}`;
 
-    if(h.advance !== undefined){
-        message += `%0AAnticipo: ${money(h.advance)}%0ASaldo: ${money(h.balance)}`;
+    message +=
+        `Ticket: ${h.ticketId}\n\n`;
+
+
+    h.items.forEach(
+        item=>{
+
+            message +=
+                `• ${item.name} x${item.quantity} - ${money(item.price*item.quantity)}\n`;
+
+        }
+    );
+
+
+    message +=
+        `\nTotal: ${money(h.total)}`;
+
+
+    if(
+        h.advance !== undefined
+    ){
+
+        message +=
+            `\nAnticipo: ${money(h.advance)}`;
+
+        message +=
+            `\nSaldo: ${money(h.balance)}`;
+
     }
 
-    window.open(`https://wa.me/${number}?text=${message}`, "_blank");
+
+    window.open(
+
+        `https://wa.me/${number}?text=${encodeURIComponent(message)}`,
+
+        "_blank"
+
+    );
 
 }
+
+
+/* =========================================================
+   COTIZAR PRODUCTO
+========================================================= */
 
 function quoteProduct(uid){
 
-    const product = allProducts.find(p=>p._uid===uid);
-    if(!product) return;
+    const product =
+        allProducts.find(
+            p=>p._uid===uid
+        );
 
-    const pct = (config.advancePct !== undefined ? config.advancePct : 70) / 100;
-    const advance = product.precio * pct;
-    const balance = product.precio - advance;
 
-    const ticketId = generateTicketId();
+    if(!product)
+        return;
 
-    saveTicketToHistory(ticketId, [{nombre:product.nombre,quantity:1,precio:product.precio}], product.precio, advance, balance);
 
-    const number = (config.whatsapp || "").replace(/\D/g,"");
+    const pct =
+        (
+            config.advancePct !== undefined
+            ?
+            config.advancePct
+            :
+            70
+        )
+        /
+        100;
+
+
+    const advance =
+        product.precio*pct;
+
+
+    const balance =
+        product.precio-advance;
+
+
+    const ticketId =
+        generateTicketId();
+
+
+    saveTicketToHistory(
+
+        ticketId,
+
+        [
+            {
+                nombre:
+                    product.nombre,
+
+                quantity:1,
+
+                precio:
+                    product.precio
+            }
+        ],
+
+        product.precio,
+
+        advance,
+
+        balance
+
+    );
+
+
+    const number =
+        (config.whatsapp || "")
+        .replace(
+            /\D/g,
+            ""
+        );
+
 
     const message =
-        `Hola ${config.brandName}, quiero cotizar:%0A%0A`+
-        `Ticket: ${ticketId}%0A%0A`+
-        `Producto: ${product.nombre}%0A`+
-        `Marca/Modelo: ${product.marca} ${product.modelo}%0A`+
-        `Categoría: ${product.cat1}%0A`+
-        `Precio: ${money(product.precio)}%0A`+
-        `Anticipo (${config.advancePct}%): ${money(advance)}%0A`+
+
+        `Hola ${config.brandName}, quiero cotizar:\n\n`
+        +
+
+        `Ticket: ${ticketId}\n\n`
+
+        +
+
+        `Producto: ${product.nombre}\n`
+
+        +
+
+        `Marca/Modelo: ${product.marca} ${product.modelo}\n`
+
+        +
+
+        `Categoría: ${product.cat1}\n`
+
+        +
+
+        `Precio: ${money(product.precio)}\n`
+
+        +
+
+        `Anticipo (${config.advancePct}%): ${money(advance)}\n`
+
+        +
+
         `Saldo: ${money(balance)}`;
 
-    window.open(`https://wa.me/${number}?text=${message}`, "_blank");
 
-    showToast(`Ticket generado: ${ticketId}`);
+    window.open(
+
+        `https://wa.me/${number}?text=${encodeURIComponent(message)}`,
+
+        "_blank"
+
+    );
+
+
+    showToast(
+        `Ticket generado: ${ticketId}`
+    );
 
 }
 
+
+/* =========================================================
+   ENVIAR COTIZACIÓN
+========================================================= */
+
 function sendQuote(){
 
-    if(cart.length === 0){
-        showToast("Agrega al menos un producto.");
+    if(cart.length===0){
+
+        showToast(
+            "Agrega al menos un producto."
+        );
+
         return;
+
     }
 
-    const ticketId = generateTicketId();
 
-    const total = cart.reduce((sum,item)=>sum+(item.precio*item.quantity),0);
-    const pct = (config.advancePct !== undefined ? config.advancePct : 70) / 100;
-    const advance = total * pct;
-    const balance = total - advance;
+    const ticketId =
+        generateTicketId();
 
-    saveTicketToHistory(ticketId, cart, total, advance, balance);
 
-    const number = (config.whatsapp || "").replace(/\D/g,"");
+    const total =
+        cart.reduce(
+            (sum,item)=>
+                sum
+                +
+                (
+                    item.precio
+                    *
+                    item.quantity
+                ),
+            0
+        );
 
-    let message = `Hola ${config.brandName}, quiero solicitar una cotización:%0A%0A`;
-    message += `Ticket: ${ticketId}%0A%0A`;
 
-    cart.forEach(item=>{
-        message += `• ${item.nombre} x${item.quantity} - ${money(item.precio * item.quantity)}%0A`;
-    });
+    const pct =
+        (
+            config.advancePct !== undefined
+            ?
+            config.advancePct
+            :
+            70
+        )
+        /
+        100;
 
-    message += `%0ASubtotal: ${money(total)}%0A`;
-    message += `Anticipo (${config.advancePct}%): ${money(advance)}%0A`;
-    message += `Saldo contra entrega: ${money(balance)}%0A%0A`;
-    message += "Quedo atento a su cotización.";
 
-    window.open(`https://wa.me/${number}?text=${message}`, "_blank");
+    const advance =
+        total*pct;
 
-    showToast(`Cotización enviada · Ticket ${ticketId}`);
 
-    cart = [];
+    const balance =
+        total-advance;
+
+
+    saveTicketToHistory(
+
+        ticketId,
+
+        cart,
+
+        total,
+
+        advance,
+
+        balance
+
+    );
+
+
+    const number =
+        (config.whatsapp || "")
+        .replace(
+            /\D/g,
+            ""
+        );
+
+
+    let message =
+        `Hola ${config.brandName}, quiero solicitar una cotización:\n\n`;
+
+
+    message +=
+        `Ticket: ${ticketId}\n\n`;
+
+
+    cart.forEach(
+        item=>{
+
+            message +=
+                `• ${item.nombre} x${item.quantity} - ${money(item.precio*item.quantity)}\n`;
+
+        }
+    );
+
+
+    message +=
+        `\nSubtotal: ${money(total)}\n`;
+
+    message +=
+        `Anticipo (${config.advancePct}%): ${money(advance)}\n`;
+
+    message +=
+        `Saldo contra entrega: ${money(balance)}\n\n`;
+
+    message +=
+        "Quedo atento a su cotización.";
+
+
+    window.open(
+
+        `https://wa.me/${number}?text=${encodeURIComponent(message)}`,
+
+        "_blank"
+
+    );
+
+
+    showToast(
+        `Cotización enviada · Ticket ${ticketId}`
+    );
+
+
+    cart=[];
+
     updateCart();
 
 }
 
-/* TOAST */
+
+/* =========================================================
+   TOAST
+========================================================= */
 
 function showToast(message){
-    const toast = document.getElementById("toast");
-    toast.textContent = message;
-    toast.classList.add("show");
-    setTimeout(()=>{toast.classList.remove("show");},3200);
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        ()=>{
+            toast.classList.remove(
+                "show"
+            );
+        },
+        3200
+    );
+
 }
 
-/* MENÚ MÓVIL */
+
+/* =========================================================
+   MENÚ MÓVIL
+========================================================= */
 
 function toggleMenu(){
-    const links = document.querySelector(".nav-links");
-    if(getComputedStyle(links).display === "none"){
-        links.style.display = "flex";
-        links.style.position = "absolute";
-        links.style.top = "65px";
-        links.style.left = "0";
-        links.style.right = "0";
-        links.style.padding = "20px";
-        links.style.background = "#07090d";
-        links.style.flexDirection = "column";
-        links.style.borderBottom = "1px solid #252e3a";
-    }else{
-        links.style.display = "none";
+
+    const links =
+        document.querySelector(
+            ".nav-links"
+        );
+
+
+    if(
+        getComputedStyle(
+            links
+        ).display === "none"
+    ){
+
+        links.style.display =
+            "flex";
+
+        links.style.position =
+            "absolute";
+
+        links.style.top =
+            "65px";
+
+        links.style.left =
+            "0";
+
+        links.style.right =
+            "0";
+
+        links.style.padding =
+            "20px";
+
+        links.style.background =
+            "#07090d";
+
+        links.style.flexDirection =
+            "column";
+
+        links.style.borderBottom =
+            "1px solid #252e3a";
+
     }
+
+    else{
+
+        links.style.display =
+            "none";
+
+    }
+
 }
 
-document.getElementById("year").textContent = new Date().getFullYear();
 
-/* INICIAR */
+/* =========================================================
+   CERRAR MODALES AL HACER CLICK AFUERA
+========================================================= */
+
+document
+    .querySelectorAll(".modal")
+    .forEach(
+        modal=>{
+
+            modal.addEventListener(
+                "click",
+                e=>{
+
+                    if(
+                        e.target === modal
+                    ){
+
+                        modal.classList
+                            .remove("show");
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   AÑO
+========================================================= */
+
+document
+    .getElementById(
+        "year"
+    )
+    .textContent =
+        new Date()
+        .getFullYear();
+
+
+/* =========================================================
+   INICIO
+========================================================= */
 
 loadConfig();
+
 loadCatalog();
+
 updateCart();
 
 </script>
